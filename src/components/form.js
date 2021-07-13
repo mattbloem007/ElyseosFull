@@ -38,7 +38,6 @@ function ContactForm() {
         name="contact-form"
         data-netlify="true"
         data-netlify-honeypot="bot-field"
-        data-netlify-recaptcha="true"
       >
         <Field type="hidden" name="form-name" />
         <Field type="hidden" name="bot-field" />
