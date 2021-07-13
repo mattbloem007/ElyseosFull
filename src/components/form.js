@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react"
 import { Formik, Field, Form, ErrorMessage } from "formik"
+import styled from "styled-components"
 
 import Recaptcha from "react-recaptcha"
+import Radio from "./radio"
+import RadioGroup from "./radiogroup"
 
 const encode = data => {
   return Object.keys(data)
@@ -10,33 +13,9 @@ const encode = data => {
 }
 function ContactForm() {
   const [token, setToken] = useState(null)
-
-  useEffect(() => {
-    const script = document.createElement("script")
-    script.src = "https://www.google.com/recaptcha/api.js"
-    script.async = true
-    script.defer = true
-    document.body.appendChild(script)
-  }, [])
   return (
     <Formik
-      initialValues={{ fullName: "", email: "" }}
-      validate={values => {
-        const errors = {}
-        if (!values.fullName) {
-          errors.fullName = "Required"
-        } else if (values.fullName.length <= 1) {
-          errors.fullName = "must be at least 2 characters"
-        }
-        if (!values.email) {
-          errors.email = "Required"
-        } else if (
-          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
-        ) {
-          errors.email = "Invalid email address"
-        }
-        return errors
-      }}
+      initialValues={{ fullName: "", ftm: "", pay: "", email: "", telegram: "" }}
       onSubmit={data => {
         console.log(data)
         if (token !== null) {
@@ -46,7 +25,6 @@ function ContactForm() {
             body: encode({
               "form-name": "contact-form",
               ...data,
-              "g-recaptcha-response": token,
             }),
           })
             .then(() => {
@@ -56,6 +34,7 @@ function ContactForm() {
         }
       }}
     >
+    {(formik) => (
       <Form
         name="contact-form"
         data-netlify="true"
@@ -65,32 +44,222 @@ function ContactForm() {
         <Field type="hidden" name="form-name" />
         <Field type="hidden" name="bot-field" />
 
-        <label htmlFor="fullName">Full name:</label>
-        <Field name="fullName" type="text" />
-        <ErrorMessage name="fullName" />
+        <Flex>
+          <Label htmlFor="fullName">Name or Pseudonym:</Label>
+            <Field name="fullName" type="text" style={{background: "#FACBAC 0% 0% no-repeat padding-box", border: "2px solid #ED6F1B", borderRadius: "30px"}}/>
+          <FeaturesGrid>
+          <FeatureItem>
+            <FeatureText>
+              What shall we call you?
+            </FeatureText>
+          </FeatureItem>
+          </FeaturesGrid>
+          <ErrorMessage name="fullName" />
+        </Flex>
         <br />
-        <label htmlFor="email">Email</label>
-        <Field name="email" type="text" />
-        <ErrorMessage name="email" />
+        <Flex>
+          <Label htmlFor="ftm">FTM Purchase Amount:</Label>
+            <Field name="ftm" type="text" style={{background: "#FACBAC 0% 0% no-repeat padding-box", border: "2px solid #ED6F1B", borderRadius: "30px"}}/>
+          <FeaturesGrid>
+          <FeatureItem>
+            <FeatureText>
+              (minimum 50,000 maximum 500,000)
+              Seed Sale ELYS cost 0.05FTM per ELYS.  You can see the curren FTM price here https://coinmarketcap.com/currencies/fantom/
+              </FeatureText>
+          </FeatureItem>
+          </FeaturesGrid>
+          <ErrorMessage name="ftm" />
+        </Flex>
         <br />
+        <Flex>
+          <Label htmlFor="pay">How would you like to Pay?:</Label>
+          <Field
+          name="pay"
+          render={({ field }) => (
+            <>
+              <div className="radio-item">
+                <input
+                  {...field}
+                  id="fantom"
+                  value="Fantom"
+                  onChange={formik.handleChange}
+                  defaultChecked={formik.values.pay=== "fantom"}
+                  name="pay"
+                  type="radio"
+                />
+                <Label htmlFor="fantom">Fantom</Label>
+              </div>
 
-        <Recaptcha
-          sitekey={process.env.SITE_RECAPTCHA_KEY}
-          render="explicit"
-          theme="dark"
-          verifyCallback={response => {
-            setToken(response)
-          }}
-          onloadCallback={() => {
-            console.log("done loading!")
-          }}
+              <div className="radio-item">
+                <input
+                  {...field}
+                  id="bitcoin"
+                  value="bitcoin"
+                  name="pay"
+                  onChange={formik.handleChange}
+                    defaultChecked={formik.values.pay=== "bitcoin"}
+                  type="radio"
+                />
+                <Label htmlFor="bitcoin">Bitcoin</Label>
+              </div>
+            </>
+          )}
         />
-
+        </Flex>
         <br />
+        <Flex>
+          <Label htmlFor="email">Email:</Label>
+            <Field name="email" type="text" style={{background: "#FACBAC 0% 0% no-repeat padding-box", border: "2px solid #ED6F1B", borderRadius: "30px"}}/>
+          <ErrorMessage name="email" />
+        </Flex>
+        <br/>
+        <Flex>
+          <Label htmlFor="telegram">Telegram:</Label>
+            <Field name="telegram" type="text" style={{background: "#FACBAC 0% 0% no-repeat padding-box", border: "2px solid #ED6F1B", borderRadius: "30px"}}/>
+          <ErrorMessage name="telegram" />
+        </Flex>
+        <br/>
         <button type="submit">Submit</button>
       </Form>
+      )}
     </Formik>
   )
 }
 
 export default ContactForm
+
+const HeaderInput = styled.input`
+  width: 262px;
+  height: 30px;
+  background: #FACBAC 0% 0% no-repeat padding-box;
+  border: 2px solid #ED6F1B;
+  border-radius: 30px;
+  opacity: 1;
+  &:focus {
+    box-shadow: inset ${props => props.theme.color.secondary} 0px 0px 0px 2px;
+  }
+  @media (max-width: ${props => props.theme.screen.md}) {
+    margin-bottom: 8px;
+  }
+  @media (max-width: ${props => props.theme.screen.sm}) {
+    display: block;
+    width: 100%;
+  }
+`
+
+
+const Label = styled.label`
+width: 100%;
+text-align: left;
+letter-spacing: 0px;
+color: #FFFFFF;
+`
+
+const Styled = styled.div`
+  display: inline-block;
+  > input {
+    opacity: 0;
+  }
+  > input + label {
+    position: relative; /* permet de positionner les pseudo-éléments */
+    padding-left: 25px; /* fait un peu d'espace pour notre case à venir */
+    cursor: pointer;    /* affiche un curseur adapté */
+    &:before {
+      content: '';
+      position: absolute;
+      left:0; top: 1px;
+      width: 17px; height: 17px; /* dim. de la case */
+      border: 1px solid #aaa;
+      background: #f8f8f8;
+      border-radius: 3px; /* angles arrondis */
+      box-shadow: inset 0 1px 3px rgba(0,0,0,.3) /* légère ombre interne */
+    }
+    &:after {
+      content: '✔';
+      position: absolute;
+      top: -1px; left: 2px;
+      font-size: 16px;
+      color: #09ad7e;
+      transition: all .2s; /* on prévoit une animation */
+    }
+  }
+  > input:not(:checked) + label {
+      &:after {
+        opacity: 0; /* coche invisible */
+        transform: scale(0); /* mise à l'échelle à 0 */
+      }
+  }
+  > input:disabled:not(:checked) + label {
+      &:before {
+        box-shadow: none;
+        border-color: #bbb;
+        background-color: #ddd;
+      }
+  }
+  > input:checked + label {
+    &:after {
+      opacity: 1; /* coche opaque */
+      transform: scale(1); /* mise à l'échelle 1:1 */
+    }
+  }
+  > input:disabled:checked + label {
+    &:after {
+      color: #999;
+    }
+  }
+  > input:disabled + label {
+    color: #aaa;
+  }
+  > input:checked:focus + label, input:not(:checked):focus + label {
+    &:before {
+      border: 1px dotted blue;
+    }
+  }
+`
+
+const CheckLabel = styled.label`
+  background: #FACBAC;
+  text-align: left;
+  letter-spacing: 0px;
+  color: "black";
+`;
+
+
+const CheckInput = styled.input`
+&:checked + ${CheckLabel} {
+    background: #FACBAC;
+  }
+`
+
+const Flex = styled.div`
+  display: grid;
+  justify-content: space-between;
+  align-content: center;
+  grid-template-columns: 1fr 1fr 1fr;
+  @media (max-width: ${props => props.theme.screen.md}) {
+    grid-template-columns: 1fr;
+    grid-gap: 64px;
+  }
+`
+
+const FeaturesGrid = styled.div`
+  max-width: 670px;
+  display: grid;
+  margin: 0px auto;
+  grid-column-gap: 40px;
+  grid-row-gap: 35px;
+  @media (max-width: ${props => props.theme.screen.sm}) {
+    grid-template-columns: 1fr;
+    padding: 0 64px;
+  }
+`
+
+const FeatureText = styled.p`
+  text-align: center;
+`
+const FeatureItem = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`

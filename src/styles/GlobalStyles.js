@@ -12,16 +12,20 @@ const GlobalStyles = createGlobalStyle`
     color: ${props => props.theme.color.primary};
 
   }
-  
+
+  label {
+    color: ${props => props.theme.color.background.white};
+  }
+
   body {
     font-family: ${props => props.theme.font.primary};
   }
 
-  
+
   h1 {
     ${props => props.theme.font_size.xlarge};
     font-family: ${props => props.theme.font.bold};
-    
+
   }
 
   h2 {
@@ -31,7 +35,9 @@ const GlobalStyles = createGlobalStyle`
   h3 {
     ${props => props.theme.font_size.larger};
     font-family: ${props => props.theme.font.bold};
+    color: "white";
   }
+
 
   h4 {
     ${props => props.theme.font_size.large};

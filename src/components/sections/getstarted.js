@@ -25,7 +25,7 @@ const GetStarted = () => (
 export default GetStarted
 
 const StyledSection = styled(Section)`
-  background-color: ${props => props.theme.color.background.white};
+  background-color: ${props => props.theme.color.background.light};
 `
 const FeaturesGrid = styled.div`
   max-width: 670px;
@@ -41,6 +41,7 @@ const FeaturesGrid = styled.div`
 
 const FeatureText = styled.p`
   text-align: center;
+  color: ${props => props.theme.color.background.white};
 `
 const FeatureItem = styled.div`
   display: flex;

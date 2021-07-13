@@ -48,13 +48,7 @@ export const NavItem = styled.li`
   a {
     text-decoration: none;
     opacity: 0.9;
-    text-color: ${props => props.theme.color.background.white};
-  }
-
-  &.active {
-    a {
-      opacity: 1;
-    }
+    color: ${props => props.theme.color.background.white};
   }
 `
 
