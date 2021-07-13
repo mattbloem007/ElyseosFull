@@ -16,7 +16,7 @@ function ContactForm() {
   return (
     <Formik
       initialValues={{ fullName: "", ftm: "", pay: "", email: "", telegram: "" }}
-      onSubmit={data => {
+      onSubmit={(data, resetForm}) => {
         console.log(data)
           fetch("/", {
             method: "POST",
@@ -27,7 +27,7 @@ function ContactForm() {
             }),
           })
             .then(() => {
-              alert("send")
+              resetForm();
             })
             .catch(error => alert(error))
 
