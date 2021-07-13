@@ -8,7 +8,7 @@ const encode = data => {
     .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
     .join("&")
 }
-function Form() {
+function ContactForm() {
   const [token, setToken] = useState(null)
 
   useEffect(() => {
@@ -93,4 +93,4 @@ function Form() {
   )
 }
 
-export default Form
+export default ContactForm

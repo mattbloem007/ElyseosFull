@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 
 import { Container, Section } from "../global"
-import Form from "../form"
+import ContactForm from "../form"
 
 const GetStarted = () => (
   <StyledSection>
@@ -15,7 +15,7 @@ const GetStarted = () => (
         </FeatureText>
       </FeatureItem>
       <FeatureItem>
-        <Form />
+        <ContactForm />
       </FeatureItem>
       </FeaturesGrid>
     </GetStartedContainer>
