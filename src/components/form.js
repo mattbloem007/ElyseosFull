@@ -18,7 +18,6 @@ function ContactForm() {
       initialValues={{ fullName: "", ftm: "", pay: "", email: "", telegram: "" }}
       onSubmit={data => {
         console.log(data)
-        if (token !== null) {
           fetch("/", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -31,7 +30,7 @@ function ContactForm() {
               alert("send")
             })
             .catch(error => alert(error))
-        }
+
       }}
     >
     {(formik) => (
