@@ -7,7 +7,6 @@ import ContactForm from "../form"
 const GetStarted = () => (
   <StyledSection>
     <GetStartedContainer>
-      <GetStartedTitle style={{color: "white"}}>ELYS Presale</GetStartedTitle>
       <FeaturesGrid>
       <FeatureItem>
         <FeatureText style={{color: "white"}}>

@@ -8,6 +8,7 @@ import ban from '../../images/Header Banner.png'
 import logoWater from '../../images/logo-watermark.png'
 const Banner = () => (
   <HeaderWrapper id="features">
+  <GetStartedTitle style={{color: "white"}}>ELYS Presale</GetStartedTitle>
     <StyledContainer>
         <BackDrop src={backdrop} />
     </StyledContainer>
@@ -23,6 +24,10 @@ const SectionTitle = styled.h3`
   display: flex;
   justify-content: center;
   margin: 0 auto 40px;
+  text-align: center;
+`
+const GetStartedTitle = styled.h3`
+  margin: 0 auto 32px;
   text-align: center;
 `
 

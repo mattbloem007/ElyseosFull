@@ -44,7 +44,7 @@ function ContactForm() {
 
         <Flex>
           <Label htmlFor="fullName">Name or Pseudonym:</Label>
-            <Field name="fullName" type="text" style={{background: "#FACBAC 0% 0% no-repeat padding-box", border: "2px solid #ED6F1B", borderRadius: "30px"}}/>
+            <Field name="fullName" type="text" style={{background: "#FACBAC 0% 0% no-repeat padding-box", border: "2px solid #ED6F1B", borderRadius: "30px", width: "223px", height: "23px"}}/>
           <FeaturesGrid>
           <FeatureItem>
             <FeatureText style={{color: "white"}}>
@@ -57,7 +57,7 @@ function ContactForm() {
         <br />
         <Flex>
           <Label htmlFor="ftm">FTM Purchase Amount:</Label>
-            <Field name="ftm" type="text" style={{background: "#FACBAC 0% 0% no-repeat padding-box", border: "2px solid #ED6F1B", borderRadius: "30px"}}/>
+            <Field name="ftm" type="text" style={{background: "#FACBAC 0% 0% no-repeat padding-box", border: "2px solid #ED6F1B", borderRadius: "30px", width: "223px", height: "23px"}}/>
           <FeaturesGrid>
           <FeatureItem>
             <FeatureText style={{color: "white"}}>
@@ -257,8 +257,9 @@ const FeatureText = styled.p`
 `
 
 const Submit = styled.button`
-width: 367px;
-height: 72px;
+width: 100px;
+height: 23px;
+float: right;
 background: #ED6F1B 0% 0% no-repeat padding-box;
 border-radius: 45px;
 `
