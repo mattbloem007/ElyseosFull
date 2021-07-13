@@ -2,14 +2,14 @@
 
 const theme = {
   font: {
-    primary: `'Parisine Plus Std'`,
-    secondary: `'Parisine Plus Std'`,
-    light: `'Parisine Plus Std'`,
-    normal: `'Parisine Plus Std'`,
-    medium: `'Parisine Plus Std'`,
-    semibold: `'Parisine Plus Std'`,
-    bold: `'Parisine Plus Std'`,
-    extrabold: `'Parisine Plus Std'`,
+    primary: `'HK Grotesk Normal'`,
+    secondary: `'HK Grotesk Medium'`,
+    light: `'HK Grotesk Light'`,
+    normal: `'HK Grotesk Normal'`,
+    medium: `'HK Grotesk Medium'`,
+    semibold: `'HK Grotesk Semibold'`,
+    bold: `'HK Grotesk Bold'`,
+    extrabold: `'HK Grotesk Extra Bold'`,
   },
   font_size: {
     xxxsmall: "font-size: 12px;",

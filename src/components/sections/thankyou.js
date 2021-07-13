@@ -4,29 +4,21 @@ import styled from "styled-components"
 import { Container, Section } from "../global"
 import ContactForm from "../form"
 
-const GetStarted = () => (
+const Thankyou = () => (
   <StyledSection>
     <GetStartedContainer>
       <FeaturesGrid>
       <FeatureItem>
         <FeatureText style={{color: "white"}}>
-          Greetings and welcome to our Seed Sale - we have 10,000,000 ELYS for sale in the seed and will try to allocate them as fairly as possible to all those who wish to buy. Please fill out the form below by 20/07. We will get back to you with purchase details by the 25/07 and purchases need to be completed by 31/07
+          Thank you for partaking in the seed sale up
         </FeatureText>
-      </FeatureItem>
-      <FeatureItem>
-        <ContactForm />
-      </FeatureItem>
-      <FeatureItem>
-      <FeatureText style={{color: "white"}}>
-      Need help? The quickest way to get your questions answered is to join our seed sale Telegram group <a style={{color: "white"}} href="https://t.me/joinchat/kJCUkY1WacpkZTVk"> here</a>.
-      </FeatureText>
       </FeatureItem>
       </FeaturesGrid>
     </GetStartedContainer>
   </StyledSection>
 )
 
-export default GetStarted
+export default Thankyou
 
 const StyledSection = styled(Section)`
   background-color: ${props => props.theme.color.background.light};

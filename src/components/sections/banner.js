@@ -8,7 +8,7 @@ import ban from '../../images/Header Banner.png'
 import logoWater from '../../images/logo-watermark.png'
 const Banner = () => (
   <HeaderWrapper id="features">
-  <GetStartedTitle style={{color: "white"}}>ELYS Presale</GetStartedTitle>
+  <GetStartedTitle style={{color: "white"}}>ELYS SEED SALE</GetStartedTitle>
     <StyledContainer>
         <BackDrop src={backdrop} />
     </StyledContainer>
@@ -23,7 +23,7 @@ const SectionTitle = styled.h3`
   color: ${props => props.theme.color.primary};
   display: flex;
   justify-content: center;
-  margin: 0 auto 40px;
+  margin: 0 auto 0px;
   text-align: center;
 `
 const GetStartedTitle = styled.h3`
@@ -33,7 +33,7 @@ const GetStartedTitle = styled.h3`
 
 const HeaderWrapper = styled.header`
   background-color: #231B17;
-  padding: 160px 0 80px 0;
+  padding: 0px 0 0px 0;
   position: relative;
   @media (max-width: ${props => props.theme.screen.md}) {
   }

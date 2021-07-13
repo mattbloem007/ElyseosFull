@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { Formik, Field, Form, ErrorMessage } from "formik"
+import {navigate} from 'gatsby'
 import styled from "styled-components"
 
 import Recaptcha from "react-recaptcha"
@@ -15,7 +16,7 @@ function ContactForm() {
   const [token, setToken] = useState(null)
   return (
     <Formik
-      initialValues={{ fullName: "", ftm: "", pay: "", email: "", telegram: "" }}
+      initialValues={{ fullName: "", elys: "", currency: "", email: "", telegram: "" }}
       onSubmit={(data, {resetForm}) => {
         console.log(data)
           fetch("/", {
@@ -28,6 +29,7 @@ function ContactForm() {
           })
             .then(() => {
               resetForm();
+              navigate('/thanks')
             })
             .catch(error => alert(error))
 
@@ -56,23 +58,23 @@ function ContactForm() {
         </Flex>
         <br />
         <Flex>
-          <Label htmlFor="ftm">FTM Purchase Amount:</Label>
-            <Field name="ftm" type="text" style={{background: "#FACBAC 0% 0% no-repeat padding-box", border: "2px solid #ED6F1B", borderRadius: "30px", width: "223px", height: "23px"}}/>
+          <Label htmlFor="elys">FTM Purchase Amount:</Label>
+            <Field name="elys" type="text" style={{background: "#FACBAC 0% 0% no-repeat padding-box", border: "2px solid #ED6F1B", borderRadius: "30px", width: "223px", height: "23px"}}/>
           <FeaturesGrid>
           <FeatureItem>
             <FeatureText style={{color: "white"}}>
-              (minimum 50,000 maximum 500,000)
+              Minimum 50,000 Maximum 500,000.
               Seed Sale ELYS cost 0.05FTM per ELYS.  You can see the curren FTM price <a href="https://coinmarketcap.com/currencies/fantom/" style={{color:"white"}}>here</a>
               </FeatureText>
           </FeatureItem>
           </FeaturesGrid>
-          <ErrorMessage name="ftm" />
+          <ErrorMessage name="elys" />
         </Flex>
         <br />
         <Flex>
-          <Label htmlFor="pay">How would you like to Pay?:</Label>
+          <Label htmlFor="currency">How would you like to pay?:</Label>
           <Field
-          name="pay"
+          name="currency"
           render={({ field }) => (
             <>
               <div className="radio-item">
@@ -82,7 +84,7 @@ function ContactForm() {
                   value="Fantom"
                   onChange={formik.handleChange}
                   defaultChecked={formik.values.pay=== "fantom"}
-                  name="pay"
+                  name="currency"
                   type="radio"
                 />
                 <Label htmlFor="fantom">Fantom</Label>
@@ -93,7 +95,7 @@ function ContactForm() {
                   {...field}
                   id="bitcoin"
                   value="bitcoin"
-                  name="pay"
+                  name="currency"
                   onChange={formik.handleChange}
                     defaultChecked={formik.values.pay=== "bitcoin"}
                   type="radio"
@@ -107,17 +109,17 @@ function ContactForm() {
         <br />
         <Flex>
           <Label htmlFor="email">Email:</Label>
-            <Field name="email" type="text" style={{background: "#FACBAC 0% 0% no-repeat padding-box", border: "2px solid #ED6F1B", borderRadius: "30px"}}/>
+            <Field name="email" type="text" style={{background: "#FACBAC 0% 0% no-repeat padding-box", border: "2px solid #ED6F1B", borderRadius: "30px", width: "223px", height: "23px"}}/>
           <ErrorMessage name="email" />
         </Flex>
         <br/>
         <Flex>
-          <Label htmlFor="telegram">Telegram:</Label>
-            <Field name="telegram" type="text" style={{background: "#FACBAC 0% 0% no-repeat padding-box", border: "2px solid #ED6F1B", borderRadius: "30px"}}/>
+          <Label htmlFor="telegram">Telegram number + country code:</Label>
+            <Field name="telegram" type="text" style={{background: "#FACBAC 0% 0% no-repeat padding-box", border: "2px solid #ED6F1B", borderRadius: "30px", width: "223px", height: "23px"}}/>
           <ErrorMessage name="telegram" />
         </Flex>
         <br/>
-        <Submit type="submit">Submit</Submit>
+        <Submit style={{color: "white"}} type="submit">Submit</Submit>
       </Form>
       )}
     </Formik>
