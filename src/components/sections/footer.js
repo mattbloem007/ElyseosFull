@@ -42,9 +42,7 @@ const Footer = () => (
 )
 
 const FooterWrapper = styled.footer`
-  background-color: white;
-  margin: 80px 0 0;
-  padding: 0 0 80px;
+  background-color: #FACBAC;
 `
 
 const Logo = styled.div`

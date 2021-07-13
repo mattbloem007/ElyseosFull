@@ -1,25 +1,27 @@
 import styled from "styled-components"
 
 export const Container = styled.div`
-  max-width: 1200px;
+  position: relative;
+  max-width: 100%;
   width: 100%;
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 0 0px;
+
 
   @media (min-width: ${props => props.theme.screen.xs}) {
-    max-width: 540px;
+    max-width: 100%;
   }
 
   @media (min-width: ${props => props.theme.screen.sm}) {
-    max-width: 720px;
+    max-width: 100%;
   }
 
   @media (min-width: ${props => props.theme.screen.md}) {
-    max-width: 960px;
+    max-width: 100%;
   }
 
   @media (min-width: ${props => props.theme.screen.lg}) {
-    max-width: 1200px;
+    max-width: 100%;
   }
 
   ${props =>
@@ -30,7 +32,7 @@ export const Container = styled.div`
 `
 
 export const Section = styled.section`
-  padding: 80px 0;
+  padding: 0px 0;
   overflow: hidden;
   background-color: ${props => {
     switch (props.accent) {

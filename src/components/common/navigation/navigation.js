@@ -4,6 +4,7 @@ import Scrollspy from "react-scrollspy"
 import { Menu, X } from "react-feather"
 
 import { Container } from "../../global"
+import logo from '../../../images/Elyseos Logo.png'
 import {
   Nav,
   NavItem,
@@ -13,9 +14,10 @@ import {
   MobileMenu,
   Mobile,
   ActionsContainer,
+  Logo
 } from "./style"
 
-const NAV_ITEMS = ["Features", "Product", "Pricing", ""]
+const NAV_ITEMS = ["Elyseos Home", "Docs", "Elys Token", "Pre-Sale", "Roadmap", "Blog"]
 
 export default class Navigation extends Component {
   state = {
@@ -77,7 +79,7 @@ export default class Navigation extends Component {
           <Brand>
             <Scrollspy offset={-64} item={["top"]} currentClassName="active">
               <AnchorLink href="#top" onClick={this.closeMobileMenu}>
-                Finance
+                <img src={logo}/>
               </AnchorLink>
             </Scrollspy>
           </Brand>
@@ -96,7 +98,7 @@ export default class Navigation extends Component {
 
           <Mobile hide>{this.getNavList({})}</Mobile>
           <ActionsContainer>
-            <button>Sign up</button>
+            <button>Connect Wallet</button>
           </ActionsContainer>
         </StyledContainer>
         <Mobile>

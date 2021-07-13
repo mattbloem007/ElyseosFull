@@ -1,5 +1,5 @@
 import styled from "styled-components"
-
+import logo from "../../../images/Elyseos Logo.png"
 import { Container } from "../../global"
 
 export const Nav = styled.nav`
@@ -8,7 +8,7 @@ export const Nav = styled.nav`
   width: 100%;
   top: 0;
   z-index: 1000;
-  background: ${props => (props.scrolled ? `white` : null)};
+  background-color: ${props => props.theme.color.background.light};
   transition: 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 `
 
@@ -48,7 +48,7 @@ export const NavItem = styled.li`
   a {
     text-decoration: none;
     opacity: 0.9;
-    color: ${props => props.theme.color.black.regular};
+    text-color: ${props => props.theme.color.background.white};
   }
 
   &.active {
@@ -63,6 +63,15 @@ export const MobileMenu = styled.div`
   height: 100vh;
   z-index: 1000;
   background: ${props => props.theme.color.regular};
+`
+
+export const Logo = styled.div`
+top: 86px;
+left: 140px;
+width: 133px;
+height: 140px;
+background-image: url(${logo});
+opacity: 1;
 `
 
 export const Brand = styled.div`

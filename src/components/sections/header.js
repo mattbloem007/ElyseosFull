@@ -25,18 +25,7 @@ const Header = () => {
   return (
     <HeaderWrapper id="top">
       <Container>
-        <Flex>
-          <HeaderTextGroup>
-            <Subtitle>Personal Finance</Subtitle>
-            <h1>
-              All your money,
-              <br />
-              one account
-            </h1>
-            <h2>
-              We're building next generation personal finance tools. Sign up to
-              get early access.
-            </h2>
+      
             <HeaderForm onSubmit={handleSubmit}>
               <HeaderInput placeholder="Your email" />
               <HeaderButton>Early access</HeaderButton>
@@ -45,12 +34,6 @@ const Header = () => {
               Already have a beta account?{" "}
               <FormSubtitleLink to="/">Sign in</FormSubtitleLink>
             </FormSubtitle>
-          </HeaderTextGroup>
-          <ImageWrapper>
-            <StyledImage fluid={data.file.childImageSharp.fluid} />
-            <br />
-          </ImageWrapper>
-        </Flex>
       </Container>
     </HeaderWrapper>
   )
@@ -59,10 +42,9 @@ const Header = () => {
 export default Header
 
 const HeaderWrapper = styled.header`
-  background-color: #f8f8f8;
+  background-color: #fffff;
   padding: 160px 0 80px 0;
   position: relative;
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 5vw));
   @media (max-width: ${props => props.theme.screen.md}) {
   }
 `
@@ -87,7 +69,7 @@ const HeaderTextGroup = styled.div`
 
   h1 {
     margin: 0 0 24px;
-    color: ${props => props.theme.color.primary};
+    color: ${props => props.theme.color.background.white};
   }
 
   h2 {
@@ -134,20 +116,14 @@ const FormSubtitleLink = styled(Link)`
 `
 
 const HeaderInput = styled.input`
-  font-weight: 500;
-  font-size: 16px;
-  color: ${props => props.theme.color.primary};
-  line-height: 42px;
-  width: 100%;
-  text-align: left;
+top: 1502px;
+left: 694px;
+  width: 562px;
   height: 60px;
-  border-width: 1px;
-  border-style: solid;
-  border-color: ${props => props.theme.color.secondary};
-  border-image: initial;
-  border-radius: 4px;
-  padding: 8px 16px;
-  outline: 0px;
+  background: #FACBAC 0% 0% no-repeat padding-box;
+  border: 2px solid #ED6F1B;
+  border-radius: 30px;
+  opacity: 1;
   &:focus {
     box-shadow: inset ${props => props.theme.color.secondary} 0px 0px 0px 2px;
   }

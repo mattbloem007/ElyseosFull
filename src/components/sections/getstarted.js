@@ -2,13 +2,22 @@ import React from "react"
 import styled from "styled-components"
 
 import { Container, Section } from "../global"
+import Form from "../form"
 
 const GetStarted = () => (
   <StyledSection>
     <GetStartedContainer>
-      <GetStartedTitle>Be the first to get the beta</GetStartedTitle>
-      <TryItButton>Get early access</TryItButton>
-      <Subtitle>No credit card required.</Subtitle>
+      <GetStartedTitle>ELYS Presale</GetStartedTitle>
+      <FeaturesGrid>
+      <FeatureItem>
+        <FeatureText>
+          Greetings and welcome to our Seed Sale - we have 10,000,000 ELYS for sale in the seed and will try to allocate them as fairly as possible to all those who wish to buy. Please fill out the form below by 20/07. We will get back to you with purchase details by the 25/07 and purchases need to be completed by 31/07
+        </FeatureText>
+      </FeatureItem>
+      <FeatureItem>
+        <Form />
+      </FeatureItem>
+      </FeaturesGrid>
     </GetStartedContainer>
   </StyledSection>
 )
@@ -16,8 +25,28 @@ const GetStarted = () => (
 export default GetStarted
 
 const StyledSection = styled(Section)`
-  background-color: ${props => props.theme.color.background.light};
-  clip-path: polygon(0 0, 100% 14%, 100% 100%, 0% 100%);
+  background-color: ${props => props.theme.color.background.white};
+`
+const FeaturesGrid = styled.div`
+  max-width: 670px;
+  display: grid;
+  margin: 0px auto;
+  grid-column-gap: 40px;
+  grid-row-gap: 35px;
+  @media (max-width: ${props => props.theme.screen.sm}) {
+    grid-template-columns: 1fr;
+    padding: 0 64px;
+  }
+`
+
+const FeatureText = styled.p`
+  text-align: center;
+`
+const FeatureItem = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 `
 
 const GetStartedContainer = styled(Container)`
