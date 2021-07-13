@@ -16,7 +16,7 @@ function ContactForm() {
   return (
     <Formik
       initialValues={{ fullName: "", ftm: "", pay: "", email: "", telegram: "" }}
-      onSubmit={(data, resetForm}) => {
+      onSubmit={(data, {resetForm}) => {
         console.log(data)
           fetch("/", {
             method: "POST",
@@ -47,7 +47,7 @@ function ContactForm() {
             <Field name="fullName" type="text" style={{background: "#FACBAC 0% 0% no-repeat padding-box", border: "2px solid #ED6F1B", borderRadius: "30px"}}/>
           <FeaturesGrid>
           <FeatureItem>
-            <FeatureText>
+            <FeatureText style={{color: "white"}}>
               What shall we call you?
             </FeatureText>
           </FeatureItem>
@@ -60,9 +60,9 @@ function ContactForm() {
             <Field name="ftm" type="text" style={{background: "#FACBAC 0% 0% no-repeat padding-box", border: "2px solid #ED6F1B", borderRadius: "30px"}}/>
           <FeaturesGrid>
           <FeatureItem>
-            <FeatureText>
+            <FeatureText style={{color: "white"}}>
               (minimum 50,000 maximum 500,000)
-              Seed Sale ELYS cost 0.05FTM per ELYS.  You can see the curren FTM price here https://coinmarketcap.com/currencies/fantom/
+              Seed Sale ELYS cost 0.05FTM per ELYS.  You can see the curren FTM price <a href="https://coinmarketcap.com/currencies/fantom/" style={{color:"white"}}>here</a>
               </FeatureText>
           </FeatureItem>
           </FeaturesGrid>
@@ -117,7 +117,7 @@ function ContactForm() {
           <ErrorMessage name="telegram" />
         </Flex>
         <br/>
-        <button type="submit">Submit</button>
+        <Submit type="submit">Submit</Submit>
       </Form>
       )}
     </Formik>
@@ -254,6 +254,13 @@ const FeaturesGrid = styled.div`
 
 const FeatureText = styled.p`
   text-align: center;
+`
+
+const Submit = styled.button`
+width: 367px;
+height: 72px;
+background: #ED6F1B 0% 0% no-repeat padding-box;
+border-radius: 45px;
 `
 const FeatureItem = styled.div`
   display: flex;

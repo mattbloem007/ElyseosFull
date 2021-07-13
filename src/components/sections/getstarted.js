@@ -7,10 +7,10 @@ import ContactForm from "../form"
 const GetStarted = () => (
   <StyledSection>
     <GetStartedContainer>
-      <GetStartedTitle>ELYS Presale</GetStartedTitle>
+      <GetStartedTitle style={{color: "white"}}>ELYS Presale</GetStartedTitle>
       <FeaturesGrid>
       <FeatureItem>
-        <FeatureText>
+        <FeatureText style={{color: "white"}}>
           Greetings and welcome to our Seed Sale - we have 10,000,000 ELYS for sale in the seed and will try to allocate them as fairly as possible to all those who wish to buy. Please fill out the form below by 20/07. We will get back to you with purchase details by the 25/07 and purchases need to be completed by 31/07
         </FeatureText>
       </FeatureItem>
