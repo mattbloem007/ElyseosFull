@@ -10,7 +10,7 @@ const Thankyou = () => (
       <FeaturesGrid>
       <FeatureItem>
         <FeatureText style={{color: "white"}}>
-          Thank you for partaking in the seed sale up
+          Hooray! Thank you for your submission. We will contact you from the 20/08 with details of your ELYS allocation and payment.
         </FeatureText>
       </FeatureItem>
       </FeaturesGrid>
