@@ -14,10 +14,8 @@ import Banner from "../components/sections/banner"
 const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
-    <Navigation />
     <Banner />
     <GetStarted />
-    <Footer />
   </Layout>
 )
 
