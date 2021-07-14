@@ -58,7 +58,7 @@ function ContactForm() {
         </Flex>
         <br />
         <Flex>
-          <Label htmlFor="elys">FTM Purchase Amount:</Label>
+          <Label htmlFor="elys">ELYS purchase amount:</Label>
             <Field name="elys" type="text" style={{background: "#FACBAC 0% 0% no-repeat padding-box", border: "2px solid #ED6F1B", borderRadius: "30px", width: "223px", height: "23px"}}/>
           <FeaturesGrid>
           <FeatureItem>
@@ -260,7 +260,7 @@ const FeatureText = styled.p`
     display: none
   }
   @media (max-width: ${props => props.theme.screen.sm}) {
-    display: none 
+    display: none
   }
 `
 
