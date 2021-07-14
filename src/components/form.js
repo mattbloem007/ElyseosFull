@@ -64,7 +64,7 @@ function ContactForm() {
           <FeatureItem>
             <FeatureText style={{color: "white", fontSize: "15px", fontStyle: "italic", marginTop: "0px"}}>
               Minimum 50,000 Maximum 500,000.
-              Seed Sale ELYS cost 0.05FTM per ELYS.  You can see the curren FTM price <a href="https://coinmarketcap.com/currencies/fantom/" style={{color:"white"}}>here</a>
+              Seed Sale ELYS cost 0.05FTM per ELYS.  You can see the current FTM price <a href="https://coinmarketcap.com/currencies/fantom/" style={{color:"white"}}>here</a>
               </FeatureText>
           </FeatureItem>
           </FeaturesGrid>
