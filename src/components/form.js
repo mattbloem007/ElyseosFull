@@ -256,6 +256,12 @@ const FeaturesGrid = styled.div`
 
 const FeatureText = styled.p`
   text-align: center;
+  @media (max-width: ${props => props.theme.screen.md}) {
+    display: none
+  }
+  @media (max-width: ${props => props.theme.screen.sm}) {
+    display: none 
+  }
 `
 
 const Submit = styled.button`
