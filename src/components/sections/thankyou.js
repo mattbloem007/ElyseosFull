@@ -6,7 +6,7 @@ import ContactForm from "../form"
 
 const Thankyou = () => (
   <StyledSection>
-    <GetStartedContainer>
+    <GetStartedContainer style={{paddingBottom: "150px"}}>
       <FeaturesGrid>
       <FeatureItem>
         <FeatureText style={{color: "white"}}>

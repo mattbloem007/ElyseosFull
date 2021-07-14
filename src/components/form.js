@@ -49,7 +49,7 @@ function ContactForm() {
             <Field name="fullName" type="text" style={{background: "#FACBAC 0% 0% no-repeat padding-box", border: "2px solid #ED6F1B", borderRadius: "30px", width: "223px", height: "23px"}}/>
           <FeaturesGrid>
           <FeatureItem>
-            <FeatureText style={{color: "white"}}>
+            <FeatureText style={{color: "white", fontSize: "15px", fontStyle: "italic", marginTop: "0px"}}>
               What shall we call you?
             </FeatureText>
           </FeatureItem>
@@ -62,7 +62,7 @@ function ContactForm() {
             <Field name="elys" type="text" style={{background: "#FACBAC 0% 0% no-repeat padding-box", border: "2px solid #ED6F1B", borderRadius: "30px", width: "223px", height: "23px"}}/>
           <FeaturesGrid>
           <FeatureItem>
-            <FeatureText style={{color: "white"}}>
+            <FeatureText style={{color: "white", fontSize: "15px", fontStyle: "italic", marginTop: "0px"}}>
               Minimum 50,000 Maximum 500,000.
               Seed Sale ELYS cost 0.05FTM per ELYS.  You can see the curren FTM price <a href="https://coinmarketcap.com/currencies/fantom/" style={{color:"white"}}>here</a>
               </FeatureText>
@@ -83,7 +83,7 @@ function ContactForm() {
                   id="fantom"
                   value="Fantom"
                   onChange={formik.handleChange}
-                  defaultChecked={formik.values.pay=== "fantom"}
+                  defaultChecked={formik.values.currency=== "fantom"}
                   name="currency"
                   type="radio"
                 />
@@ -94,10 +94,10 @@ function ContactForm() {
                 <input
                   {...field}
                   id="bitcoin"
-                  value="bitcoin"
+                  value="Bitcoin"
                   name="currency"
                   onChange={formik.handleChange}
-                    defaultChecked={formik.values.pay=== "bitcoin"}
+                    defaultChecked={formik.values.currency=== "bitcoin"}
                   type="radio"
                 />
                 <Label htmlFor="bitcoin">Bitcoin</Label>

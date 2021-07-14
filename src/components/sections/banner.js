@@ -8,7 +8,7 @@ import ban from '../../images/Header Banner.png'
 import logoWater from '../../images/logo-watermark.png'
 const Banner = () => (
   <HeaderWrapper id="features">
-  <GetStartedTitle style={{color: "white"}}>ELYS SEED SALE</GetStartedTitle>
+      <GetStartedTitle style={{color: "white", paddingTop: "30px"}}>ELYS SEED SALE</GetStartedTitle>
     <StyledContainer>
         <BackDrop src={backdrop} />
     </StyledContainer>
@@ -18,6 +18,7 @@ const Banner = () => (
 export default Banner
 
 const StyledContainer = styled(Container)``
+
 
 const SectionTitle = styled.h3`
   color: ${props => props.theme.color.primary};
