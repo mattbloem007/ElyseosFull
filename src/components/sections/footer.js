@@ -2,6 +2,12 @@ import React from "react"
 import styled from "styled-components"
 
 import { Container } from "../global"
+import twitter from "../../images/twitter-black-icon.png"
+import github from "../../images/github-black-icon.png"
+import medium from "../../images/medium-black-icon.png"
+import redit from "../../images/redditi-black-icon.png"
+import discord from "../../images/discord-black-icon.png"
+import telegram from "../../images/telegram-black-icon.png"
 
 const Footer = () => (
   <FooterWrapper id="footer">
@@ -31,11 +37,14 @@ const Footer = () => (
         </ul>
       </FooterColumn>
       <FooterColumn>
-        <span>Social</span>
-        <ul>
-          <li>LinkedIn</li>
-          <li>Instagram</li>
-        </ul>
+      <SocialContainer>
+        <SocialSymbol src={telegram}/>
+        <SocialSymbol src={discord} />
+        <SocialSymbol src={twitter} />
+        <SocialSymbol src={github} />
+        <SocialSymbol src={medium} />
+        <SocialSymbol src={redit} />
+      </SocialContainer>
       </FooterColumn>
     </FooterColumnContainer>
   </FooterWrapper>
@@ -61,6 +70,19 @@ const Logo = styled.div`
   outline: 0px;
 `
 
+const SocialContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  margin-right: 50px;
+`
+
+const SocialSymbol = styled.img`
+  height: 40px;
+  margin-bottom: 10px;
+  padding-right: 30px;
+`
+
 const BrandContainer = styled(Container)`
   position: relative;
   padding-top: 48px;
@@ -74,6 +96,8 @@ const FooterColumnContainer = styled(Container)`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 32px;
+  padding-top: 10px;
+  margin-left: 50px;
   justify-content: start;
   @media (max-width: ${props => props.theme.screen.sm}) {
     grid-template-columns: 1fr 1fr;

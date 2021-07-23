@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import AnchorLink from "react-anchor-link-smooth-scroll"
 import Scrollspy from "react-scrollspy"
 import { Menu, X } from "react-feather"
+import { Link } from "gatsby"
 
 import { Container } from "../../global"
 import logo from '../../../images/Elyseos Logo.png'
@@ -14,10 +15,11 @@ import {
   MobileMenu,
   Mobile,
   ActionsContainer,
-  Logo
+  Logo,
+  StyledButton
 } from "./style"
 
-const NAV_ITEMS = ["Elyseos Home", "Docs", "Elys Token", "Pre-Sale", "Roadmap", "Blog"]
+const NAV_ITEMS = [{name: "Elyseos Home", url: "/"}, {name: "Docs", url:"/docs"}, {name: "Elys Token", url: "/elys-token"}, {name: "Pre-Sale", url:"/pre-sale"}, {name: "Roadmap", url:"/roadmap"}, {name: "Blog", url:"/blog"}]
 
 export default class Navigation extends Component {
   state = {
@@ -50,7 +52,7 @@ export default class Navigation extends Component {
   }
 
   getNavAnchorLink = item => (
-    <AnchorLink href={`#${item.toLowerCase()}`} onClick={this.closeMobileMenu}>
+    <AnchorLink href={`/${item.toLowerCase()}`} onClick={this.closeMobileMenu}>
       {item}
     </AnchorLink>
   )
@@ -58,13 +60,15 @@ export default class Navigation extends Component {
   getNavList = ({ mobile = false }) => (
     <NavListWrapper mobile={mobile}>
       <Scrollspy
-        items={NAV_ITEMS.map(item => item.toLowerCase())}
+        items={NAV_ITEMS.map(item => item.name.toLowerCase())}
         currentClassName="active"
         mobile={mobile}
         offset={-64}
       >
         {NAV_ITEMS.map(navItem => (
-          <NavItem style={{color:"white"}} key={navItem}>{navItem}</NavItem>
+          <Link to={`${navItem.url}`} onClick={this.closeMobileMenu}>
+            <NavItem style={{color:"white"}} key={navItem.name}>{navItem.name}</NavItem>
+          </Link>
         ))}
       </Scrollspy>
     </NavListWrapper>
@@ -78,13 +82,13 @@ export default class Navigation extends Component {
         <StyledContainer>
           <Brand>
             <Scrollspy offset={-64} item={["top"]} currentClassName="active">
-              <AnchorLink href="#top" onClick={this.closeMobileMenu}>
+              <AnchorLink href="/" onClick={this.closeMobileMenu}>
                 <img src={logo}/>
               </AnchorLink>
             </Scrollspy>
           </Brand>
           <Mobile>
-            <button
+            <StyledButton
               onClick={this.toggleMobileMenu}
               style={{ color: "black", background: "none" }}
             >
@@ -93,12 +97,12 @@ export default class Navigation extends Component {
               ) : (
                 <Menu size={24} alt="open menu" />
               )}
-            </button>
+            </StyledButton>
           </Mobile>
 
           <Mobile hide>{this.getNavList({})}</Mobile>
           <ActionsContainer>
-            <button>Connect Wallet</button>
+            <StyledButton>Connect Wallet</StyledButton>
           </ActionsContainer>
         </StyledContainer>
         <Mobile>

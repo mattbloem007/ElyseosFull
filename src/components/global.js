@@ -41,7 +41,7 @@ export const Section = styled.section`
       case "main":
         return props.theme.color.primary
       default:
-        return "white"
+        return "light"
     }
   }};
 

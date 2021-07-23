@@ -2,56 +2,103 @@ import React from "react"
 import styled from "styled-components"
 
 import { Section, Container } from "../global"
+import ti from '../../images/sanpedro-white-icon.png'
+import sp from '../../images/sanpedro-white-icon.png'
+import am from '../../images/cacao-white-icon.png'
+import cacao from '../../images/cacao-white-icon.png'
+import aya from '../../images/aya-white-icon.png'
+import canna from '../../images/cannabis-white-icon.png'
+import psilo from '../../images/cannabis-white-icon.png'
+import salvia from '../../images/salvia-white-icon.png'
 
 const Features = () => (
   <Section id="features">
-    <StyledContainer>
-      <Subtitle>Features</Subtitle>
-      <SectionTitle>Smart money management</SectionTitle>
+    <StyledSection>
       <FeaturesGrid>
         <FeatureItem>
-          <FeatureTitle>Notifications</FeatureTitle>
-          <FeatureText>
-            Receive budget and spending alerts based on your favorite triggers.
+          <ImageandTitle>
+            <SacramentSymbol src={aya} />
+            <FeatureTitle>Wings & Roots </FeatureTitle>
+          </ImageandTitle>
+          <FeatureText style={{color: "white"}}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
           </FeatureText>
         </FeatureItem>
         <FeatureItem>
-          <FeatureTitle>Security</FeatureTitle>
-          <FeatureText>
-            Your data is always safe with us as we use the latest security
-            protocols.
+        <ImageandTitle>
+          <SacramentSymbol src={canna} />
+          <FeatureTitle>Muti Market</FeatureTitle>
+        </ImageandTitle>
+        <FeatureText style={{color: "white"}}>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </FeatureText>
+        </FeatureItem>
+        <FeatureItem>
+        <ImageandTitle>
+          <SacramentSymbol src={sp} />
+          <FeatureTitle>Thou Art </FeatureTitle>
+        </ImageandTitle>
+          <FeatureText style={{color: "white"}}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
           </FeatureText>
         </FeatureItem>
         <FeatureItem>
-          <FeatureTitle>Automation</FeatureTitle>
-          <FeatureText>
-            Create smart automated workflows and triggers for your money.
+        <ImageandTitle>
+          <SacramentSymbol src={ti} />
+          <FeatureTitle>ELYS Token </FeatureTitle>
+        </ImageandTitle>
+          <FeatureText style={{color: "white"}}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
           </FeatureText>
         </FeatureItem>
         <FeatureItem>
-          <FeatureTitle>Aggregation</FeatureTitle>
-          <FeatureText>
-            Easily link up to 5 banks to your finance account.
+        <ImageandTitle>
+          <SacramentSymbol src={cacao} />
+          <FeatureTitle>Thokosa Bokaye </FeatureTitle>
+        </ImageandTitle>
+          <FeatureText style={{color: "white"}}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
           </FeatureText>
         </FeatureItem>
         <FeatureItem>
-          <FeatureTitle>Payments</FeatureTitle>
-          <FeatureText>Send money to friends and family with ease.</FeatureText>
+        <ImageandTitle>
+          <SacramentSymbol src={am} />
+          <FeatureTitle>Medicine Basket </FeatureTitle>
+        </ImageandTitle>
+          <FeatureText style={{color: "white"}}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </FeatureText>
         </FeatureItem>
         <FeatureItem>
-          <FeatureTitle>Rewards</FeatureTitle>
-          <FeatureText>
-            High interest and rewards for hitting your goals.
+        <ImageandTitle>
+          <SacramentSymbol src={aya} />
+          <FeatureTitle>Wisdom Holders </FeatureTitle>
+        </ImageandTitle>
+          <FeatureText style={{color: "white"}}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </FeatureText>
+        </FeatureItem>
+        <FeatureItem>
+        <ImageandTitle>
+          <SacramentSymbol src={salvia} />
+          <FeatureTitle>Elyseos Foundation </FeatureTitle>
+        </ImageandTitle>
+          <FeatureText style={{color: "white"}}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
           </FeatureText>
         </FeatureItem>
       </FeaturesGrid>
-    </StyledContainer>
+    </StyledSection>
   </Section>
 )
 
 export default Features
 
 const StyledContainer = styled(Container)``
+
+const StyledSection = styled(Section)`
+  background-color: ${props => props.theme.color.background.light};
+`
 
 const SectionTitle = styled.h3`
   color: ${props => props.theme.color.primary};
@@ -76,6 +123,7 @@ const FeaturesGrid = styled.div`
   margin: 0px auto;
   grid-column-gap: 40px;
   grid-row-gap: 35px;
+  margin-bottom: 300px;
   @media (max-width: ${props => props.theme.screen.sm}) {
     grid-template-columns: 1fr;
     padding: 0 64px;
@@ -89,8 +137,15 @@ const FeatureItem = styled.div`
   flex-direction: column;
 `
 
-const FeatureTitle = styled.h4`
-  color: ${props => props.theme.color.primary};
+const ImageandTitle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex-direction: row;
+`
+
+const FeatureTitle = styled.h5`
+  color: ${props => props.theme.color.accent};
   letter-spacing: 0px;
   line-height: 30px;
   margin-bottom: 10px;
@@ -98,4 +153,28 @@ const FeatureTitle = styled.h4`
 
 const FeatureText = styled.p`
   text-align: center;
+`
+
+const IntroContainer = styled.div`
+  display: flex;
+  padding-left: 100px;
+  padding-right: 100px;
+
+`
+
+const SacramentSymbolsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+const SacramentSymbol = styled.img`
+  height: 40px;
+  margin-bottom: 10px;
+  padding-right: 30px;
+`
+
+const IntroText = styled.div`
+  padding-left: 100px;
+  padding-right: 100px;
 `

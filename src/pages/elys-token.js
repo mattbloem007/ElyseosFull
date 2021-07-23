@@ -13,11 +13,11 @@ import LayoutOne from "../components/sections/layoutOne"
 
 
 
-const IndexPage = () => (
+const ElysTokenPage = () => (
   <LayoutOne>
     <Features />
     <Footer />
   </LayoutOne>
 )
 
-export default IndexPage
+export default ElysTokenPage

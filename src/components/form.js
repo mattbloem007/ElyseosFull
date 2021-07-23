@@ -16,7 +16,7 @@ function ContactForm() {
   const [token, setToken] = useState(null)
   return (
     <Formik
-      initialValues={{ fullName: "", elys: "", currency: "", email: "", telegram: "" }}
+      initialValues={{ address: "", elys: "", currency: "", email: "", telegram: "" }}
       onSubmit={(data, {resetForm}) => {
         console.log(data)
           fetch("/", {
@@ -45,81 +45,54 @@ function ContactForm() {
         <Field type="hidden" name="bot-field" />
 
         <Flex>
-          <Label htmlFor="fullName">Name or Pseudonym:</Label>
-            <Field name="fullName" type="text" style={{background: "#FACBAC 0% 0% no-repeat padding-box", border: "2px solid #ED6F1B", borderRadius: "30px", width: "223px", height: "23px"}}/>
+          <Label htmlFor="address">Metamask Address</Label>
+            <Field name="address" placeholder="Place address here" type="text" style={{background: "#FACBAC 0% 0% no-repeat padding-box", border: "2px solid #ED6F1B", borderRadius: "30px", width: "223px", height: "33px", paddingLeft: "10px"}}/>
           <FeaturesGrid>
           <FeatureItem>
-            <FeatureText style={{color: "white", fontSize: "15px", fontStyle: "italic", marginTop: "0px"}}>
-              What shall we call you?
+            <FeatureText style={{color: "#ED6F1B", fontSize: "15px", fontStyle: "italic", marginTop: "0px"}}>
+              This is the whitelisted address which will be allowed to make the purchase. On Token generation your initial ELYS will be credited to this address (see locks for details about release of the rest)
             </FeatureText>
           </FeatureItem>
           </FeaturesGrid>
-          <ErrorMessage name="fullName" />
+          <ErrorMessage name="address" />
         </Flex>
         <br />
-        <Flex>
-          <Label htmlFor="elys">ELYS purchase amount:</Label>
-            <Field name="elys" type="text" style={{background: "#FACBAC 0% 0% no-repeat padding-box", border: "2px solid #ED6F1B", borderRadius: "30px", width: "223px", height: "23px"}}/>
+        <Flex style={{marginBottom: "50px"}}>
+          <Label htmlFor="telegram">Telegram Number</Label>
+            <Field name="telegram" placeholder="We will contact you here" type="text" style={{background: "#FACBAC 0% 0% no-repeat padding-box", border: "2px solid #ED6F1B", borderRadius: "30px", width: "223px", height: "33px", paddingLeft: "10px"}}/>
           <FeaturesGrid>
           <FeatureItem>
-            <FeatureText style={{color: "white", fontSize: "15px", fontStyle: "italic", marginTop: "0px"}}>
-              Minimum 50,000 Maximum 500,000.
-              Seed Sale ELYS cost 0.05FTM per ELYS.  You can see the current FTM price <a href="https://coinmarketcap.com/currencies/fantom/" style={{color:"white"}}>here</a>
+            <FeatureText style={{color: "#ED6F1B", fontSize: "15px", fontStyle: "italic", marginTop: "0px"}}>
+              Give us one or both of these as a means of contacting you.
               </FeatureText>
           </FeatureItem>
           </FeaturesGrid>
-          <ErrorMessage name="elys" />
-        </Flex>
-        <br />
-        <Flex>
-          <Label htmlFor="currency">How would you like to pay?:</Label>
-          <Field
-          name="currency"
-          render={({ field }) => (
-            <>
-              <div className="radio-item">
-                <input
-                  {...field}
-                  id="fantom"
-                  value="Fantom"
-                  onChange={formik.handleChange}
-                  defaultChecked={formik.values.currency=== "fantom"}
-                  name="currency"
-                  type="radio"
-                />
-                <Label htmlFor="fantom">Fantom</Label>
-              </div>
-
-              <div className="radio-item">
-                <input
-                  {...field}
-                  id="bitcoin"
-                  value="Bitcoin"
-                  name="currency"
-                  onChange={formik.handleChange}
-                    defaultChecked={formik.values.currency=== "bitcoin"}
-                  type="radio"
-                />
-                <Label htmlFor="bitcoin">Bitcoin</Label>
-              </div>
-            </>
-          )}
-        />
-        </Flex>
-        <br />
-        <Flex>
-          <Label htmlFor="email">Email:</Label>
-            <Field name="email" type="text" style={{background: "#FACBAC 0% 0% no-repeat padding-box", border: "2px solid #ED6F1B", borderRadius: "30px", width: "223px", height: "23px"}}/>
+          <ErrorMessage name="telegram" />
+          <Label htmlFor="email">Email Address</Label>
+            <Field name="email" placeholder="We will contact you here" type="text" style={{background: "#FACBAC 0% 0% no-repeat padding-box", border: "2px solid #ED6F1B", borderRadius: "30px", width: "223px", height: "33px", paddingLeft: "10px"}}/>
           <ErrorMessage name="email" />
         </Flex>
-        <br/>
+        <br />
         <Flex>
-          <Label htmlFor="telegram">Telegram number + country code:</Label>
-            <Field name="telegram" type="text" style={{background: "#FACBAC 0% 0% no-repeat padding-box", border: "2px solid #ED6F1B", borderRadius: "30px", width: "223px", height: "23px"}}/>
-          <ErrorMessage name="telegram" />
+          <Label htmlFor="currency">FTM Purchase Amount</Label>
+            <Field name="currenct" placeholder="min 1,000 - max 10,000" type="text" style={{background: "#FACBAC 0% 0% no-repeat padding-box", border: "2px solid #ED6F1B", borderRadius: "30px", width: "223px", height: "33px", paddingLeft: "10px"}}/>
+            <FeaturesGrid>
+            <FeatureItem>
+              <FeatureText style={{color: "#ED6F1B", fontSize: "15px", fontStyle: "italic", marginTop: "0px"}}>
+                The amount requested is not guaranteed. If whitelisted you will be able to deposit FTM, and c will receive 15 ELYS per FTM deposited (see locks for details about release)
+                </FeatureText>
+            </FeatureItem>
+            </FeaturesGrid>
+          <ErrorMessage name="currency" />
         </Flex>
         <br/>
-        <Submit style={{color: "white"}} type="submit">Submit</Submit>
+        <Flex>
+          <Label htmlFor="experience" style={{paddingRight: "50px"}}>Tell us about your journey with sacramental medicines and how you see yourself interacting with the Elyseos ecosystem.</Label>
+            <Field as="textarea" name="experience" placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." type="text" style={{background: "#FACBAC 0% 0% no-repeat padding-box", border: "2px solid #ED6F1B", borderRadius: "30px", width: "317px", height: "180px", paddingLeft: "10px", paddingTop: "10px"}}/>
+          <ErrorMessage name="experience" />
+        </Flex>
+        <br/>
+        <Submit style={{color: "white"}} type="submit">Submit form</Submit>
       </Form>
       )}
     </Formik>
@@ -265,8 +238,8 @@ const FeatureText = styled.p`
 `
 
 const Submit = styled.button`
-width: 100px;
-height: 23px;
+width: 167px;
+height: 32px;
 float: right;
 background: #ED6F1B 0% 0% no-repeat padding-box;
 border-radius: 45px;

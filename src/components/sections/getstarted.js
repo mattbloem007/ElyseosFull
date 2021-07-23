@@ -7,19 +7,12 @@ import ContactForm from "../form"
 const GetStarted = () => (
   <StyledSection>
     <GetStartedContainer>
+      <ExchangeBox>
+        <FeatureText>FTM/USD now = $ </FeatureText>
+      </ExchangeBox>
       <FeaturesGrid>
       <FeatureItem>
-        <FeatureText style={{color: "white"}}>
-          Greetings and welcome to our Seed Sale - we have 10,000,000 ELYS for sale in the seed and will try to allocate them as fairly as possible to all those who wish to buy. Please fill out the form below by 20/07. We will get back to you with purchase details by the 25/07 and purchases need to be completed by 31/07
-        </FeatureText>
-      </FeatureItem>
-      <FeatureItem>
         <ContactForm />
-      </FeatureItem>
-      <FeatureItem>
-      <FeatureText style={{color: "white"}}>
-      Need help? The quickest way to get your questions answered is to join our seed sale Telegram group <a style={{color: "white"}} href="https://t.me/joinchat/kJCUkY1WacpkZTVk"> here</a>.
-      </FeatureText>
       </FeatureItem>
       </FeaturesGrid>
     </GetStartedContainer>
@@ -54,12 +47,25 @@ const FeatureItem = styled.div`
   flex-direction: column;
 `
 
+const ExchangeBox = styled.div`
+  width: 379px;
+  height: 60px;
+  background: #ED6F1B 0% 0% no-repeat padding-box;
+  opacity: 1;
+`
+
 const GetStartedContainer = styled(Container)`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
+  gap: 100px;
   padding: 0px 0 40px;
+  width: 1094px;
+  height: 900px;
+  margin-bottom: 300px;
+  background: #ED6F1B00 0% 0% no-repeat padding-box;
+  border: 1px solid #ED6F1B;
 `
 
 const GetStartedTitle = styled.h3`
@@ -101,4 +107,20 @@ const Subtitle = styled.span`
   padding-top: 16px;
   font-size: 14px;
   color: ${props => props.theme.color.primary};
+`
+
+const SectionTitle = styled.h3`
+  color: ${props => props.theme.color.primary};
+  display: flex;
+  justify-content: center;
+  margin: 0 auto 40px;
+  text-align: center;
+`
+
+const Subheading = styled.h5`
+  font-size: 16px;
+  color: ${props => props.theme.color.accent};
+  letter-spacing: 0px;
+  margin-bottom: 12px;
+  text-align: center;
 `

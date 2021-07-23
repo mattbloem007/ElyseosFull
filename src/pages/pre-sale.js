@@ -13,11 +13,11 @@ import LayoutOne from "../components/sections/layoutOne"
 
 
 
-const IndexPage = () => (
+const PresalePage = () => (
   <LayoutOne>
-    <Features />
+    <GetStarted />
     <Footer />
   </LayoutOne>
 )
 
-export default IndexPage
+export default PresalePage
