@@ -78,7 +78,7 @@ const SocialContainer = styled.div`
 `
 
 const SocialSymbol = styled.img`
-  height: 40px;
+  height: 30px;
   margin-bottom: 10px;
   padding-right: 30px;
 `

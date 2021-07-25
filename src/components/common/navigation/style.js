@@ -6,6 +6,7 @@ export const Nav = styled.nav`
   padding: ${props => (props.scrolled ? `16px 0` : `24px 0`)};
   position: fixed;
   width: 100%;
+  height: 23%;
   top: 0;
   z-index: 1000;
   background-color: ${props => props.theme.color.background.light};
@@ -19,8 +20,8 @@ export const StyledContainer = styled(Container)`
 `
 
 export const StyledButton = styled.button`
-  width: 234px;
-  height: 53px;
+  width: 142px;
+  height: 30px;
   float: right;
   color: #ED6F1B;
   background: #FFFFFF 0% 0% no-repeat padding-box;

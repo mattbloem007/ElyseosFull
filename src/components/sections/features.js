@@ -133,8 +133,9 @@ const FeaturesGrid = styled.div`
 const FeatureItem = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
   flex-direction: column;
+  align-items: flex-start;
+
 `
 
 const ImageandTitle = styled.div`
@@ -152,7 +153,6 @@ const FeatureTitle = styled.h5`
 `
 
 const FeatureText = styled.p`
-  text-align: center;
 `
 
 const IntroContainer = styled.div`

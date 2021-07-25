@@ -67,16 +67,18 @@ const SectionTitle = styled.h3`
   color: ${props => props.theme.color.primary};
   display: flex;
   justify-content: center;
-  margin: 0 auto 40px;
   text-align: center;
+  margin-bottom: 0px;
 `
 
 const Subtitle = styled.h5`
   font-size: 16px;
   color: ${props => props.theme.color.accent};
   letter-spacing: 0px;
-  margin-bottom: 12px;
   text-align: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-style: italic;
 `
 
 const FeaturesGrid = styled.div`

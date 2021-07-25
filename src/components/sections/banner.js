@@ -6,18 +6,24 @@ import { Section, Container } from "../global"
 import backdrop from '../../images/Elys Banner.png'
 import ban from '../../images/Header Banner.png'
 import logoWater from '../../images/logo-watermark.png'
+import topBanner from '../../images/Top banner.png'
+
+
 const Banner = () => (
   <HeaderWrapper id="features">
       <GetStartedTitle style={{color: "white", paddingTop: "30px"}}>ELYS SEED SALE</GetStartedTitle>
     <StyledContainer>
+      <div styles={{ backgroundImage:`url(${topBanner})`, paddingBottom: "40px" }}>
         <BackDrop src={backdrop} />
+      </div>
     </StyledContainer>
   </HeaderWrapper>
 )
 
 export default Banner
 
-const StyledContainer = styled(Container)``
+const StyledContainer = styled(Container)`
+`
 
 
 const SectionTitle = styled.h3`
@@ -66,14 +72,20 @@ const FeaturesGrid = styled.div`
     padding: 0 64px;
   }
 `
+const Top = styled.img`
+  width: 100%;
+  height: 70%;
+  opacity: 1;
+  z-index: 0;
+`
+
 const BackDrop = styled.img`
-  position: relative;
-  top: 0px;
   padding-right: 50px;
   padding-left: 50px;
   width: 100%;
   height: 70%;
   opacity: 1;
+  z-index: 1;
 `
 
 const Ban = styled.img`
