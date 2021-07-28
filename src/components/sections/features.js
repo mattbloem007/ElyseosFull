@@ -1,96 +1,84 @@
 import React from "react"
 import styled from "styled-components"
+import { useStaticQuery, graphql, Link } from "gatsby"
 
 import { Section, Container } from "../global"
-import ti from '../../images/sanpedro-white-icon.png'
+import ti from '../../images/iboga-white-icon.png'
 import sp from '../../images/sanpedro-white-icon.png'
-import am from '../../images/cacao-white-icon.png'
+import am from '../../images/amanita-icon-white-1.png'
 import cacao from '../../images/cacao-white-icon.png'
 import aya from '../../images/aya-white-icon.png'
 import canna from '../../images/cannabis-white-icon.png'
-import psilo from '../../images/cannabis-white-icon.png'
+import psilo from '../../images/psilocybin-trans-white.png'
 import salvia from '../../images/salvia-white-icon.png'
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
-const Features = () => (
+import { BLOCKS, MARKS } from "@contentful/rich-text-types"
+import { renderRichText } from "gatsby-source-contentful/rich-text"
+
+const Bold = ({ children }) => <span style={{color: "white"}}>{children}</span>
+const Text = ({ children }) => <p style={{color: "white", textAlign: "center"}}>{children}</p>
+
+const options = {
+  renderMark: {
+    [MARKS.BOLD]: text => <Bold>{text}</Bold>,
+  },
+  renderNode: {
+    [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
+    [BLOCKS.EMBEDDED_ASSET]: node => {
+      return (
+        <>
+          <h2>Embedded Asset</h2>
+          <pre>
+            <code>{JSON.stringify(node, null, 2)}</code>
+          </pre>
+        </>
+      )
+    },
+  },
+}
+
+const Features = () => {
+  const data = useStaticQuery(
+    graphql`
+    query featureItemQuery {
+  contentfulFeaturePage {
+    contentItems {
+      body {
+        raw
+      }
+      sacramentIcon {
+        file {
+          url
+        }
+      }
+      title
+    }
+  }
+}
+`)
+  return (
   <Section id="features">
     <StyledSection>
       <FeaturesGrid>
-        <FeatureItem>
-          <ImageandTitle>
-            <SacramentSymbol src={aya} />
-            <FeatureTitle>Wings & Roots </FeatureTitle>
-          </ImageandTitle>
-          <FeatureText style={{color: "white"}}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          </FeatureText>
-        </FeatureItem>
-        <FeatureItem>
-        <ImageandTitle>
-          <SacramentSymbol src={canna} />
-          <FeatureTitle>Muti Market</FeatureTitle>
-        </ImageandTitle>
-        <FeatureText style={{color: "white"}}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        </FeatureText>
-        </FeatureItem>
-        <FeatureItem>
-        <ImageandTitle>
-          <SacramentSymbol src={sp} />
-          <FeatureTitle>Thou Art </FeatureTitle>
-        </ImageandTitle>
-          <FeatureText style={{color: "white"}}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          </FeatureText>
-        </FeatureItem>
-        <FeatureItem>
-        <ImageandTitle>
-          <SacramentSymbol src={ti} />
-          <FeatureTitle>ELYS Token </FeatureTitle>
-        </ImageandTitle>
-          <FeatureText style={{color: "white"}}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          </FeatureText>
-        </FeatureItem>
-        <FeatureItem>
-        <ImageandTitle>
-          <SacramentSymbol src={cacao} />
-          <FeatureTitle>Thokosa Bokaye </FeatureTitle>
-        </ImageandTitle>
-          <FeatureText style={{color: "white"}}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          </FeatureText>
-        </FeatureItem>
-        <FeatureItem>
-        <ImageandTitle>
-          <SacramentSymbol src={am} />
-          <FeatureTitle>Medicine Basket </FeatureTitle>
-        </ImageandTitle>
-          <FeatureText style={{color: "white"}}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          </FeatureText>
-        </FeatureItem>
-        <FeatureItem>
-        <ImageandTitle>
-          <SacramentSymbol src={aya} />
-          <FeatureTitle>Wisdom Holders </FeatureTitle>
-        </ImageandTitle>
-          <FeatureText style={{color: "white"}}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          </FeatureText>
-        </FeatureItem>
-        <FeatureItem>
-        <ImageandTitle>
-          <SacramentSymbol src={salvia} />
-          <FeatureTitle>Elyseos Foundation </FeatureTitle>
-        </ImageandTitle>
-          <FeatureText style={{color: "white"}}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          </FeatureText>
-        </FeatureItem>
+      {
+        data.contentfulFeaturePage.contentItems.map(contentItem => {
+          return (
+            <FeatureItem>
+              <ImageandTitle>
+                <SacramentSymbol src={contentItem.sacramentIcon.file.url} />
+                <FeatureTitle>{contentItem.title}</FeatureTitle>
+              </ImageandTitle>
+              {documentToReactComponents(JSON.parse(contentItem.body.raw, options))}
+            </FeatureItem>
+          )
+        })
+      }
       </FeaturesGrid>
     </StyledSection>
   </Section>
-)
+  )
+}
 
 export default Features
 

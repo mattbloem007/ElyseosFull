@@ -52,6 +52,7 @@ const GlobalStyles = createGlobalStyle`
   p {
     ${props => props.theme.font_size.small};
     line-height: 22px;
+    color: ${props => props.theme.color.background.white};
 
   }
 

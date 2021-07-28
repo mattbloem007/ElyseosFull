@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import {Link} from 'gatsby'
 
 import { Container } from "../global"
 import twitter from "../../images/twitter-black-icon.png"
@@ -38,12 +39,24 @@ const Footer = () => (
       </FooterColumn>
       <FooterColumn>
       <SocialContainer>
-        <SocialSymbol src={telegram}/>
-        <SocialSymbol src={discord} />
-        <SocialSymbol src={twitter} />
-        <SocialSymbol src={github} />
-        <SocialSymbol src={medium} />
-        <SocialSymbol src={redit} />
+        <a target="_blank" href="https://t.me/joinchat/kJCUkY1WacpkZTVk">
+          <SocialSymbol src={telegram}/>
+        </a>
+        <a target="_blank" href="https://discord.gg/YKJsDyHDkc">
+          <SocialSymbol src={discord} />
+        </a>
+        <a target="_blank" href="">
+          <SocialSymbol src={twitter} />
+        </a>
+        <a target="_blank" href="https://github.com/nuwrldnf8r/Elyseos">
+          <SocialSymbol src={github} />
+        </a>
+        <a target="_blank" href="">
+          <SocialSymbol src={medium} />
+        </a>
+        <a target="_blank" href="">
+          <SocialSymbol src={redit} />
+        </a>
       </SocialContainer>
       </FooterColumn>
     </FooterColumnContainer>

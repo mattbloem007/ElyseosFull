@@ -1,10 +1,9 @@
 import styled from "styled-components"
 import logo from "../../../images/Elyseos Logo.png"
-import { Container } from "../../global"
+import { Section, Container } from "../../global"
 
 export const Nav = styled.nav`
   padding: ${props => (props.scrolled ? `16px 0` : `24px 0`)};
-  position: fixed;
   width: 100%;
   height: 23%;
   top: 0;
@@ -18,6 +17,11 @@ export const StyledContainer = styled(Container)`
   justify-content: space-between;
   align-items: center;
 `
+
+export const StyledSection = styled(Section)`
+  background-color: ${props => props.theme.color.background.light};
+`
+
 
 export const StyledButton = styled.button`
   width: 142px;

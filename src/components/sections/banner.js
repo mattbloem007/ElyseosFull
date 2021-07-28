@@ -10,12 +10,9 @@ import topBanner from '../../images/Top banner.png'
 
 
 const Banner = () => (
-  <HeaderWrapper id="features">
-      <GetStartedTitle style={{color: "white", paddingTop: "30px"}}>ELYS SEED SALE</GetStartedTitle>
+  <HeaderWrapper id="features"  style={{ backgroundImage: `url(${topBanner})` }}>
     <StyledContainer>
-      <div styles={{ backgroundImage:`url(${topBanner})`, paddingBottom: "40px" }}>
-        <BackDrop src={backdrop} />
-      </div>
+      <BackDrop src={backdrop} />
     </StyledContainer>
   </HeaderWrapper>
 )
@@ -25,6 +22,9 @@ export default Banner
 const StyledContainer = styled(Container)`
 `
 
+const StyledSection = styled(Section)`
+  background-color: ${props => props.theme.color.background.light};
+`
 
 const SectionTitle = styled.h3`
   color: ${props => props.theme.color.primary};
@@ -38,10 +38,9 @@ const GetStartedTitle = styled.h3`
   text-align: center;
 `
 
-const HeaderWrapper = styled.header`
+const HeaderWrapper = styled.div`
   background-color: #231B17;
-  padding: 0px 0 0px 0;
-  position: relative;
+
   @media (max-width: ${props => props.theme.screen.md}) {
   }
 `
@@ -72,6 +71,14 @@ const FeaturesGrid = styled.div`
     padding: 0 64px;
   }
 `
+
+const BannerContainer = styled.div`
+  width: 1820px;
+  height: 593px;
+  mix-blend-mode: hard-light;
+  opacity: 1;
+`
+
 const Top = styled.img`
   width: 100%;
   height: 70%;

@@ -24,16 +24,16 @@ const theme = {
 
   color: {
     primary: "#231B17",
-    secondary: "#fffff",
+    secondary: "#ffff",
     accent: "#ED6F1B",
     background: {
-      white: "#fffff",
+      white: "#ffff",
       light: "#231B17",
     },
     white: {
       regular: "#231B17",
       lessdark: "#231B17",
-      dark: "#fffff",
+      dark: "#ffff",
       darker: "#231B17",
     },
     black: {

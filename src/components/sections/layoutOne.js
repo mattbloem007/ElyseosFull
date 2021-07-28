@@ -4,56 +4,104 @@ import Layout from "../common/layout/layout"
 import SEO from "../common/layout/seo"
 import Navigation from "../common/navigation/navigation"
 import Banner from "./banner"
+import { useStaticQuery, graphql, Link } from "gatsby"
+import { documentToHtmlString } from "@contentful/rich-text-react-renderer"
+
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
+
+import { BLOCKS, MARKS } from "@contentful/rich-text-types"
+import { renderRichText } from "gatsby-source-contentful/rich-text"
 
 import { Section, Container } from "../global"
-import ti from '../../images/sanpedro-white-icon.png'
+import ti from '../../images/iboga-white-icon.png'
 import sp from '../../images/sanpedro-white-icon.png'
-import am from '../../images/cacao-white-icon.png'
+import am from '../../images/amanita-icon-white-1.png'
 import cacao from '../../images/cacao-white-icon.png'
 import aya from '../../images/aya-white-icon.png'
 import canna from '../../images/cannabis-white-icon.png'
-import psilo from '../../images/cannabis-white-icon.png'
+import psilo from '../../images/psilocybin-trans-white.png'
 import salvia from '../../images/salvia-white-icon.png'
 
-const LayoutOne = ({ children }) => (
-  <Layout>
-    <SEO title="Home" />
-    <Navigation />
-    <Banner />
-  <Section id="features">
-    <StyledSection>
-      <SectionTitle style={{color: "white"}}>Welcome To Elyseos</SectionTitle>
-      <Subtitle>Sacramental Ecosystem</Subtitle>
-      <IntroContainer>
-        <SacramentSymbolsContainer>
-          <SacramentSymbol src={ti} />
-          <SacramentSymbol src={sp} />
-          <SacramentSymbol src={am} />
-          <SacramentSymbol src={cacao} />
-        </SacramentSymbolsContainer>
-        <IntroText>
-        <FeatureText style={{color: "white"}}> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </FeatureText>
-        <FeatureText style={{color: "white"}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</FeatureText>
-        </IntroText>
-        <SacramentSymbolsContainer>
-          <SacramentSymbol src={aya} />
-          <SacramentSymbol src={canna} />
-          <SacramentSymbol src={psilo} />
-          <SacramentSymbol src={salvia} />
-        </SacramentSymbolsContainer>
-      </IntroContainer>
-      <IntroContainer>
-      <IntroText>
-        <FeatureText style={{color: "#ED6F1B", fontStyle: "italic"}}> Honor to our allies and teachers, the Master Sacraments, the Blessed Medicines, the Wisdom Poisons. The animal, fungi and plant guides who show us the way with such fierce grace and unwavering compassion. May we serve you well.
-        </FeatureText>
-      </IntroText>
-      </IntroContainer>
-    </StyledSection>
-  </Section>
+const Bold = ({ children }) => <span style={{color: "white"}}>{children}</span>
+const Text = ({ children }) => <p style={{color: "white", textAlign: "center"}}>{children}</p>
+
+const options = {
+  renderMark: {
+    [MARKS.BOLD]: text => <Bold>{text}</Bold>,
+  },
+  renderNode: {
+    [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
+    [BLOCKS.EMBEDDED_ASSET]: node => {
+      return (
+        <>
+          <h2>Embedded Asset</h2>
+          <pre>
+            <code>{JSON.stringify(node, null, 2)}</code>
+          </pre>
+        </>
+      )
+    },
+  },
+}
+
+
+
+const LayoutOne = ({ children }) => {
+  const data = useStaticQuery(
+    graphql`
+    query MyQuery {
+      contentfulPage {
+        featureText1 {
+          raw
+        }
+        featureText2 {
+          raw
+        }
+        slogan
+        subtitle
+        title
+      }
+    }
+    `
+  )
+  return (
+    <Layout>
+      <SEO title={data.contentfulPage.title} />
+      <Navigation />
+      <Banner />
+      <Section id="features">
+        <StyledSection>
+          <SectionTitle style={{color: "white"}}>{data.contentfulPage.title}</SectionTitle>
+          <Subtitle>{data.contentfulPage.subtitle}</Subtitle>
+          <IntroContainer>
+            <SacramentSymbolsContainer>
+              <SacramentSymbol src={ti} />
+              <SacramentSymbol src={sp} />
+              <SacramentSymbol src={am} />
+              <SacramentSymbol src={cacao} />
+            </SacramentSymbolsContainer>
+            <IntroText>
+              {documentToReactComponents(JSON.parse(data.contentfulPage.featureText1.raw, options))}
+              {documentToReactComponents(JSON.parse(data.contentfulPage.featureText2.raw, options))}
+            </IntroText>
+            <SacramentSymbolsContainer>
+              <SacramentSymbol src={aya} />
+              <SacramentSymbol src={canna} />
+              <SacramentSymbol src={psilo} />
+              <SacramentSymbol src={salvia} />
+            </SacramentSymbolsContainer>
+          </IntroContainer>
+          <IntroContainer>
+          <IntroText>
+            <FeatureText style={{color: "#ED6F1B", fontStyle: "italic"}}>{data.contentfulPage.slogan}</FeatureText>
+          </IntroText>
+          </IntroContainer>
+        </StyledSection>
+      </Section>
   {children}
   </Layout>
 )
+}
 
 export default LayoutOne
 
