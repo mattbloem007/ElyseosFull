@@ -5,6 +5,9 @@ exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
   const blogPost = path.resolve(`./src/templates/blog-post.js`)
+  const pageTemplate = path.resolve(`./src/templates/page.js`)
+  const roadmapTemplate = path.resolve(`./src/templates/roadmap.js`)
+
   return graphql(
     `
       {
@@ -30,6 +33,38 @@ exports.createPages = ({ graphql, actions }) => {
             }
           }
         }
+
+        allContentfulPage {
+          edges {
+            node {
+              featureText1 {
+                raw
+              }
+              featureText2 {
+                raw
+              }
+              id
+              subtitle
+              title
+              slogan
+              slug
+            }
+          }
+        }
+
+        allContentfulRoadmap {
+            edges {
+              node {
+                slogan
+                slug
+                timelineNodes {
+                  title
+                  description
+                }
+                title
+              }
+            }
+          }
       }
     `
   ).then(result => {
@@ -39,6 +74,9 @@ exports.createPages = ({ graphql, actions }) => {
 
     // Create blog posts pages.
     const posts = result.data.allContentfulBlogPost.edges
+    const pages = result.data.allContentfulPage.edges
+    const roadmaps = result.data.allContentfulRoadmap.edges
+
 
     posts.forEach((post, index) => {
       const previous = index === posts.length - 1 ? null : posts[index + 1].node
@@ -51,6 +89,32 @@ exports.createPages = ({ graphql, actions }) => {
           slug: post.node.slug,
           previous,
           next,
+        },
+      })
+    })
+
+    pages.forEach((page, index) => {
+      let tag = page.node.slug;
+
+      if (page.node.slug == "home") {
+        tag = "/"
+      }
+      createPage({
+        path: tag,
+        component: pageTemplate,
+        context: {
+          slug: tag,
+        },
+      })
+    })
+
+    roadmaps.forEach((roadmap, index) => {
+
+      createPage({
+        path: roadmap.node.slug,
+        component: roadmapTemplate,
+        context: {
+          title: roadmap.node.title,
         },
       })
     })

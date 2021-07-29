@@ -1,57 +1,116 @@
 import React from "react"
 import styled from "styled-components"
-import Layout from "../components/components/common/layout/layout"
+import Layout from "../components/common/layout/layout"
 import SEO from "../components/common/layout/seo"
 import Navigation from "../components/common/navigation/navigation"
 import Banner from "../components/sections/banner"
+import Header from "../components/sections/header"
+import Features from "../components/sections/features"
+import Footer from "../components/sections/footer"
+
+import { graphql } from "gatsby"
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
+
+import { BLOCKS, MARKS } from "@contentful/rich-text-types"
 
 import { Section, Container } from "../components/global"
+import ti from '../images/iboga-white-icon.png'
+import sp from '../images/sanpedro-white-icon.png'
+import am from '../images/amanita-icon-white-1.png'
+import cacao from '../images/cacao-white-icon.png'
+import aya from '../images/aya-white-icon.png'
+import canna from '../images/cannabis-white-icon.png'
+import psilo from '../images/psilocybin-trans-white.png'
+import salvia from '../images/salvia-white-icon.png'
 
-const Page = props => {
-  return (
-    <Layout>
-      <SEO title={props.data.contentfulPage.title} />
-      <Navigation />
-      <Section id="features">
-        <StyledSection>
-          <SectionTitle style={{color: "white"}}>{props.data.contentfulPage.title}</SectionTitle>
-          <Subtitle>{props.data.contentfulPage.subtitle}</Subtitle>
-          <IntroContainer>
-            <SacramentSymbolsContainer>
-              <SacramentSymbol src={ti} />
-              <SacramentSymbol src={sp} />
-              <SacramentSymbol src={am} />
-              <SacramentSymbol src={cacao} />
-            </SacramentSymbolsContainer>
+const Bold = ({ children }) => <span style={{color: "white"}}>{children}</span>
+const Text = ({ children }) => <p style={{color: "white", textAlign: "center"}}>{children}</p>
+
+const options = {
+  renderMark: {
+    [MARKS.BOLD]: text => <Bold>{text}</Bold>,
+  },
+  renderNode: {
+    [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
+    [BLOCKS.EMBEDDED_ASSET]: node => {
+      return (
+        <>
+          <h2>Embedded Asset</h2>
+          <pre>
+            <code>{JSON.stringify(node, null, 2)}</code>
+          </pre>
+        </>
+      )
+    },
+  },
+}
+
+class Page extends React.Component {
+  render() {
+    const data = this.props.data
+
+    return (
+      <Layout>
+        <SEO title={data.contentfulPage.title} />
+        <Navigation />
+        <Section id="features">
+        <Banner/>
+          <StyledSection>
+            <SectionTitle style={{color: "white"}}>{data.contentfulPage.title}</SectionTitle>
+            <Subtitle>{data.contentfulPage.subtitle}</Subtitle>
+            <IntroContainer>
+              <SacramentSymbolsContainer>
+                <SacramentSymbol src={ti} />
+                <SacramentSymbol src={sp} />
+                <SacramentSymbol src={am} />
+                <SacramentSymbol src={cacao} />
+              </SacramentSymbolsContainer>
+              <IntroText>
+              {data.contentfulPage.featureText1 ? documentToReactComponents(JSON.parse(data.contentfulPage.featureText1.raw, options)) : null}
+              {data.contentfulPage.featureText2 ? documentToReactComponents(JSON.parse(data.contentfulPage.featureText2.raw, options)) : null}
+              </IntroText>
+              <SacramentSymbolsContainer>
+                <SacramentSymbol src={aya} />
+                <SacramentSymbol src={canna} />
+                <SacramentSymbol src={psilo} />
+                <SacramentSymbol src={salvia} />
+              </SacramentSymbolsContainer>
+            </IntroContainer>
+            <IntroContainer>
             <IntroText>
-            <FeatureText style={{color: "white"}}>{props.data.contentfulPage.featureText1}</FeatureText>
-            <FeatureText style={{color: "white"}}>{props.data.contentfulPage.featureText2}</FeatureText>
+              <FeatureText style={{color: "#ED6F1B", fontStyle: "italic"}}>{data.contentfulPage.slogan ? data.contentfulPage.slogan : null}</FeatureText>
             </IntroText>
-            <SacramentSymbolsContainer>
-              <SacramentSymbol src={aya} />
-              <SacramentSymbol src={canna} />
-              <SacramentSymbol src={psilo} />
-              <SacramentSymbol src={salvia} />
-            </SacramentSymbolsContainer>
-          </IntroContainer>
-          <IntroContainer>
-          <IntroText>
-            <FeatureText style={{color: "#ED6F1B", fontStyle: "italic"}}>{props.data.contentfulPage.slogan}</FeatureText>
-          </IntroText>
-          </IntroContainer>
-        </StyledSection>
-      </Section>
-      {children}
-    </Layout>
-  )
+            </IntroContainer>
+          </StyledSection>
+        </Section>
+        <Footer />
+      </Layout>
+    )
+  }
 }
 
 export default Page
 
+export const pageQuery = graphql`
+  query PageQuery($slug: String!) {
+    contentfulPage (slug: { eq: $slug } ){
+      slogan
+      title
+      subtitle
+      featureText1 {
+        raw
+      }
+      featureText2 {
+        raw
+      }
+      slug
+    }
+  }
+`
 const StyledContainer = styled(Container)``
 
 const StyledSection = styled(Section)`
-  background-color: ${props => props.theme.color.background.light};
+  background-color: #231B17;
 `
 
 const SectionTitle = styled.h3`

@@ -16,6 +16,9 @@ import psilo from '../../../images/psilocybin-trans-white.png'
 import salvia from '../../../images/salvia-white-icon.png'
 
 import TimeLine from '../../sections/timeline'
+import { graphql } from "gatsby"
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
+import { BLOCKS, MARKS } from "@contentful/rich-text-types"
 
 import {
   MenuWrapper,
@@ -33,20 +36,53 @@ import {
   ActiveItem
 } from "./style"
 
+const Bold = ({ children }) => <span style={{color: "white"}}>{children}</span>
+const Text = ({ children }) => <p style={{color: "white", textAlign: "center"}}>{children}</p>
+
+const options = {
+  renderMark: {
+    [MARKS.BOLD]: text => <Bold>{text}</Bold>,
+  },
+  renderNode: {
+    [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
+    [BLOCKS.EMBEDDED_ASSET]: node => {
+      return (
+        <>
+          <h2>Embedded Asset</h2>
+          <pre>
+            <code>{JSON.stringify(node, null, 2)}</code>
+          </pre>
+        </>
+      )
+    },
+  },
+}
+
+
 const SUB_ITEMS_DOCS = [{name: "Litepaper", url:""}, {name: "Token/timelines", url: ""}]
 
-const NAV_ITEMS = [{name: "Muti Market", url: "/", symbol: canna}, {name: "Wings & Roots", url:"", symbol: psilo}, {name: "Thou Art", url: "", symbol: sp}, {name: "ELYS Token", url:"", symbol: ti}, {name: "Thokosa Bokaye", url:"", symbol: cacao}, {name: "Medicine Basket", url:"", symbol: am}, {name: "Wisdom Holders", url:"", symbol: aya}, {name: "Elyseos Foundation", url:"", symbol: salvia}]
+const NAV_ITEMS = [{name: "Muti Market", url: "muti-market", symbol: canna}, {name: "Wings & Roots", url:"wings-roots", symbol: psilo}, {name: "Thou Art", url: "thou-art", symbol: sp}, {name: "ELYS Token", url:"elys-token", symbol: ti}, {name: "Thokosa Bokaye", url:"thokosa", symbol: cacao}, {name: "Medicine Basket", url:"medicine-basket", symbol: am}, {name: "Wisdom Holders", url:"wisdom-holders", symbol: aya}, {name: "Elyseos Foundation", url:"foundation", symbol: salvia}]
 
 export default class RoadNav extends Component {
-  state = {
-    mobileMenuOpen: false,
-    hasScrolled: false,
-    isSelected: 'Home'
-  }
+
+  constructor(props){
+		super(props);
+		this.isMountedVal = 0;
+		this.state = {
+      count: 1,
+      mobileMenuOpen: false,
+      hasScrolled: false,
+      isSelected: 'Home'};
+	}
 
   componentDidMount() {
+    this.isMountedVal = 1;
     window.addEventListener("scroll", this.handleScroll)
   }
+
+  componentWillUnmount(){
+		this.isMountedVal = 0;
+	}
 
   handleScroll = event => {
     const scrollTop = window.pageYOffset
@@ -60,18 +96,24 @@ export default class RoadNav extends Component {
 
   handleClick = (e) => {
     console.log(e.currentTarget.textContent)
-    this.setState({
-      isSelected: e.currentTarget.textContent
-    })
+    if(this.isMountedVal){
+      this.setState({
+        isSelected: e.currentTarget.textContent
+      })
+    }
   }
 
   toggleMobileMenu = () => {
-    this.setState(prevState => ({ mobileMenuOpen: !prevState.mobileMenuOpen }))
+    if(this.isMountedVal){
+      this.setState(prevState => ({ mobileMenuOpen: !prevState.mobileMenuOpen }))
+    }
   }
 
   closeMobileMenu = () => {
     if (this.state.mobileMenuOpen) {
-      this.setState({ mobileMenuOpen: false })
+      if(this.isMountedVal){
+        this.setState({ mobileMenuOpen: false })
+      }
     }
   }
 
@@ -84,9 +126,11 @@ export default class RoadNav extends Component {
   getNavList = ({ mobile = false }) => (
         NAV_ITEMS.map(navItem => {
             return (
-              <LinkItem onClick={e => this.handleClick(e)}>
-                <SacramentSymbol src={navItem.symbol} />
-                <LinkListLi style={{color:"#ED6F1B"}} key={navItem.name}>{navItem.name}</LinkListLi>
+              <LinkItem>
+                <Link to={`/${navItem.url}`}>
+                  <SacramentSymbol src={navItem.symbol} />
+                  <LinkListLi style={{color:"#ED6F1B"}} key={navItem.name}>{navItem.name}</LinkListLi>
+                </Link>
               </LinkItem>
             )
         })
@@ -94,7 +138,7 @@ export default class RoadNav extends Component {
 
   render() {
     const { mobileMenuOpen } = this.state
-
+    console.log("Data rm ", this.props.data)
     return (
       <Section id="features">
         <StyledSection>
@@ -105,13 +149,12 @@ export default class RoadNav extends Component {
           </LinkList>
         </LinksWrapper>
         <TimeLineContainer>
-          <TimeLine />
+          <TimeLine data={this.props.data}/>
         </TimeLineContainer>
       </FeaturesGrid>
       <IntroContainer>
       <IntroText>
-        <FeatureText style={{color: "white"}}>Wings & Roots is our crowdsale, launchpad and studio of service providers. As few shamanic medicine projects understand or are active in a global crypto space W&R is a key component to getting these projects off the ground and plugged into the Elyseos ecosystem. </FeatureText>
-        <FeatureText style={{color: "white"}}>Initially we will be finding excellent artists, course architects, video editors and mentors and having them offer their skills in the studio. The support scaffolding will be in place long before we start launching.</FeatureText>
+        {this.props.data.contentfulRoadmap.description ? documentToReactComponents(JSON.parse(this.props.data.contentfulRoadmap.description.raw, options)) : null}
       </IntroText>
       </IntroContainer>
       </StyledSection>

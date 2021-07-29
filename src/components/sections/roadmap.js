@@ -1,28 +1,48 @@
 import React from "react"
 import styled from "styled-components"
+import { useStaticQuery, graphql, Link } from "gatsby"
 
 import { Container, Section } from "../global"
 import ContactForm from "../form"
 import RoadNav from "../common/roadmapNav/roadNav.js"
 
-const Roadmap = () => (
-  <StyledSection>
-    <SectionTitle style={{color: "white"}}>Roadmap Epoch 1</SectionTitle>
-    <Subtitle>Timing is everything</Subtitle>
-    <IntroContainer>
-      <IntroText>
-      <FeatureText style={{color: "white"}}> The Elyseos DAO has a rhythm to its operations known as Epochs. At the beginning of each Epoch we have an opportunity to set growth, engagement, service and other goals, at the end of each Epoch there is a further issuance of ELYS tokens Epochs run from 6-18 months based on votes within the DAO.
-      </FeatureText>
-      </IntroText>
-    </IntroContainer>
-    <RoadNav />
-  </StyledSection>
-)
+const Roadmap = () => {
+  const data = useStaticQuery(
+    graphql`
+    query rmQuery {
+      contentfulRoadmap {
+        slogan
+        title
+        timelineNodes {
+          title
+          description
+        }
+        slug
+        description {
+          raw
+        }
+      }
+    }
+`)
+  return (
+    <StyledSection>
+      <SectionTitle style={{color: "white"}}>Roadmap Epoch 1</SectionTitle>
+      <Subtitle>Timing is everything</Subtitle>
+      <IntroContainer>
+        <IntroText>
+        <FeatureText style={{color: "white"}}> The Elyseos DAO has a rhythm to its operations known as Epochs. At the beginning of each Epoch we have an opportunity to set growth, engagement, service and other goals, at the end of each Epoch there is a further issuance of ELYS tokens Epochs run from 6-18 months based on votes within the DAO.
+        </FeatureText>
+        </IntroText>
+      </IntroContainer>
+      <RoadNav data={data}/>
+    </StyledSection>
+  )
+}
 
 export default Roadmap
 
 const StyledSection = styled(Section)`
-  background-color: ${props => props.theme.color.background.light};
+  background-color: #231B17;
 `
 
 const IntroContainer = styled.div`

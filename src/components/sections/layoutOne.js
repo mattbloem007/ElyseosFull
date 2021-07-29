@@ -81,8 +81,8 @@ const LayoutOne = ({ children }) => {
               <SacramentSymbol src={cacao} />
             </SacramentSymbolsContainer>
             <IntroText>
-              {documentToReactComponents(JSON.parse(data.contentfulPage.featureText1.raw, options))}
-              {documentToReactComponents(JSON.parse(data.contentfulPage.featureText2.raw, options))}
+              {data.contentfulPage.featureText1 ? documentToReactComponents(JSON.parse(data.contentfulPage.featureText1.raw, options)) : null}
+              {data.contentfulPage.featureText2 ? documentToReactComponents(JSON.parse(data.contentfulPage.featureText2.raw, options)) : null}
             </IntroText>
             <SacramentSymbolsContainer>
               <SacramentSymbol src={aya} />
@@ -93,7 +93,7 @@ const LayoutOne = ({ children }) => {
           </IntroContainer>
           <IntroContainer>
           <IntroText>
-            <FeatureText style={{color: "#ED6F1B", fontStyle: "italic"}}>{data.contentfulPage.slogan}</FeatureText>
+            <FeatureText style={{color: "#ED6F1B", fontStyle: "italic"}}>{data.contentfulPage.slogan ? data.contentfulPage.slogan : null}</FeatureText>
           </IntroText>
           </IntroContainer>
         </StyledSection>
@@ -108,7 +108,7 @@ export default LayoutOne
 const StyledContainer = styled(Container)``
 
 const StyledSection = styled(Section)`
-  background-color: ${props => props.theme.color.background.light};
+  background-color: #231B17;
 `
 
 const SectionTitle = styled.h3`

@@ -10,20 +10,8 @@ import { useStaticQuery, graphql, Link } from "gatsby"
 
 import { Section, Container } from "../global"
 
-const TimeLine = () => {
-  const data = useStaticQuery(
-    graphql`
-    query roadMapQuery {
-      contentfulRoadmap {
-        slogan
-        title
-        timelineNodes {
-          title
-          description
-        }
-      }
-    }
-`)
+const TimeLine = ({ data }) => {
+  console.log("Timeline Data : ", data)
   return (
   <Section id="features">
     <StyledSection>

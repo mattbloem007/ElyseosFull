@@ -20,6 +20,7 @@ class BlogPost extends React.Component {
         <Navigation />
         <Banner />
         <BlogContent data={data} />
+        <Footer />
       </Layout>
     )
   }

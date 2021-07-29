@@ -16,8 +16,8 @@ const Footer = () => (
       <FooterColumn>
         <span>General</span>
         <ul>
-          <li>About</li>
-          <li>FAQ</li>
+          <Link to="/about"><li>About</li></Link>
+          <Link to="/faq"><li>FAQ</li></Link>
           <li>Support</li>
         </ul>
       </FooterColumn>

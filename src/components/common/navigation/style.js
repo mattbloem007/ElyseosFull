@@ -8,7 +8,7 @@ export const Nav = styled.nav`
   height: 23%;
   top: 0;
   z-index: 1000;
-  background-color: ${props => props.theme.color.background.light};
+  background-color: #231B17;
   transition: 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 `
 
@@ -19,7 +19,7 @@ export const StyledContainer = styled(Container)`
 `
 
 export const StyledSection = styled(Section)`
-  background-color: ${props => props.theme.color.background.light};
+  background-color: #231B17;
 `
 
 

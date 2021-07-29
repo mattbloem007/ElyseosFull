@@ -39,7 +39,7 @@ export default function Archives({ data }) {
 const StyledContainer = styled(Container)``
 
 const StyledSection = styled(Section)`
-  background-color: ${props => props.theme.color.background.light};
+  background-color: #231B17;
 `
 
 const PostContent = styled.div`
