@@ -19,7 +19,15 @@ import {
   StyledButton
 } from "./style"
 
-const SUB_ITEMS_DOCS = [{name: "Litepaper", url:""}, {name: "Token/timelines", url: ""}]
+import {
+  Submenu,
+  MenuList,
+  ListLink,
+  List,
+
+} from './dropdownStyle'
+
+const SUB_ITEMS_DOCS = [{name: "Litepaper", suburl:"/litepaper"}, {name: "Token/timelines", suburl: "token-timelines"}]
 
 const NAV_ITEMS = [{name: "Elyseos Home", url: "/", subItems: null}, {name: "Docs", url:"/docs", subItems: SUB_ITEMS_DOCS}, {name: "Elys Token", url: "/elys-token", subItems: null}, {name: "Pre-Sale", url:"https://ftmpad.com/", subItems: null}, {name: "Roadmap", url:"/muti-market", subItems: null}, {name: "Blog", url:"/blog", subItems: null}]
 
@@ -27,6 +35,7 @@ export default class Navigation extends Component {
   state = {
     mobileMenuOpen: false,
     hasScrolled: false,
+    displayMenu: false,
   }
 
   componentDidMount() {
@@ -53,6 +62,21 @@ export default class Navigation extends Component {
     }
   }
 
+  showDropdownMenu = (event) => {
+      event.preventDefault();
+      this.setState({ displayMenu: true }, () => {
+      document.addEventListener('mouseenter', this.hideDropdownMenu);
+      });
+    }
+
+    hideDropdownMenu = () => {
+      this.setState({ displayMenu: false }, () => {
+        document.removeEventListener('mouseout', this.hideDropdownMenu);
+      });
+
+    }
+
+
   getNavAnchorLink = item => (
     <AnchorLink href={`/${item.toLowerCase()}`} onClick={this.closeMobileMenu}>
       {item}
@@ -71,15 +95,34 @@ export default class Navigation extends Component {
           if (navItem.subItems == null) {
             return (
               <Link to={`${navItem.url}`} onClick={this.closeMobileMenu}>
-                <NavItem style={{color:"white"}} key={navItem.name}>{navItem.name}</NavItem>
+                <NavItem style={{color:"white"}} key={navItem.name}>
+                {navItem.name}
+
+                </NavItem>
               </Link>
             )
           }
           else {
             return (
-              <Link to={`${navItem.url}`} onClick={this.closeMobileMenu}>
-                <NavItem style={{color:"white"}} key={navItem.name}>{navItem.name}</NavItem>
-              </Link>
+                <Submenu>
+                  <NavItem onMouseEnter={(e) => this.showDropdownMenu(e)} style={{color:"white"}} key={navItem.name}>{navItem.name}</NavItem>
+                  { this.state.displayMenu ? (
+                  <MenuList style={{display: "flex", flexDirection: "column", backgroundColor:"#231B17"}}>
+                  {
+                    navItem.subItems.map(item => {
+                      console.log("item", item)
+                      return (
+                        <List><ListLink style={{color: "white"}} href={`${item.suburl}`}>{item.name}</ListLink></List>
+                      )
+                    })
+                  }
+                  </MenuList>
+                ):
+                (
+                  null
+                )
+                }
+                </Submenu>
             )
           }
         })}
