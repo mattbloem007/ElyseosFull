@@ -6,7 +6,7 @@ import { Container } from "../global"
 import twitter from "../../images/twitter-black-icon.png"
 import github from "../../images/github-black-icon.png"
 import medium from "../../images/medium-black-icon.png"
-import redit from "../../images/redditi-black-icon.png"
+import email from "../../images/email-icon.png"
 import discord from "../../images/discord-black-icon.png"
 import telegram from "../../images/telegram-black-icon.png"
 
@@ -55,7 +55,7 @@ const Footer = () => (
           <SocialSymbol src={medium} />
         </a>
         <a target="_blank" href="">
-          <SocialSymbol src={redit} />
+          <SocialSymbol src={email} />
         </a>
       </SocialContainer>
       </FooterColumn>

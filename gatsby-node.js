@@ -62,6 +62,7 @@ exports.createPages = ({ graphql, actions }) => {
                   description
                 }
                 title
+                colour
               }
             }
           }

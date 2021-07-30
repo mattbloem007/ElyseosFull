@@ -80,6 +80,7 @@ export const roadmapQuery = graphql`
       description {
         raw
       }
+      colour
     }
   }
 `

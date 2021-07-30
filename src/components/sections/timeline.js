@@ -12,11 +12,21 @@ import { Section, Container } from "../global"
 
 const TimeLine = ({ data }) => {
   console.log("Timeline Data : ", data)
+  let sloganCol = "white";
+  let titleCol = "#ED6F1B"
+  let sectionCol = "#231B17"
+  let itemCol = "white"
+  if (data.contentfulRoadmap.colour == "white") {
+    sloganCol = "#ED6F1B";
+    titleCol = "#231B17";
+    sectionCol = "white";
+    itemCol = "#231B17"
+  }
   return (
   <Section id="features">
-    <StyledSection>
-      <SectionTitle style={{color: "white"}}>{data.contentfulRoadmap.slogan}</SectionTitle>
-      <Subtitle>{data.contentfulRoadmap.title}</Subtitle>
+    <StyledSection style={{backgroundColor: `${sectionCol}`}}>
+      <SectionTitle style={{color: `${sloganCol}`}}>{data.contentfulRoadmap.slogan}</SectionTitle>
+      <Subtitle style={{color: `${titleCol}`}}>{data.contentfulRoadmap.title}</Subtitle>
       <Timeline>
       {
         data.contentfulRoadmap.timelineNodes.map(node => (
@@ -25,7 +35,7 @@ const TimeLine = ({ data }) => {
               <TimelineDot style={{color: "#ED6F1B", backgroundColor: "#ED6F1B"}} />
               <TimelineConnector />
             </TimelineSeparator>
-            <TimelineContent style={{color: "white"}}>{node.title}</TimelineContent>
+            <TimelineContent style={{color: `${itemCol}`}}>{node.title}</TimelineContent>
             <TimelineContent style={{color: "#ED6F1B", alignSelf: "center"}}>{node.description}</TimelineContent>
           </TimelineItem>
         ))
