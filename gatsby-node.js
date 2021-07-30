@@ -2,7 +2,15 @@ const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
 exports.createPages = ({ graphql, actions }) => {
-  const { createPage } = actions
+  const { createRedirect, createPage } = actions
+
+  
+   createRedirect({
+     fromPath: '/',
+     toPath: '/home',
+     isPermanent: true,
+     redirectInBrowser: true,
+  })
 
   const blogPost = path.resolve(`./src/templates/blog-post.js`)
   const pageTemplate = path.resolve(`./src/templates/page.js`)
@@ -94,12 +102,10 @@ exports.createPages = ({ graphql, actions }) => {
       })
     })
 
+
     pages.forEach((page, index) => {
       let tag = page.node.slug;
 
-      if (page.node.slug == "home") {
-        tag = "/"
-      }
       createPage({
         path: tag,
         component: pageTemplate,

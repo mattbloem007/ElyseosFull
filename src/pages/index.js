@@ -15,10 +15,12 @@ import LayoutOne from "../components/sections/layoutOne"
 
 
 const IndexPage = () => (
-  <LayoutOne>
+  <Layout>
+    <Navigation />
+    <Banner />
     <Features />
     <Footer />
-  </LayoutOne>
+  </Layout>
 )
 
 export default IndexPage

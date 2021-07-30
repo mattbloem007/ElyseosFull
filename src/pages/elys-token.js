@@ -14,10 +14,12 @@ import LayoutOne from "../components/sections/layoutOne"
 
 
 const ElysTokenPage = () => (
-  <LayoutOne>
+  <Layout>
+    <Navigation />
+    <Banner />
     <Features />
     <Footer />
-  </LayoutOne>
+  </Layout>
 )
 
 export default ElysTokenPage
