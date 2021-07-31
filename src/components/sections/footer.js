@@ -16,25 +16,25 @@ const Footer = () => (
       <FooterColumn>
         <span>General</span>
         <ul>
-          <Link to="/about" style={{ textDecoration: 'none', color: "#231B17" }}><li>About</li></Link>
-          <Link to="/faq" style={{ textDecoration: 'none', color: "#231B17" }}><li>FAQ</li></Link>
+          <ListLink href="/about"><li>About</li></ListLink>
+          <ListLink href="/faq"><li>FAQ</li></ListLink>
           <li>Support</li>
         </ul>
       </FooterColumn>
       <FooterColumn>
         <span>Technology</span>
         <ul>
-          <Link to="/muti-market" style={{ textDecoration: 'none', color: "#231B17" }}><li>Roadmap</li></Link>
-          <Link to="/token-timelines" style={{ textDecoration: 'none', color: "#231B17" }}><li>Token</li></Link>
-          <Link to="/litepaper" style={{ textDecoration: 'none', color: "#231B17" }}><li>Litepaper</li></Link>
+          <ListLink href="/muti-market"><li>Roadmap</li></ListLink>
+          <ListLink href="/token-timelines"><li>Token</li></ListLink>
+          <ListLink href="/litepaper"><li>Litepaper</li></ListLink>
         </ul>
       </FooterColumn>
       <FooterColumn>
         <span>Community</span>
         <ul>
-        <Link to="/muti-market" style={{ textDecoration: 'none', color: "#231B17" }}><li>Roadmap</li></Link>
+        <ListLink href="/muti-market"><li>Roadmap</li></ListLink>
         <li>Governance</li>
-        <Link to="/litepaper" style={{ textDecoration: 'none', color: "#231B17" }}><li>Litepaper</li></Link>
+        <ListLink href="/litepaper"><li>Litepaper</li></ListLink>
         </ul>
       </FooterColumn>
       <FooterColumn>
@@ -96,6 +96,15 @@ const SocialSymbol = styled.img`
   margin-top: 10px;
   margin-right: 50px;
 
+`
+
+const ListLink = styled.a`
+    text-decoration: none;
+    color: #231B17;
+
+  :hover {
+    color: #ED6F1B;
+  }
 `
 
 const BrandContainer = styled(Container)`
