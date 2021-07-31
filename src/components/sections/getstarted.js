@@ -3,30 +3,86 @@ import styled from "styled-components"
 
 import { Container, Section } from "../global"
 import ContactForm from "../form"
+import ti from '../../images/iboga-white-icon.png'
+import sp from '../../images/sanpedro-white-icon.png'
+import am from '../../images/amanita-icon-white-1.png'
+import cacao from '../../images/cacao-white-icon.png'
+import aya from '../../images/aya-white-icon.png'
+import canna from '../../images/cannabis-white-icon.png'
+import psilo from '../../images/psilocybin-trans-white.png'
+import salvia from '../../images/salvia-white-icon.png'
 
 const GetStarted = () => (
-  <StyledSection>
-    <GetStartedContainer>
-      <ExchangeBox>
-        <FeatureText>FTM/USD now = $ </FeatureText>
-      </ExchangeBox>
-      <FeaturesGrid>
-      <FeatureItem>
-        <ContactForm />
-      </FeatureItem>
-      </FeaturesGrid>
-    </GetStartedContainer>
-  </StyledSection>
+  <Section id="features">
+    <StyledSection>
+      <SectionTitle style={{color: "white"}}>Presale</SectionTitle>
+      <Subtitle style={{color: "#ED6F1B"}}>Sacramental Ecosystem</Subtitle>
+      <IntroContainer>
+        <SacramentSymbolsContainer>
+          <SacramentSymbol src={ti} />
+          <SacramentSymbol src={sp} />
+          <SacramentSymbol src={am} />
+          <SacramentSymbol src={cacao} />
+        </SacramentSymbolsContainer>
+        <IntroText style={{color: "white"}}>
+          Here is where you can buy tokens for the presale
+        </IntroText>
+        <SacramentSymbolsContainer>
+          <SacramentSymbol src={aya} />
+          <SacramentSymbol src={canna} />
+          <SacramentSymbol src={psilo} />
+          <SacramentSymbol src={salvia} />
+        </SacramentSymbolsContainer>
+      </IntroContainer>
+      <IntroContainer>
+      <IntroText>
+        <FeatureText style={{color: "#ED6F1B", fontStyle: "italic"}}>Tokens are the new GOLD</FeatureText>
+      </IntroText>
+      </IntroContainer>
+      <GetStartedContainer>
+        <ExchangeBox>
+          <FeatureText>FTM/USD now = $ </FeatureText>
+        </ExchangeBox>
+        <FeaturesGrid>
+        <FeatureItem>
+          <ContactForm />
+        </FeatureItem>
+        </FeaturesGrid>
+      </GetStartedContainer>
+    </StyledSection>
+  </Section>
 )
 
 export default GetStarted
 
+const StyledContainer = styled(Container)``
+
 const StyledSection = styled(Section)`
-  background-color: ${props => props.theme.color.background.light};
+  background-color: #231B17;
 `
+
+const SectionTitle = styled.h3`
+  color: ${props => props.theme.color.primary};
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 0px;
+`
+
+const Subtitle = styled.h5`
+  font-size: 16px;
+  color: ${props => props.theme.color.accent};
+  letter-spacing: 0px;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-style: italic;
+`
+
 const FeaturesGrid = styled.div`
   max-width: 670px;
   display: grid;
+  grid-template-columns: 1fr 1fr;
   margin: 0px auto;
   grid-column-gap: 40px;
   grid-row-gap: 35px;
@@ -36,15 +92,29 @@ const FeaturesGrid = styled.div`
   }
 `
 
-const FeatureText = styled.p`
-  text-align: center;
-  color: ${props => props.theme.color.background.white};
-`
 const FeatureItem = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+`
+
+const ImageandTitle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex-direction: row;
+`
+
+const FeatureTitle = styled.h5`
+  color: ${props => props.theme.color.accent};
+  letter-spacing: 0px;
+  line-height: 30px;
+  margin-bottom: 10px;
+`
+
+const FeatureText = styled.p`
+  text-align: center;
 `
 
 const ExchangeBox = styled.div`
@@ -73,54 +143,26 @@ const GetStartedTitle = styled.h3`
   text-align: center;
 `
 
-const TryItButton = styled.button`
-  font-weight: 500;
-  font-size: 14px;
-  color: white;
-  letter-spacing: 1px;
-  height: 60px;
-  display: block;
-  margin-left: 8px;
-  text-transform: uppercase;
-  cursor: pointer;
-  white-space: nowrap;
-  background: ${props => props.theme.color.secondary};
-  border-radius: 4px;
-  padding: 0px 40px;
-  border-width: 0px;
-  border-style: initial;
-  border-color: initial;
-  border-image: initial;
-  outline: 0px;
-  &:hover {
-    box-shadow: rgba(110, 120, 152, 0.22) 0px 2px 10px 0px;
-  }
-  @media (max-width: ${props => props.theme.screen.md}) {
-  }
-  @media (max-width: ${props => props.theme.screen.sm}) {
-    margin-left: 0;
-  }
-`
-
-const Subtitle = styled.span`
-  ${props => props.theme.font_size.xxsmall}
-  padding-top: 16px;
-  font-size: 14px;
-  color: ${props => props.theme.color.primary};
-`
-
-const SectionTitle = styled.h3`
-  color: ${props => props.theme.color.primary};
+const IntroContainer = styled.div`
   display: flex;
-  justify-content: center;
-  margin: 0 auto 40px;
-  text-align: center;
+  padding-left: 100px;
+  padding-right: 100px;
+
 `
 
-const Subheading = styled.h5`
-  font-size: 16px;
-  color: ${props => props.theme.color.accent};
-  letter-spacing: 0px;
-  margin-bottom: 12px;
-  text-align: center;
+const SacramentSymbolsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+const SacramentSymbol = styled.img`
+  height: 40px;
+  margin-bottom: 10px;
+  padding-right: 30px;
+`
+
+const IntroText = styled.div`
+  padding-left: 100px;
+  padding-right: 100px;
 `

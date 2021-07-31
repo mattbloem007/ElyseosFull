@@ -14,10 +14,12 @@ import LayoutOne from "../components/sections/layoutOne"
 
 
 const PresalePage = () => (
-  <LayoutOne>
+  <Layout>
+    <Navigation />
+    <Banner />
     <GetStarted />
     <Footer />
-  </LayoutOne>
+  </Layout>
 )
 
 export default PresalePage

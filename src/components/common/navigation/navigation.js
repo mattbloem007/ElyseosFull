@@ -29,7 +29,7 @@ import {
 
 const SUB_ITEMS_DOCS = [{name: "Litepaper", suburl:"/litepaper"}, {name: "Token/timelines", suburl: "token-timelines"}]
 
-const NAV_ITEMS = [{name: "Elyseos Home", url: "/", subItems: null}, {name: "Docs", url:"/docs", subItems: SUB_ITEMS_DOCS}, {name: "Elys Token", url: "/elys-token", subItems: null}, {name: "Pre-Sale", url:"https://ftmpad.com/", subItems: null}, {name: "Roadmap", url:"/muti-market", subItems: null}, {name: "Blog", url:"/blog", subItems: null}]
+const NAV_ITEMS = [{name: "Elyseos Home", url: "/", subItems: null}, {name: "Docs", url:"/docs", subItems: SUB_ITEMS_DOCS}, {name: "Elys Token", url: "/elys-token", subItems: null}, {name: "Pre-Sale", url:"/pre-sale", subItems: null}, {name: "Roadmap", url:"/muti-market", subItems: null}, {name: "Blog", url:"/blog", subItems: null}]
 
 export default class Navigation extends Component {
   state = {
