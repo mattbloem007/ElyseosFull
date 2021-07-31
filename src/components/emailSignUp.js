@@ -184,6 +184,7 @@ const FeaturesGrid = styled.div`
   display: grid;
   margin: 0px auto;
   grid-column-gap: 40px;
+  margin-top: 50px;
   grid-row-gap: 35px;
   @media (max-width: ${props => props.theme.screen.sm}) {
     grid-template-columns: 1fr;
