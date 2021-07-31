@@ -13,9 +13,7 @@ const Layout = ({ children, location }) => {
     <ThemeProvider theme={theme}>
       <>
         <GlobalStyles />
-        <Transition location={location}>
           {children}
-        </Transition>
       </>
     </ThemeProvider>
   )

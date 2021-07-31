@@ -106,8 +106,9 @@ const IntroContainer = styled.div`
 `
 
 const IntroText = styled.div`
-  padding-left: 100px;
-  padding-right: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 780px;
 `
 
 const FeatureText = styled.p`
