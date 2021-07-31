@@ -182,7 +182,6 @@ const IntroContainer = styled.div`
   display: flex;
   padding-left: 100px;
   padding-right: 100px;
-
 `
 
 const SacramentSymbolsContainer = styled.div`
@@ -194,10 +193,12 @@ const SacramentSymbolsContainer = styled.div`
 const SacramentSymbol = styled.img`
   height: 40px;
   margin-bottom: 10px;
+  margin-top: 20px;
   padding-right: 30px;
 `
 
 const IntroText = styled.div`
-  padding-left: 100px;
-  padding-right: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 780px;
 `

@@ -11,6 +11,7 @@ import topBanner from '../../images/Top banner.png'
 
 const Banner = () => (
   <HeaderWrapper id="features"  style={{ backgroundImage: `url(${topBanner})` }}>
+    <div>hello</div>
     <StyledContainer>
       <BackDrop src={backdrop} />
     </StyledContainer>
