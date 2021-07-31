@@ -45,42 +45,46 @@ const options = {
   },
 }
 
-class Page extends React.Component {
+
+class FAQPage extends React.Component {
   render() {
     const data = this.props.data
-
+    console.log("Feature", data)
     return (
       <Layout>
-        <SEO title={data.contentfulPage.title} />
+        <SEO title={data.contentfulFaqPage.title} />
         <Navigation />
         <Section id="features">
         <Banner/>
           <StyledSection>
-            <SectionTitle style={{color: "white"}}>{data.contentfulPage.title}</SectionTitle>
-            <Subtitle>{data.contentfulPage.subtitle}</Subtitle>
-            <IntroContainer>
-              <SacramentSymbolsContainer>
-                <SacramentSymbol src={ti} />
-                <SacramentSymbol src={sp} />
-                <SacramentSymbol src={am} />
-                <SacramentSymbol src={cacao} />
-              </SacramentSymbolsContainer>
-              <IntroText>
-              {data.contentfulPage.featureText1 ? documentToReactComponents(JSON.parse(data.contentfulPage.featureText1.raw, options)) : null}
-              {data.contentfulPage.featureText2 ? documentToReactComponents(JSON.parse(data.contentfulPage.featureText2.raw, options)) : null}
-              </IntroText>
-              <SacramentSymbolsContainer>
-                <SacramentSymbol src={aya} />
-                <SacramentSymbol src={canna} />
-                <SacramentSymbol src={psilo} />
-                <SacramentSymbol src={salvia} />
-              </SacramentSymbolsContainer>
-            </IntroContainer>
-            <IntroContainer>
-            <IntroText>
-              <FeatureText style={{color: "#ED6F1B", fontStyle: "italic"}}>{data.contentfulPage.slogan ? data.contentfulPage.slogan : null}</FeatureText>
-            </IntroText>
-            </IntroContainer>
+          <SectionTitle style={{color: "white"}}>{data.contentfulFaqPage.title}</SectionTitle>
+          <Subtitle>{data.contentfulFaqPage.subtitle}</Subtitle>
+          <IntroContainer>
+            <SacramentSymbolsContainer>
+              <SacramentSymbol src={ti} />
+              <SacramentSymbol src={sp} />
+              <SacramentSymbol src={am} />
+              <SacramentSymbol src={cacao} />
+            </SacramentSymbolsContainer>
+            <FeaturesGrid>
+            {
+              data.contentfulFaqPage.featureItem.map(item => {
+                return (
+                  <FeatureItem>
+                      <FeatureTitle>{item.title}</FeatureTitle>
+                      {documentToReactComponents(JSON.parse(item.answer.raw, options))}
+                  </FeatureItem>
+                )
+              })
+            }
+            </FeaturesGrid>
+            <SacramentSymbolsContainer>
+              <SacramentSymbol src={aya} />
+              <SacramentSymbol src={canna} />
+              <SacramentSymbol src={psilo} />
+              <SacramentSymbol src={salvia} />
+            </SacramentSymbolsContainer>
+          </IntroContainer>
           </StyledSection>
         </Section>
         <Footer />
@@ -89,18 +93,20 @@ class Page extends React.Component {
   }
 }
 
-export default Page
+export default FAQPage
 
 export const pageQuery = graphql`
-  query PageQuery($slug: String!) {
-    contentfulPage (slug: { eq: $slug } ){
-      
+  query FAQPageQuery($slug: String!) {
+    contentfulFaqPage (slug: { eq: $slug } ){
       title
       subtitle
-      featureText1 {
-        raw
-      }
       slug
+      featureItem {
+        title
+        answer {
+          raw
+        }
+      }
     }
   }
 `

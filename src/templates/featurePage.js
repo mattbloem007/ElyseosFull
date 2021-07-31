@@ -45,19 +45,19 @@ const options = {
   },
 }
 
-class Page extends React.Component {
+class FeaturePage extends React.Component {
   render() {
     const data = this.props.data
-
+    console.log("Feature", data)
     return (
       <Layout>
-        <SEO title={data.contentfulPage.title} />
+        <SEO title={data.contentfulFeaturePage.title} />
         <Navigation />
         <Section id="features">
         <Banner/>
           <StyledSection>
-            <SectionTitle style={{color: "white"}}>{data.contentfulPage.title}</SectionTitle>
-            <Subtitle>{data.contentfulPage.subtitle}</Subtitle>
+            <SectionTitle style={{color: "white"}}>{data.contentfulFeaturePage.title}</SectionTitle>
+            <Subtitle>{data.contentfulFeaturePage.subtitle}</Subtitle>
             <IntroContainer>
               <SacramentSymbolsContainer>
                 <SacramentSymbol src={ti} />
@@ -66,8 +66,8 @@ class Page extends React.Component {
                 <SacramentSymbol src={cacao} />
               </SacramentSymbolsContainer>
               <IntroText>
-              {data.contentfulPage.featureText1 ? documentToReactComponents(JSON.parse(data.contentfulPage.featureText1.raw, options)) : null}
-              {data.contentfulPage.featureText2 ? documentToReactComponents(JSON.parse(data.contentfulPage.featureText2.raw, options)) : null}
+              {data.contentfulFeaturePage.featureText1 ? documentToReactComponents(JSON.parse(data.contentfulFeaturePage.featureText1.raw, options)) : null}
+              {data.contentfulFeaturePage.featureText2 ? documentToReactComponents(JSON.parse(data.contentfulFeaturePage.featureText2.raw, options)) : null}
               </IntroText>
               <SacramentSymbolsContainer>
                 <SacramentSymbol src={aya} />
@@ -78,10 +78,11 @@ class Page extends React.Component {
             </IntroContainer>
             <IntroContainer>
             <IntroText>
-              <FeatureText style={{color: "#ED6F1B", fontStyle: "italic"}}>{data.contentfulPage.slogan ? data.contentfulPage.slogan : null}</FeatureText>
+              <FeatureText style={{color: "#ED6F1B", fontStyle: "italic"}}>{data.contentfulFeaturePage.slogan ? data.contentfulFeaturePage.slogan : null}</FeatureText>
             </IntroText>
             </IntroContainer>
           </StyledSection>
+          <Features data={data.contentfulFeaturePage.contentItems}/>
         </Section>
         <Footer />
       </Layout>
@@ -89,18 +90,29 @@ class Page extends React.Component {
   }
 }
 
-export default Page
+export default FeaturePage
 
 export const pageQuery = graphql`
-  query PageQuery($slug: String!) {
-    contentfulPage (slug: { eq: $slug } ){
-      
+  query FeaturePageQuery($slug: String!) {
+    contentfulFeaturePage (slug: { eq: $slug } ){
       title
       subtitle
+      slug
+      slogan
       featureText1 {
         raw
       }
-      slug
+      contentItems {
+        body {
+          raw
+        }
+        title
+        sacramentIcon {
+          file {
+            url
+          }
+        }
+      }
     }
   }
 `

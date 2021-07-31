@@ -4,7 +4,7 @@ const { createFilePath } = require(`gatsby-source-filesystem`)
 exports.createPages = ({ graphql, actions }) => {
   const { createRedirect, createPage } = actions
 
-  
+
    createRedirect({
      fromPath: '/',
      toPath: '/home',
@@ -15,6 +15,8 @@ exports.createPages = ({ graphql, actions }) => {
   const blogPost = path.resolve(`./src/templates/blog-post.js`)
   const pageTemplate = path.resolve(`./src/templates/page.js`)
   const roadmapTemplate = path.resolve(`./src/templates/roadmap.js`)
+  const featurePageTemplate = path.resolve(`./src/templates/featurePage.js`)
+  const faqPageTemplate = path.resolve(`./src/templates/faq.js`)
 
   return graphql(
     `
@@ -41,25 +43,19 @@ exports.createPages = ({ graphql, actions }) => {
             }
           }
         }
-
         allContentfulPage {
           edges {
             node {
               featureText1 {
                 raw
               }
-              featureText2 {
-                raw
-              }
               id
               subtitle
               title
-              slogan
               slug
             }
           }
         }
-
         allContentfulRoadmap {
             edges {
               node {
@@ -74,6 +70,46 @@ exports.createPages = ({ graphql, actions }) => {
               }
             }
           }
+          allContentfulFeaturePage {
+           edges {
+             node {
+               title
+               subtitle
+               slug
+               slogan
+               featureText1 {
+                 raw
+               }
+               contentItems {
+                 body {
+                   raw
+                 }
+                 title
+                 sacramentIcon {
+                   file {
+                     url
+                   }
+                 }
+               }
+             }
+           }
+         }
+
+         allContentfulFaqPage {
+          edges {
+            node {
+              subtitle
+              title
+              slug
+              featureItem {
+                title
+                answer {
+                  raw
+                }
+              }
+            }
+          }
+        }
       }
     `
   ).then(result => {
@@ -85,7 +121,8 @@ exports.createPages = ({ graphql, actions }) => {
     const posts = result.data.allContentfulBlogPost.edges
     const pages = result.data.allContentfulPage.edges
     const roadmaps = result.data.allContentfulRoadmap.edges
-
+    const featurePages = result.data.allContentfulFeaturePage.edges
+    const faqPages = result.data.allContentfulFaqPage.edges
 
     posts.forEach((post, index) => {
       const previous = index === posts.length - 1 ? null : posts[index + 1].node
@@ -122,6 +159,27 @@ exports.createPages = ({ graphql, actions }) => {
         component: roadmapTemplate,
         context: {
           title: roadmap.node.title,
+        },
+      })
+    })
+
+    featurePages.forEach((fPage, index) => {
+      createPage({
+        path: fPage.node.slug,
+        component: featurePageTemplate,
+        context: {
+          slug: fPage.node.slug,
+        },
+      })
+    })
+
+    faqPages.forEach((fPage, index) => {
+
+      createPage({
+        path: fPage.node.slug,
+        component: faqPageTemplate,
+        context: {
+          slug: fPage.node.slug,
         },
       })
     })

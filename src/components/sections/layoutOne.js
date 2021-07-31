@@ -54,10 +54,7 @@ const LayoutOne = ({ children }) => {
         featureText1 {
           raw
         }
-        featureText2 {
-          raw
-        }
-        slogan
+        
         subtitle
         title
       }

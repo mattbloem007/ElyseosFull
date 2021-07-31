@@ -38,31 +38,15 @@ const options = {
   },
 }
 
-const Features = () => {
-  const data = useStaticQuery(
-    graphql`
-    query featureItemQuery {
-  contentfulFeaturePage {
-    contentItems {
-      body {
-        raw
-      }
-      sacramentIcon {
-        file {
-          url
-        }
-      }
-      title
-    }
-  }
-}
-`)
+const Features = ({data}) => {
+  console.log("Data feature: ", data)
+
   return (
   <Section id="features">
     <StyledSection>
       <FeaturesGrid>
       {
-        data.contentfulFeaturePage.contentItems.map(contentItem => {
+        data.map(contentItem => {
           return (
             <FeatureItem>
               <ImageandTitle>
