@@ -68,15 +68,34 @@ export default class RoadNav extends Component {
   constructor(props){
 		super(props);
 		this.isMountedVal = 0;
+    this.currentData = props.data
+    props.data.allContentfulRoadmap.edges.map(roadmap => {
+      if (roadmap.node.title == "Muti Market") {
+        this.currentData = roadmap
+        return;
+      }
+    })
+    console.log("Current data", this.currentData)
 		this.state = {
       count: 1,
       mobileMenuOpen: false,
       hasScrolled: false,
-      isSelected: 'Home'};
+      isSelected: 'Muti Market',
+      data: this.currentData
+    };
+    console.log("data", this.state.data)
+
 	}
 
   componentDidMount() {
     this.isMountedVal = 1;
+    this.props.data.allContentfulRoadmap.edges.map(roadmap => {
+      if (roadmap.node.title == this.state.isSelected) {
+        this.setState({data: roadmap})
+        return;
+      }
+    })
+
     window.addEventListener("scroll", this.handleScroll)
   }
 
@@ -95,7 +114,15 @@ export default class RoadNav extends Component {
   }
 
   handleClick = (e) => {
-    console.log(e.currentTarget.textContent)
+    console.log(this.props.data, "", e.currentTarget.textContent)
+    this.props.data.allContentfulRoadmap.edges.map(roadmap => {
+      console.log(roadmap.node.title, " ", e.currentTarget.textContent)
+      if (roadmap.node.title == e.currentTarget.textContent) {
+        console.log("SEtting: ", roadmap)
+        this.setState({data: roadmap})
+        return;
+      }
+    })
     if(this.isMountedVal){
       this.setState({
         isSelected: e.currentTarget.textContent
@@ -123,22 +150,28 @@ export default class RoadNav extends Component {
     </AnchorLink>
   )
 
-  getNavList = ({ mobile = false }) => (
+  getNavList = ({ mobile = false }) => {
+      console.log("isSelected: ", this.state.isSelected)
+
+      return (
         NAV_ITEMS.map(navItem => {
             return (
               <LinkItem>
-                <Link to={`/${navItem.url}`}>
+                <div style={{display: "flex"}} onClick={(e) => this.handleClick(e)}>
                   <SacramentSymbol src={navItem.symbol} />
-                  <LinkListLi style={{color:"#ED6F1B"}} key={navItem.name}>{navItem.name}</LinkListLi>
-                </Link>
+                  {
+                    navItem.name === this.state.isSelected ? <LinkListLi style={{color:"#ED6F1B", borderBottom: "2px solid rgb(237, 111, 27)"}} key={navItem.name}>{navItem.name}</LinkListLi> : <LinkListLi style={{color:"#ED6F1B"}} key={navItem.name}>{navItem.name}</LinkListLi>
+                  }
+                </div>
               </LinkItem>
             )
         })
-  )
+      )
+  }
 
   render() {
-    const { mobileMenuOpen } = this.state
-    console.log("Data rm ", this.props.data)
+    const { mobileMenuOpen, data } = this.state
+    console.log("Data rm ", this.state.data)
     return (
       <Section id="features">
         <StyledSection>
@@ -149,12 +182,12 @@ export default class RoadNav extends Component {
           </LinkList>
         </LinksWrapper>
         <TimeLineContainer>
-          <TimeLine data={this.props.data}/>
+          <TimeLine data={data.node}/>
         </TimeLineContainer>
       </FeaturesGrid>
       <IntroContainer>
       <IntroText>
-        {this.props.data.contentfulRoadmap.description ? documentToReactComponents(JSON.parse(this.props.data.contentfulRoadmap.description.raw, options)) : null}
+        {data.node.description ? documentToReactComponents(JSON.parse(data.node.description.raw, options)) : null}
       </IntroText>
       </IntroContainer>
       </StyledSection>

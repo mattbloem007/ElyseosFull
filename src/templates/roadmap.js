@@ -43,7 +43,7 @@ class Roadmap extends React.Component {
     console.log ("Temp rm data", data)
     return (
       <Layout>
-        <SEO title={data.contentfulRoadmap.title} />
+        <SEO title="Roadmap" />
         <Navigation />
         <Section id="features">
         <Banner />
@@ -68,21 +68,24 @@ class Roadmap extends React.Component {
 export default Roadmap
 
 export const roadmapQuery = graphql`
-  query roadmapQuery($title: String!) {
-    contentfulRoadmap (title: { eq: $title } ){
-      slogan
-      title
+query roadmapByTitleQuery {
+allContentfulRoadmap {
+  edges {
+    node {
       timelineNodes {
         title
         description
       }
-      slug
+      title
       description {
         raw
       }
       colour
+      slogan
     }
   }
+}
+}
 `
 
 const StyledSection = styled(Section)`

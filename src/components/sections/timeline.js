@@ -16,7 +16,7 @@ const TimeLine = ({ data }) => {
   let titleCol = "#ED6F1B"
   let sectionCol = "#231B17"
   let itemCol = "white"
-  if (data.contentfulRoadmap.colour == "white") {
+  if (data.colour == "white") {
     sloganCol = "#ED6F1B";
     titleCol = "#231B17";
     sectionCol = "white";
@@ -25,11 +25,11 @@ const TimeLine = ({ data }) => {
   return (
   <Section id="features">
     <StyledSection style={{backgroundColor: `${sectionCol}`}}>
-      <SectionTitle style={{color: `${sloganCol}`}}>{data.contentfulRoadmap.slogan}</SectionTitle>
-      <Subtitle style={{color: `${titleCol}`}}>{data.contentfulRoadmap.title}</Subtitle>
+      <SectionTitle style={{color: `${sloganCol}`}}>{data.slogan}</SectionTitle>
+      <Subtitle style={{color: `${titleCol}`}}>{data.title}</Subtitle>
       <Timeline>
       {
-        data.contentfulRoadmap.timelineNodes.map(node => (
+        data.timelineNodes.map(node => (
           <TimelineItem>
             <TimelineSeparator>
               <TimelineDot style={{color: "#ED6F1B", backgroundColor: "#ED6F1B"}} />

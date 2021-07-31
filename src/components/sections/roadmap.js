@@ -9,19 +9,23 @@ import RoadNav from "../common/roadmapNav/roadNav.js"
 const Roadmap = () => {
   const data = useStaticQuery(
     graphql`
-    query rmQuery {
-      contentfulRoadmap {
-        slogan
-        title
-        timelineNodes {
+    query allRoadmapsQuery {
+    allContentfulRoadmap {
+      edges {
+        node {
+          timelineNodes {
+            title
+            description
+          }
           title
-          description
-        }
-        slug
-        description {
-          raw
+          description {
+            raw
+          }
+          colour
+          slogan
         }
       }
+    }
     }
 `)
   return (
@@ -53,8 +57,9 @@ const IntroContainer = styled.div`
 `
 
 const IntroText = styled.div`
-  padding-left: 100px;
-  padding-right: 100px;
+margin-left: auto;
+margin-right: auto;
+max-width: 780px;
 `
 
 const SectionTitle = styled.h3`

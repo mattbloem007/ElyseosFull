@@ -29,7 +29,7 @@ import {
 
 const SUB_ITEMS_DOCS = [{name: "Litepaper", suburl:"/litepaper"}, {name: "Token/timelines", suburl: "token-timelines"}]
 
-const NAV_ITEMS = [{name: "Elyseos Home", url: "/", subItems: null}, {name: "Docs", url:"/docs", subItems: SUB_ITEMS_DOCS}, {name: "Elys Token", url: "/elys-token", subItems: null}, {name: "Pre-Sale", url:"/pre-sale", subItems: null}, {name: "Roadmap", url:"/muti-market", subItems: null}, {name: "Blog", url:"/blog", subItems: null}]
+const NAV_ITEMS = [{name: "Elyseos Home", url: "/", subItems: null}, {name: "Docs", url:"/docs", subItems: SUB_ITEMS_DOCS}, {name: "Elys Token", url: "/elys-token", subItems: null}, {name: "Pre-Sale", url:"/pre-sale", subItems: null}, {name: "Roadmap", url:"/roadmap", subItems: null}, {name: "Blog", url:"/blog", subItems: null}]
 
 export default class Navigation extends Component {
   state = {
@@ -84,7 +84,7 @@ export default class Navigation extends Component {
   )
 
   getNavList = ({ mobile = false }) => {
-    
+
     let style= {}
     /*
     {
@@ -103,7 +103,7 @@ export default class Navigation extends Component {
             if (navItem.subItems == null) {
               //added style to Link - a bit of a hack to get rid of underline
               return (
-                <Link to={`${navItem.url}`} onClick={this.closeMobileMenu} style={{textDecoration: 'none'}}> 
+                <Link to={`${navItem.url}`} onClick={this.closeMobileMenu} style={{textDecoration: 'none'}}>
                   <NavItem style={{color:"white"}} key={navItem.name}>
                   {navItem.name}
 
@@ -142,7 +142,7 @@ export default class Navigation extends Component {
 
   render() {
     const { mobileMenuOpen } = this.state
-    console.log(this.props)
+
     return (
       <Nav {...this.props} scrolled={this.state.hasScrolled}>
         <StyledContainer>

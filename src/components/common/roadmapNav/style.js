@@ -82,11 +82,11 @@ export const LinkList = styled.ul`
 
 `
 
-export const LinkItem = styled.button`
+export const LinkItem = styled.div`
   display: flex;
-  justify-content: center;
   align-items: flex-end;
   flex-direction: row;
+  justify-content: flex-start
 `
 
 export const SacramentSymbol = styled.img`
@@ -100,7 +100,6 @@ export const LinkListLi = styled.li`
   text-transform: uppercase;
   margin: 0;
   margin-bottom: 30px;
-  border-bottom: 2px solid rgba(0, 0, 0, .5);
   padding: 3px;
 
   a {
