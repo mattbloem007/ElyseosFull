@@ -83,52 +83,62 @@ export default class Navigation extends Component {
     </AnchorLink>
   )
 
-  getNavList = ({ mobile = false }) => (
-    <NavListWrapper mobile={mobile}>
-      <Scrollspy
-        items={NAV_ITEMS.map(item => item.name.toLowerCase())}
-        currentClassName="active"
-        mobile={mobile}
-        offset={-64}
-      >
-        {NAV_ITEMS.map(navItem => {
-          if (navItem.subItems == null) {
-            return (
-              <Link to={`${navItem.url}`} onClick={this.closeMobileMenu}>
-                <NavItem style={{color:"white"}} key={navItem.name}>
-                {navItem.name}
+  getNavList = ({ mobile = false }) => {
+    
+    let style= {}
+    /*
+    {
+      border: "1px solid #ffffff"
+    }
+    */
+    return  (
+      <NavListWrapper mobile={mobile} style={style}>
+        <Scrollspy
+          items={NAV_ITEMS.map(item => item.name.toLowerCase())}
+          currentClassName="active"
+          mobile={mobile}
+          offset={-64}
+        >
+          {NAV_ITEMS.map(navItem => {
+            if (navItem.subItems == null) {
+              //added style to Link - a bit of a hack to get rid of underline
+              return (
+                <Link to={`${navItem.url}`} onClick={this.closeMobileMenu} style={{textDecoration: 'none'}}> 
+                  <NavItem style={{color:"white"}} key={navItem.name}>
+                  {navItem.name}
 
-                </NavItem>
-              </Link>
-            )
-          }
-          else {
-            return (
-                <Submenu>
-                  <NavItem onMouseEnter={(e) => this.showDropdownMenu(e)} style={{color:"white"}} key={navItem.name}>{navItem.name}</NavItem>
-                  { this.state.displayMenu ? (
-                  <MenuList style={{display: "flex", flexDirection: "column", backgroundColor:"#231B17"}}>
-                  {
-                    navItem.subItems.map(item => {
-                      console.log("item", item)
-                      return (
-                        <List><ListLink style={{color: "white"}} href={`${item.suburl}`}>{item.name}</ListLink></List>
-                      )
-                    })
+                  </NavItem>
+                </Link>
+              )
+            }
+            else {
+              return (
+                  <Submenu>
+                    <NavItem onMouseEnter={(e) => this.showDropdownMenu(e)} style={{color:"white"}} key={navItem.name}>{navItem.name}</NavItem>
+                    { this.state.displayMenu ? (
+                    <MenuList style={{display: "flex", flexDirection: "column", backgroundColor:"#231B17"}}>
+                    {
+                      navItem.subItems.map(item => {
+                        console.log("item", item)
+                        return (
+                          <List><ListLink style={{color: "white"}} href={`${item.suburl}`}>{item.name}</ListLink></List>
+                        )
+                      })
+                    }
+                    </MenuList>
+                  ):
+                  (
+                    null
+                  )
                   }
-                  </MenuList>
-                ):
-                (
-                  null
-                )
-                }
-                </Submenu>
-            )
-          }
-        })}
-      </Scrollspy>
-    </NavListWrapper>
-  )
+                  </Submenu>
+              )
+            }
+          })}
+        </Scrollspy>
+      </NavListWrapper>
+    )
+      }
 
   render() {
     const { mobileMenuOpen } = this.state

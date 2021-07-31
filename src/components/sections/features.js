@@ -106,22 +106,26 @@ const FeatureItem = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  align-items: flex-start;
-
+  align-self: flex-start;
 `
 
 const ImageandTitle = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: flex-end;
   flex-direction: row;
+  height: 60px;
 `
 
+//Position relative is a bit of a hack to align
 const FeatureTitle = styled.h5`
   color: ${props => props.theme.color.accent};
   letter-spacing: 0px;
   line-height: 30px;
   margin-bottom: 10px;
+  font-size: 20px;
+  position: relative;
+  top: -5px;
 `
 
 const FeatureText = styled.p`

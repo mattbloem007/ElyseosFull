@@ -87,13 +87,15 @@ const SocialContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
-  margin-right: 50px;
+  margin-right: 20px;
 `
 
 const SocialSymbol = styled.img`
-  height: 30px;
-  margin-bottom: 10px;
-  padding-right: 30px;
+  height: 28px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-right: 50px;
+
 `
 
 const BrandContainer = styled(Container)`
@@ -109,8 +111,10 @@ const FooterColumnContainer = styled(Container)`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 32px;
-  padding-top: 10px;
-  margin-left: 50px;
+  padding-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 85%;
   justify-content: start;
   @media (max-width: ${props => props.theme.screen.sm}) {
     grid-template-columns: 1fr 1fr;
@@ -131,7 +135,8 @@ const FooterColumn = styled.div`
     li {
       margin-bottom: 12px;
       font-family: ${props => props.theme.font.normal};
-      font-size: 15px;
+      font-size: 14px;
+      margin-left: 2px;
     }
   }
 `

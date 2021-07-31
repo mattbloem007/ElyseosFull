@@ -58,7 +58,6 @@ export const NavItem = styled.li`
   margin: 0 0.75em;
   font-family: ${props => props.theme.font.medium};
   ${props => props.theme.font_size.xsmall};
-
   a {
     text-decoration: none;
     opacity: 0.9;
@@ -89,6 +88,7 @@ export const Brand = styled.div`
   text-decoration: none;
   letter-spacing: 1px;
   margin-left: 150px;
+  height: 110px;   //this is a rough fix for now
   ul {
     list-style: none;
     margin: 0;
