@@ -24,17 +24,17 @@ const Footer = () => (
       <FooterColumn>
         <span>Technology</span>
         <ul>
-          <li>Roadmap</li>
-          <li>Token</li>
-          <li>Lightpaper</li>
+          <Link to="/muti-market"><li>Roadmap</li></Link>
+          <Link to="/token-timelines"><li>Token</li></Link>
+          <Link to="/litepaper"><li>Litepaper</li></Link>
         </ul>
       </FooterColumn>
       <FooterColumn>
         <span>Community</span>
         <ul>
-          <li>Roadmap</li>
-          <li>Governance</li>
-          <li>Lightpaper</li>
+        <Link to="/muti-market"><li>Roadmap</li></Link>
+        <li>Governance</li>
+        <Link to="/litepaper"><li>Litepaper</li></Link>
         </ul>
       </FooterColumn>
       <FooterColumn>
@@ -45,18 +45,18 @@ const Footer = () => (
         <a target="_blank" href="https://discord.gg/YKJsDyHDkc">
           <SocialSymbol src={discord} />
         </a>
-        <a target="_blank" href="">
+        <a target="_blank" href="https://twitter.com/ElyseosFDN">
           <SocialSymbol src={twitter} />
         </a>
         <a target="_blank" href="https://github.com/nuwrldnf8r/Elyseos">
           <SocialSymbol src={github} />
         </a>
-        <a target="_blank" href="">
+        <a target="_blank" href="https://medium.com/@Elyseos">
           <SocialSymbol src={medium} />
         </a>
-        <a target="_blank" href="">
+        <Link to="/email-signup">
           <SocialSymbol src={email} />
-        </a>
+        </Link>
       </SocialContainer>
       </FooterColumn>
     </FooterColumnContainer>

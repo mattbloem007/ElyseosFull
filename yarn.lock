@@ -6550,6 +6550,13 @@ gatsby-plugin-image@^0.7.2:
     objectFitPolyfill "^2.3.0"
     prop-types "^15.7.2"
 
+gatsby-plugin-layout@^2.10.0:
+  version "2.10.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-layout/-/gatsby-plugin-layout-2.10.0.tgz#edac4b11905bdd2ad71fc5dc98f64bd92fddbc9b"
+  integrity sha512-JL56Dbv/FFp5oma3NYwRm+Pt8faBVj4nPhUWoVXDZe3OzlmY2hTV26T7h4qquQdTMictsIS9ddwKM3YVtMVV4Q==
+  dependencies:
+    "@babel/runtime" "^7.14.6"
+
 gatsby-plugin-manifest@^2.4.23:
   version "2.10.0"
   resolved "https://registry.npmjs.org/gatsby-plugin-manifest/-/gatsby-plugin-manifest-2.10.0.tgz"
@@ -12099,7 +12106,7 @@ react-side-effect@^2.1.0:
   resolved "https://registry.npmjs.org/react-side-effect/-/react-side-effect-2.1.1.tgz"
   integrity sha512-2FoTQzRNTncBVtnzxFOk2mCpcfxQpenBMbk5kSVBg5UcPqV9fRbgY2zhb7GTWWOlpFmAxhClBDlIq8Rsubz1yQ==
 
-react-transition-group@^4.4.0:
+react-transition-group@^4.4.0, react-transition-group@^4.4.2:
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-4.4.2.tgz#8b59a56f09ced7b55cbd53c36768b922890d5470"
   integrity sha512-/RNYfRAMlZwDSr6z4zNKV6xu53/e2BuaBbGhbyYIXTrmgu/bGHzmqOs7mJSJBHy9Ud+ApHx3QjrkKSp1pxvlFg==
