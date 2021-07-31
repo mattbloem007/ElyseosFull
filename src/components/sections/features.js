@@ -46,7 +46,7 @@ const Features = ({data}) => {
     <StyledSection>
       <FeaturesGrid>
       {
-        data.map(contentItem => {
+        data ? data.map(contentItem => {
           return (
             <FeatureItem>
               <ImageandTitle>
@@ -56,7 +56,7 @@ const Features = ({data}) => {
               {documentToReactComponents(JSON.parse(contentItem.body.raw, options))}
             </FeatureItem>
           )
-        })
+        }) : null
       }
       </FeaturesGrid>
     </StyledSection>
