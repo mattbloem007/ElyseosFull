@@ -107,7 +107,7 @@ export default class Navigation extends Component {
 
   getNavList = ({ mobile = false }) => {
     console.log("isSelected: ", this.state.isSelected)
-    console.log (window.location)
+
 
     let style= {}
     /*
@@ -127,15 +127,18 @@ export default class Navigation extends Component {
             if (navItem.subItems == null) {
               //added style to Link - a bit of a hack to get rid of underline
               let navItemPath = navItem.url
+              let windowPath = "/home"
               if (navItem.url == "/") {
                   navItemPath = "/home"
               }
 
-              console.log(navItem.url, " ", window.location.pathname)
+              if (typeof window !== `undefined`){
+                windowPath = window.location.pathname // Window call
+              }
               return (
                 <Link to={`${navItem.url}`} onClick={(e) => this.handleClick(e)} style={{textDecoration: 'none'}}>
                 {
-                  navItemPath === window.location.pathname ? <NavItem style={{color:"white", borderBottom: "3px solid rgb(237, 111, 27)", paddingBottom: "5px"}} key={navItem.name}>
+                  navItemPath === windowPath ? <NavItem style={{color:"white", borderBottom: "3px solid rgb(237, 111, 27)", paddingBottom: "5px"}} key={navItem.name}>
                   {navItem.name}
                   </NavItem> : <NavItem style={{color:"white"}} key={navItem.name}>
                   {navItem.name}
