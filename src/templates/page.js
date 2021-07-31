@@ -7,6 +7,8 @@ import Banner from "../components/sections/banner"
 import Header from "../components/sections/header"
 import Features from "../components/sections/features"
 import Footer from "../components/sections/footer"
+import axios from 'axios'
+import fileDownload from 'js-file-download'
 
 import { graphql } from "gatsby"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
@@ -46,9 +48,21 @@ const options = {
 }
 
 class Page extends React.Component {
+
+  handleDownload = (url, filename) => {
+    console.log(url, " ", filename)
+  axios.get(url, {
+    responseType: 'blob',
+  })
+  .then((res) => {
+    console.log("RESULT :", res)
+    fileDownload(res.data, filename)
+  })
+}
+
   render() {
     const data = this.props.data
-
+    console.log("Page", data)
     return (
       <Layout>
         <SEO title={data.contentfulPage.title} />
@@ -68,6 +82,7 @@ class Page extends React.Component {
               <IntroText>
               {data.contentfulPage.featureText1 ? documentToReactComponents(JSON.parse(data.contentfulPage.featureText1.raw, options)) : null}
               {data.contentfulPage.featureText2 ? documentToReactComponents(JSON.parse(data.contentfulPage.featureText2.raw, options)) : null}
+              {data.contentfulPage.featureText1.references[0] ? <StyledButton><a href={data.contentfulPage.featureText1.references[0].file.url} target="_blank" download>Download PDF</a></StyledButton> : null}
               </IntroText>
               <SacramentSymbolsContainer>
                 <SacramentSymbol src={aya} />
@@ -94,11 +109,16 @@ export default Page
 export const pageQuery = graphql`
   query PageQuery($slug: String!) {
     contentfulPage (slug: { eq: $slug } ){
-      
+
       title
       subtitle
       featureText1 {
         raw
+        references {
+         file {
+           url
+         }
+       }
       }
       slug
     }
@@ -171,6 +191,15 @@ const IntroContainer = styled.div`
   padding-left: 100px;
   padding-right: 100px;
 
+`
+
+export const StyledButton = styled.button`
+  width: 142px;
+  height: 30px;
+  float: right;
+  color: #ED6F1B;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border-radius: 45px;
 `
 
 const SacramentSymbolsContainer = styled.div`
