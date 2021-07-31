@@ -120,7 +120,7 @@ exports.createPages = ({ graphql, actions }) => {
     // Create blog posts pages.
     const posts = result.data.allContentfulBlogPost.edges
     const pages = result.data.allContentfulPage.edges
-    const roadmaps = result.data.allContentfulRoadmap.edges
+  //  const roadmaps = result.data.allContentfulRoadmap.edges
     const featurePages = result.data.allContentfulFeaturePage.edges
     const faqPages = result.data.allContentfulFaqPage.edges
 
@@ -152,16 +152,16 @@ exports.createPages = ({ graphql, actions }) => {
       })
     })
 
-    roadmaps.forEach((roadmap, index) => {
-
-      createPage({
-        path: roadmap.node.slug,
-        component: roadmapTemplate,
-        context: {
-          title: roadmap.node.title,
-        },
-      })
-    })
+    // roadmaps.forEach((roadmap, index) => {
+    //
+    //   createPage({
+    //     path: roadmap.node.slug,
+    //     component: roadmapTemplate,
+    //     context: {
+    //       title: roadmap.node.title,
+    //     },
+    //   })
+    // })
 
     featurePages.forEach((fPage, index) => {
       createPage({

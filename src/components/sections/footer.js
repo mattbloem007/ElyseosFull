@@ -16,25 +16,25 @@ const Footer = () => (
       <FooterColumn>
         <span>General</span>
         <ul>
-          <Link to="/about"><li>About</li></Link>
-          <Link to="/faq"><li>FAQ</li></Link>
+          <Link to="/about" style={{ textDecoration: 'none', color: "#231B17" }}><li>About</li></Link>
+          <Link to="/faq" style={{ textDecoration: 'none', color: "#231B17" }}><li>FAQ</li></Link>
           <li>Support</li>
         </ul>
       </FooterColumn>
       <FooterColumn>
         <span>Technology</span>
         <ul>
-          <Link to="/muti-market"><li>Roadmap</li></Link>
-          <Link to="/token-timelines"><li>Token</li></Link>
-          <Link to="/litepaper"><li>Litepaper</li></Link>
+          <Link to="/muti-market" style={{ textDecoration: 'none', color: "#231B17" }}><li>Roadmap</li></Link>
+          <Link to="/token-timelines" style={{ textDecoration: 'none', color: "#231B17" }}><li>Token</li></Link>
+          <Link to="/litepaper" style={{ textDecoration: 'none', color: "#231B17" }}><li>Litepaper</li></Link>
         </ul>
       </FooterColumn>
       <FooterColumn>
         <span>Community</span>
         <ul>
-        <Link to="/muti-market"><li>Roadmap</li></Link>
+        <Link to="/muti-market" style={{ textDecoration: 'none', color: "#231B17" }}><li>Roadmap</li></Link>
         <li>Governance</li>
-        <Link to="/litepaper"><li>Litepaper</li></Link>
+        <Link to="/litepaper" style={{ textDecoration: 'none', color: "#231B17" }}><li>Litepaper</li></Link>
         </ul>
       </FooterColumn>
       <FooterColumn>

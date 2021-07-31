@@ -208,7 +208,7 @@ const Flex = styled.div`
   display: grid;
   justify-content: space-between;
   align-content: center;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 200px 250px 400px;
   @media (max-width: ${props => props.theme.screen.md}) {
     grid-template-columns: 1fr;
     grid-gap: 64px;

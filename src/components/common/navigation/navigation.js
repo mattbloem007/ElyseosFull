@@ -27,20 +27,33 @@ import {
 
 } from './dropdownStyle'
 
-const SUB_ITEMS_DOCS = [{name: "Litepaper", suburl:"/litepaper"}, {name: "Token/timelines", suburl: "token-timelines"}]
+const SUB_ITEMS_DOCS = [{name: "Litepaper", suburl:"/litepaper"}, {name: "Token & Roadmap", suburl: "token-timelines"}]
 
 const NAV_ITEMS = [{name: "Elyseos Home", url: "/", subItems: null}, {name: "Docs", url:"/docs", subItems: SUB_ITEMS_DOCS}, {name: "Elys Token", url: "/elys-token", subItems: null}, {name: "Pre-Sale", url:"/pre-sale", subItems: null}, {name: "Roadmap", url:"/roadmap", subItems: null}, {name: "Blog", url:"/blog", subItems: null}]
 
 export default class Navigation extends Component {
-  state = {
-    mobileMenuOpen: false,
-    hasScrolled: false,
-    displayMenu: false,
-  }
+
+  constructor(props){
+		super(props);
+		this.isMountedVal = 0;
+
+		this.state = {
+      mobileMenuOpen: false,
+      hasScrolled: false,
+      displayMenu: false,
+      isSelected: 'Home',
+    }
+
+	}
 
   componentDidMount() {
+    this.isMountedVal = 1;
     window.addEventListener("scroll", this.handleScroll)
   }
+
+  componentWillUnmount(){
+		this.isMountedVal = 0;
+	}
 
   handleScroll = event => {
     const scrollTop = window.pageYOffset
@@ -76,6 +89,15 @@ export default class Navigation extends Component {
 
     }
 
+    handleClick = (e) => {
+
+      if(this.isMountedVal){
+        this.setState({
+          isSelected: e.currentTarget.textContent
+        })
+      }
+    }
+
 
   getNavAnchorLink = item => (
     <AnchorLink href={`/${item.toLowerCase()}`} onClick={this.closeMobileMenu}>
@@ -84,6 +106,8 @@ export default class Navigation extends Component {
   )
 
   getNavList = ({ mobile = false }) => {
+    console.log("isSelected: ", this.state.isSelected)
+    console.log (window.location)
 
     let style= {}
     /*
@@ -102,12 +126,21 @@ export default class Navigation extends Component {
           {NAV_ITEMS.map(navItem => {
             if (navItem.subItems == null) {
               //added style to Link - a bit of a hack to get rid of underline
-              return (
-                <Link to={`${navItem.url}`} onClick={this.closeMobileMenu} style={{textDecoration: 'none'}}>
-                  <NavItem style={{color:"white"}} key={navItem.name}>
-                  {navItem.name}
+              let navItemPath = navItem.url
+              if (navItem.url == "/") {
+                  navItemPath = "/home"
+              }
 
+              console.log(navItem.url, " ", window.location.pathname)
+              return (
+                <Link to={`${navItem.url}`} onClick={(e) => this.handleClick(e)} style={{textDecoration: 'none'}}>
+                {
+                  navItemPath === window.location.pathname ? <NavItem style={{color:"white", borderBottom: "3px solid rgb(237, 111, 27)", paddingBottom: "5px"}} key={navItem.name}>
+                  {navItem.name}
+                  </NavItem> : <NavItem style={{color:"white"}} key={navItem.name}>
+                  {navItem.name}
                   </NavItem>
+                }
                 </Link>
               )
             }
@@ -142,7 +175,6 @@ export default class Navigation extends Component {
 
   render() {
     const { mobileMenuOpen } = this.state
-
     return (
       <Nav {...this.props} scrolled={this.state.hasScrolled}>
         <StyledContainer>

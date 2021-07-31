@@ -22,8 +22,7 @@ export const MenuList = styled.ul`
   list-style-type: none;
   margin: 0;
   padding: 0;
-  top:45px;
-  right:0px;
+  top:20px;
   width: 200px;
   background-color: white;
   font-weight:bold;
@@ -35,18 +34,14 @@ export const MenuList = styled.ul`
 
 export const List = styled.li`
   padding: 8px 16px;
-  border-bottom: 1px solid #e5e5e5;
 `
 
 export const ListLink = styled.a`
-
     color: #000;
      text-decoration: none;
 
-
   :hover {
-      background-color: #e5e5e5;
-     color: white;
+    border-bottom: 2px solid rgb(237, 111, 27)
   }
 `
 
