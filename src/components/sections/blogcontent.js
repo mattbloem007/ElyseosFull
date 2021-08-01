@@ -33,7 +33,7 @@ const options = {
 
 export default function BlogContent({ data }) {
   console.log("DATA :" , data)
-  if (data.contentfulBlogPost) {
+  if (data) {
     return (
       <Section>
         <StyledSection>
