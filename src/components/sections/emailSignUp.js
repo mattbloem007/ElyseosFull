@@ -141,4 +141,8 @@ const SacramentSymbol = styled.img`
 const IntroText = styled.div`
   padding-left: 100px;
   padding-right: 100px;
+
+  @media (max-width: ${props => props.theme.screen.md}) {
+    text-align: center;
+  }
 `

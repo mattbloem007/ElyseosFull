@@ -158,7 +158,7 @@ export default class RoadNav extends Component {
         NAV_ITEMS.map(navItem => {
             return (
               <LinkItem>
-                <div style={{display: "flex"}} onClick={(e) => this.handleClick(e)}>
+                <div style={{display: "flex", flexWrap: "wrap"}} onClick={(e) => this.handleClick(e)}>
                   <Divimage>
                     <SacramentSymbol src={navItem.symbol} />
                   </Divimage>

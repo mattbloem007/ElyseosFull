@@ -48,6 +48,12 @@ export const IntroContainer = styled.div`
   display: flex;
   padding-left: 244px;
   padding-right: 200px;
+
+  @media (max-width: ${props => props.theme.screen.md}) {
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+  }
 `
 
 export const IntroText = styled.div`
@@ -60,6 +66,10 @@ export const Divimage = styled.div`
   display:inline-block;
   width: 110px;
   text-align: center;
+
+  @media (max-width: ${props => props.theme.screen.md}) {
+    width: 70px;
+  }
 `
 
 export const FeatureText = styled.p`
@@ -89,6 +99,11 @@ export const LinkList = styled.ul`
 
     padding-right: 25px;
     padding-left: 25px;
+
+    @media (max-width: ${props => props.theme.screen.md}) {
+      padding-left: 0px;
+      padding-right: 0px;
+    }
 
 `
 

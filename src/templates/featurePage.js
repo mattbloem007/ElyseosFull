@@ -210,4 +210,8 @@ const IntroText = styled.div`
   margin-left: auto;
   margin-right: auto;
   max-width: 780px;
+
+  @media (max-width: ${props => props.theme.screen.md}) {
+    text-align: center;
+  }
 `

@@ -256,7 +256,7 @@ export default class Navigation extends Component {
               {this.state.mobileMenuOpen ? (
                 <X size={24} alt="close menu" />
               ) : (
-                <Menu size={24} alt="open menu" />
+                <Menu stroke="white" size={24} alt="open menu" />
               )}
             </StyledButton>
           </Mobile>
