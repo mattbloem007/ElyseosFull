@@ -1,25 +1,22 @@
 import React from 'react';
 import styled from "styled-components"
 import Timeline from '@material-ui/lab/Timeline';
-import TimelineItem from '@material-ui/lab/TimelineItem';
+import MuiTimelineItem from './styledTimeline'
 import TimelineSeparator from '@material-ui/lab/TimelineSeparator';
 import TimelineConnector from '@material-ui/lab/TimelineConnector';
 import TimelineContent from '@material-ui/lab/TimelineContent';
 import TimelineDot from '@material-ui/lab/TimelineDot';
+import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { CssBaseline } from "@material-ui/core";
 import { useStaticQuery, graphql, Link } from "gatsby"
 
 import { Section, Container } from "../global"
-
-const timelineStyle = {
-  "&:before": {
-            display: "none"
-          }
-}
 
 
 
 const TimeLine = ({ data }) => {
   console.log("Timeline Data : ", data)
+
   let sloganCol = "white";
   let titleCol = "#ED6F1B"
   let sectionCol = "#231B17"
@@ -38,14 +35,14 @@ const TimeLine = ({ data }) => {
       <Timeline>
       {
         data.timelineNodes.map(node => (
-          <TimelineItem style={timelineStyle}>
+          <MuiTimelineItem style={{paddingLeft: "70px", paddingRight: "0px"}}>
             <TimelineSeparator>
               <TimelineDot style={{color: "#ED6F1B", backgroundColor: "#ED6F1B"}} />
               <TimelineConnector />
             </TimelineSeparator>
             <TimelineContent style={{color: `${itemCol}`}}>{node.title}</TimelineContent>
             <TimelineContent style={{color: "#ED6F1B", alignSelf: "center"}}>{node.description}</TimelineContent>
-          </TimelineItem>
+          </MuiTimelineItem>
         ))
       }
     </Timeline>

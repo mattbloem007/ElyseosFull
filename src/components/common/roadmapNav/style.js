@@ -62,7 +62,7 @@ export const FeatureText = styled.p`
 
 export const TimeLineContainer = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start
 `
 
 
@@ -71,6 +71,7 @@ export const LinksWrapper = styled.div`
   height: 100%;
   margin: 10px;
   padding: 10px;
+  margin-top: 0px;
   text-align: right;
   opacity: 1;
   transition: all .7s ease-out;
