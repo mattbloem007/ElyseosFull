@@ -26,6 +26,8 @@ class BlogPost extends React.Component {
   }
 }
 
+
+
 export default BlogPost
 
 export const pageQuery = graphql`

@@ -33,7 +33,8 @@ import {
   IntroText,
   StyledSection,
   FeatureText,
-  ActiveItem
+  ActiveItem,
+  Divimage
 } from "./style"
 
 const Bold = ({ children }) => <span style={{color: "white"}}>{children}</span>
@@ -158,7 +159,9 @@ export default class RoadNav extends Component {
             return (
               <LinkItem>
                 <div style={{display: "flex"}} onClick={(e) => this.handleClick(e)}>
-                  <SacramentSymbol src={navItem.symbol} />
+                  <Divimage>
+                    <SacramentSymbol src={navItem.symbol} />
+                  </Divimage>
                   {
                     navItem.name === this.state.isSelected ? <LinkListLi style={{color:"#ED6F1B", borderBottom: "2px solid rgb(237, 111, 27)"}} key={navItem.name}>{navItem.name}</LinkListLi> : <LinkListLi style={{color:"#ED6F1B"}} key={navItem.name}>{navItem.name}</LinkListLi>
                   }

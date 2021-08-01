@@ -56,6 +56,12 @@ export const IntroText = styled.div`
   padding-left: 20px;
 `
 
+export const Divimage = styled.div`
+  display:inline-block;
+  width: 80px;
+  text-align: center;
+`
+
 export const FeatureText = styled.p`
   text-align: center;
 `
@@ -97,6 +103,7 @@ export const SacramentSymbol = styled.img`
   height: 40px;
   margin-bottom: 10px;
   padding-right: 30px;
+
 `
 
 export const LinkListLi = styled.li`
