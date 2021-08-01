@@ -198,7 +198,7 @@ export default class Navigation extends Component {
                   windowPath = window.location.pathname // Window call
                 }
                 return (
-                  <Link to={`${navItem.url}`} onClick={(e) => this.handleClick(e)} style={{textDecoration: 'none'}}>
+                  <Link to={`${navItem.url}`} onClick={(e) => this.handleClick(e)} style={{textDecoration: 'none', paddingBottom: "5px"}}>
                   {
                     navItemPath === windowPath ? <NavItem style={{color:"white", borderBottom: "3px solid rgb(237, 111, 27)", paddingBottom: "5px"}} key={navItem.name}>
                     {navItem.name}
@@ -217,8 +217,8 @@ export default class Navigation extends Component {
                   navItem.subItems.map(item => {
                     console.log("item", item)
                     return (
-                      <Link to={`${item.suburl}`} onClick={(e) => this.handleClick(e)} style={{textDecoration: 'none'}}>
-                        <NavItem style={{color:"white"}} key={item.name}>
+                      <Link to={`${item.suburl}`} onClick={(e) => this.handleClick(e)} style={{textDecoration: 'none', paddingBottom: "5px"}}>
+                        <NavItem style={{color:"white", paddingLeft: "12px", paddingBottom: "5px"}} key={item.name}>
                         {item.name}
                         </NavItem>
                       </Link>
