@@ -30,8 +30,8 @@ const Roadmap = () => {
 `)
   return (
     <StyledSection>
-      <SectionTitle style={{color: "white"}}>Roadmap Epoch 0</SectionTitle>
-      <Subtitle>Wind Seeds</Subtitle>
+      <SectionTitle style={{color: "white"}}>Roadmap Wind Seeds</SectionTitle>
+      <Subtitle>Epoch 0</Subtitle>
       <IntroContainer>
         <IntroText>
         <FeatureText style={{color: "white"}}> The Elyseos DAO has a rhythm to its operations known as Epochs. At the beginning of each Epoch we have an opportunity to set growth, engagement, service and other goals, at the end of each Epoch there is a further issuance of ELYS tokens Epochs run from 6-18 months based on votes within the DAO.
@@ -84,6 +84,7 @@ const FeaturesGrid = styled.div`
   max-width: 670px;
   display: grid;
   margin: 0px auto;
+  margin-top: 30px;
   grid-column-gap: 40px;
   grid-row-gap: 35px;
   @media (max-width: ${props => props.theme.screen.sm}) {

@@ -10,6 +10,14 @@ import { useStaticQuery, graphql, Link } from "gatsby"
 
 import { Section, Container } from "../global"
 
+const timelineStyle = {
+  "&:before": {
+            display: "none"
+          }
+}
+
+
+
 const TimeLine = ({ data }) => {
   console.log("Timeline Data : ", data)
   let sloganCol = "white";
@@ -30,7 +38,7 @@ const TimeLine = ({ data }) => {
       <Timeline>
       {
         data.timelineNodes.map(node => (
-          <TimelineItem>
+          <TimelineItem style={timelineStyle}>
             <TimelineSeparator>
               <TimelineDot style={{color: "#ED6F1B", backgroundColor: "#ED6F1B"}} />
               <TimelineConnector />
@@ -61,6 +69,7 @@ const SectionTitle = styled.h5`
   text-align: center;
   margin-bottom: 0px;
 `
+
 
 const Subtitle = styled.h1`
   color: ${props => props.theme.color.accent};

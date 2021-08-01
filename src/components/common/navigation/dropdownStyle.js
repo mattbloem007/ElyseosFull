@@ -38,7 +38,7 @@ export const List = styled.li`
 
 export const ListLink = styled.a`
     color: #000;
-     text-decoration: none;
+    text-decoration: none;
 
   :hover {
     border-bottom: 2px solid rgb(237, 111, 27)

@@ -39,7 +39,7 @@ const GetStarted = () => (
         <FeatureText style={{color: "#ED6F1B", fontStyle: "italic"}}>Tokens are the new GOLD</FeatureText>
       </IntroText>
       </IntroContainer>
-      <GetStartedContainer>
+      {/*<GetStartedContainer>
         <ExchangeBox>
           <FeatureText>FTM/USD now = $ </FeatureText>
         </ExchangeBox>
@@ -48,7 +48,7 @@ const GetStarted = () => (
           <ContactForm />
         </FeatureItem>
         </FeaturesGrid>
-      </GetStartedContainer>
+      </GetStartedContainer>**/}
     </StyledSection>
   </Section>
 )

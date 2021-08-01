@@ -35,6 +35,7 @@ export const FeaturesGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin: 0px auto;
+  margin-top: 30px;
   grid-column-gap: 40px;
   grid-row-gap: 35px;
   @media (max-width: ${props => props.theme.screen.sm}) {
@@ -51,6 +52,8 @@ export const IntroContainer = styled.div`
 
 export const IntroText = styled.div`
   margin: 0px auto;
+  margin-left: 10px;
+  padding-left: 20px;
 `
 
 export const FeatureText = styled.p`
@@ -76,7 +79,7 @@ export const LinksWrapper = styled.div`
 `
 
 export const LinkList = styled.ul`
-    padding-top: 90px;
+
     padding-right: 25px;
     padding-left: 25px;
 
