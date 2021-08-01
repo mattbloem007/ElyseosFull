@@ -23,7 +23,7 @@ function EmailForm() {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: encode({
-              "form-name": "contact-form",
+              "form-name": "email-newsletter",
               ...data,
             }),
           })
@@ -37,7 +37,7 @@ function EmailForm() {
     >
     {(formik) => (
       <Form
-        name="contact-form"
+        name="email-newsletter"
         data-netlify="true"
         data-netlify-honeypot="bot-field"
       >

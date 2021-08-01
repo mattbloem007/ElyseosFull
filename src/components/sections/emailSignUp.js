@@ -108,7 +108,7 @@ const GetStartedContainer = styled(Container)`
   gap: 100px;
   padding: 0px 0 40px;
   width: 1094px;
-  height: 900px;
+  height: 300px;
   margin-bottom: 300px;
   background: #ED6F1B00 0% 0% no-repeat padding-box;
   border: 1px solid #ED6F1B;
