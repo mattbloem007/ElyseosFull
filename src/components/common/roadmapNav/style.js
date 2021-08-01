@@ -107,10 +107,13 @@ export const SacramentSymbol = styled.img`
 `
 
 export const LinkListLi = styled.li`
+position: relative;
+
   list-style-type: none;
   text-transform: uppercase;
   margin: 0;
   margin-bottom: 30px;
+  top: 8px;
   padding: 3px;
 
   a {
