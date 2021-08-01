@@ -188,7 +188,7 @@ export default class Navigation extends Component {
               </AnchorLink>
             </Scrollspy>
           </Brand>
-          <Mobile>
+{      /*    <Mobile>
             <StyledButton
               onClick={this.toggleMobileMenu}
               style={{ color: "black", background: "none" }}
@@ -199,7 +199,7 @@ export default class Navigation extends Component {
                 <Menu size={24} alt="open menu" />
               )}
             </StyledButton>
-          </Mobile>
+          </Mobile>**/}
 
           <Mobile hide>{this.getNavList({})}</Mobile>
           <ActionsContainer>
