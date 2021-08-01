@@ -202,7 +202,7 @@ const SacramentSymbol = styled.img`
   padding-right: 30px;
 
   @media (max-width: ${props => props.theme.screen.md}) {
-    padding-right: 0px;
+    padding-right: 5px;
   }
 `
 
