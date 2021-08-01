@@ -27,7 +27,7 @@ import {
 
 } from './dropdownStyle'
 
-const SUB_ITEMS_DOCS = [{name: "Litepaper", suburl:"/litepaper"}, {name: "Token & Roadmap", suburl: "token-timelines"}]
+const SUB_ITEMS_DOCS = [{name: "Litepaper", suburl:"/litepaper"}, {name: "Token & Roadmap", suburl: "/token-timelines"}]
 
 const NAV_ITEMS = [{name: "Elyseos Home", url: "/", subItems: null}, {name: "Docs", url:"/docs", subItems: SUB_ITEMS_DOCS}, {name: "Elys Token", url: "/elys-token", subItems: null}, {name: "Pre-Sale", url:"/pre-sale", subItems: null}, {name: "Roadmap", url:"/roadmap", subItems: null}, {name: "Blog", url:"/blog", subItems: null}]
 
@@ -115,66 +115,126 @@ export default class Navigation extends Component {
       border: "1px solid #ffffff"
     }
     */
-    return  (
-      <NavListWrapper mobile={mobile} style={style}>
-        <Scrollspy
-          items={NAV_ITEMS.map(item => item.name.toLowerCase())}
-          currentClassName="active"
-          mobile={mobile}
-          offset={-64}
-        >
-          {NAV_ITEMS.map(navItem => {
-            if (navItem.subItems == null) {
-              //added style to Link - a bit of a hack to get rid of underline
-              let navItemPath = navItem.url
-              let windowPath = "/home"
-              if (navItem.url == "/") {
-                  navItemPath = "/home"
-              }
-
-              if (typeof window !== `undefined`){
-                windowPath = window.location.pathname // Window call
-              }
-              return (
-                <Link to={`${navItem.url}`} onClick={(e) => this.handleClick(e)} style={{textDecoration: 'none'}}>
-                {
-                  navItemPath === windowPath ? <NavItem style={{color:"white", borderBottom: "3px solid rgb(237, 111, 27)", paddingBottom: "5px"}} key={navItem.name}>
-                  {navItem.name}
-                  </NavItem> : <NavItem style={{color:"white"}} key={navItem.name}>
-                  {navItem.name}
-                  </NavItem>
+    if (mobile == false) {
+      return  (
+        <NavListWrapper mobile={mobile} style={style}>
+          <Scrollspy
+            items={NAV_ITEMS.map(item => item.name.toLowerCase())}
+            currentClassName="active"
+            mobile={mobile}
+            offset={-64}
+          >
+            {NAV_ITEMS.map(navItem => {
+              if (navItem.subItems == null) {
+                //added style to Link - a bit of a hack to get rid of underline
+                let navItemPath = navItem.url
+                let windowPath = "/home"
+                if (navItem.url == "/") {
+                    navItemPath = "/home"
                 }
-                </Link>
-              )
-            }
-            else {
-              return (
-                  <Submenu>
-                    <NavItem onMouseEnter={(e) => this.showDropdownMenu(e)} style={{color:"white"}} key={navItem.name}>{navItem.name}</NavItem>
-                    { this.state.displayMenu ? (
-                    <MenuList style={{display: "flex", flexDirection: "column", backgroundColor:"#231B17"}}>
-                    {
-                      navItem.subItems.map(item => {
-                        console.log("item", item)
-                        return (
-                          <List><ListLink style={{color: "white"}} href={`${item.suburl}`}>{item.name}</ListLink></List>
-                        )
-                      })
-                    }
-                    </MenuList>
-                  ):
-                  (
-                    null
-                  )
+
+                if (typeof window !== `undefined`){
+                  windowPath = window.location.pathname // Window call
+                }
+                return (
+                  <Link to={`${navItem.url}`} onClick={(e) => this.handleClick(e)} style={{textDecoration: 'none'}}>
+                  {
+                    navItemPath === windowPath ? <NavItem style={{color:"white", borderBottom: "3px solid rgb(237, 111, 27)", paddingBottom: "5px"}} key={navItem.name}>
+                    {navItem.name}
+                    </NavItem> : <NavItem style={{color:"white"}} key={navItem.name}>
+                    {navItem.name}
+                    </NavItem>
                   }
-                  </Submenu>
+                  </Link>
+                )
+              }
+              else {
+                return (
+                    <Submenu>
+                      <NavItem onMouseEnter={(e) => this.showDropdownMenu(e)} style={{color:"white"}} key={navItem.name}>{navItem.name}</NavItem>
+                      { this.state.displayMenu ? (
+                      <MenuList style={{display: "flex", flexDirection: "column", backgroundColor:"#231B17"}}>
+                      {
+                        navItem.subItems.map(item => {
+                          console.log("item", item)
+                          return (
+                            <List><ListLink style={{color: "white"}} href={`${item.suburl}`}>{item.name}</ListLink></List>
+                          )
+                        })
+                      }
+                      </MenuList>
+                    ):
+                    (
+                      null
+                    )
+                    }
+                    </Submenu>
+                )
+              }
+            })}
+          </Scrollspy>
+        </NavListWrapper>
+      )
+    }
+    else {
+      return  (
+        <NavListWrapper mobile={mobile} style={style}>
+          <Scrollspy
+            items={NAV_ITEMS.map(item => item.name.toLowerCase())}
+            currentClassName="active"
+            mobile={mobile}
+            offset={-64}
+          >
+            {NAV_ITEMS.map(navItem => {
+              if (navItem.subItems == null) {
+                //added style to Link - a bit of a hack to get rid of underline
+                let navItemPath = navItem.url
+                let windowPath = "/home"
+                if (navItem.url == "/") {
+                    navItemPath = "/home"
+                }
+
+                if (typeof window !== `undefined`){
+                  windowPath = window.location.pathname // Window call
+                }
+                return (
+                  <Link to={`${navItem.url}`} onClick={(e) => this.handleClick(e)} style={{textDecoration: 'none'}}>
+                  {
+                    navItemPath === windowPath ? <NavItem style={{color:"white", borderBottom: "3px solid rgb(237, 111, 27)", paddingBottom: "5px"}} key={navItem.name}>
+                    {navItem.name}
+                    </NavItem> : <NavItem style={{color:"white"}} key={navItem.name}>
+                    {navItem.name}
+                    </NavItem>
+                  }
+                  </Link>
+                )
+              }
+              else {
+                return (
+                <NavListWrapper>
+                  <NavItem style={{color:"white"}} key={navItem.name}>{navItem.name}</NavItem>
+                {
+                  navItem.subItems.map(item => {
+                    console.log("item", item)
+                    return (
+                      <Link to={`${item.suburl}`} onClick={(e) => this.handleClick(e)} style={{textDecoration: 'none'}}>
+                        <NavItem style={{color:"white"}} key={item.name}>
+                        {item.name}
+                        </NavItem>
+                      </Link>
+                    )
+                  })
+                }
+                </NavListWrapper>
               )
-            }
-          })}
-        </Scrollspy>
-      </NavListWrapper>
-    )
-      }
+              }
+            })}
+          </Scrollspy>
+        </NavListWrapper>
+      )
+    }
+
+  }
 
   render() {
     const { mobileMenuOpen } = this.state
@@ -188,7 +248,7 @@ export default class Navigation extends Component {
               </AnchorLink>
             </Scrollspy>
           </Brand>
-{      /*    <Mobile>
+          <Mobile>
             <StyledButton
               onClick={this.toggleMobileMenu}
               style={{ color: "black", background: "none" }}
@@ -199,7 +259,7 @@ export default class Navigation extends Component {
                 <Menu size={24} alt="open menu" />
               )}
             </StyledButton>
-          </Mobile>**/}
+          </Mobile>
 
           <Mobile hide>{this.getNavList({})}</Mobile>
           <ActionsContainer>

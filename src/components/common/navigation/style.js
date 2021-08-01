@@ -89,6 +89,7 @@ export const Brand = styled.div`
   text-decoration: none;
   letter-spacing: 1px;
   margin-left: 220px;
+
   height: 110px;   //this is a rough fix for now
   ul {
     list-style: none;
@@ -99,6 +100,10 @@ export const Brand = styled.div`
       color: ${props => props.theme.color.black.regular};
       text-decoration: none;
     }
+  }
+
+  @media (max-width: ${props => props.theme.screen.md}) {
+    margin-left: 0px;
   }
 `
 export const ActionsContainer = styled.div`

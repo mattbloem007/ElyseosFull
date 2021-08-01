@@ -191,6 +191,11 @@ const IntroContainer = styled.div`
   padding-left: 100px;
   padding-right: 100px;
 
+  @media (max-width: ${props => props.theme.screen.md}) {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
 `
 
 export const StyledButton = styled.button`
@@ -213,6 +218,10 @@ const SacramentSymbol = styled.img`
   margin-bottom: 10px;
   margin-top: 20px;
   padding-right: 30px;
+
+  @media (max-width: ${props => props.theme.screen.md}) {
+    padding-right: 0px;
+  }
 `
 
 const IntroText = styled.div`

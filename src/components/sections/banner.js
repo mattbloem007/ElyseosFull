@@ -94,6 +94,10 @@ const BackDrop = styled.img`
   height: 70%;
   opacity: 1;
   z-index: 1;
+
+  @media (max-width: ${props => props.theme.screen.md}) {
+    padding: 0px 0;
+  }
 `
 
 const Ban = styled.img`
