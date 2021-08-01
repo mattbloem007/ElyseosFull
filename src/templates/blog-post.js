@@ -19,7 +19,7 @@ class BlogPost extends React.Component {
         <SEO title="Home" />
         <Navigation />
         <Banner />
-        <BlogContent data={data} />
+        <BlogContent />
         <Footer />
       </Layout>
     )

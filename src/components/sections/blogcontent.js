@@ -33,18 +33,29 @@ const options = {
 
 export default function BlogContent({ data }) {
   console.log("DATA :" , data)
-  return (
-    <Section>
-      <StyledSection>
-      <SectionTitle style={{color: "white"}}>{data.contentfulBlogPost.postTitle}</SectionTitle>
-      <IntroContainer>
-        <IntroText>
-          {documentToReactComponents(JSON.parse(data.contentfulBlogPost.postBody.raw, options))}
-        </IntroText>
-      </IntroContainer>
-      </StyledSection>
-    </Section>
-  )
+  if (data.contentfulBlogPost) {
+    return (
+      <Section>
+        <StyledSection>
+        <SectionTitle style={{color: "white"}}>{data.contentfulBlogPost.postTitle}</SectionTitle>
+        <IntroContainer>
+          <IntroText>
+            {documentToReactComponents(JSON.parse(data.contentfulBlogPost.postBody.raw, options))}
+          </IntroText>
+        </IntroContainer>
+        </StyledSection>
+      </Section>
+    )
+  }
+  else {
+    return (
+      <Section>
+        <StyledSection>
+        </StyledSection>
+      </Section>
+    )
+  }
+
 }
 
 

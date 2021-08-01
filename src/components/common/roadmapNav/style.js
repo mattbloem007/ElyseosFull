@@ -46,8 +46,8 @@ export const FeaturesGrid = styled.div`
 
 export const IntroContainer = styled.div`
   display: flex;
-  padding-left: 300px;
-  padding-right: 300px;
+  padding-left: 244px;
+  padding-right: 200px;
 `
 
 export const IntroText = styled.div`
