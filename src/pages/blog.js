@@ -46,6 +46,7 @@ const Blog = () => {
       <Navigation />
       <Banner />
       <Archives data={data}/>
+      <Footer/>
     </Layout>
   )
 }

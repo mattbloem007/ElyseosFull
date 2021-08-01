@@ -58,7 +58,7 @@ export const IntroText = styled.div`
 
 export const Divimage = styled.div`
   display:inline-block;
-  width: 80px;
+  width: 110px;
   text-align: center;
 `
 
