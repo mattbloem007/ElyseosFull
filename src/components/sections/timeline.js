@@ -32,10 +32,10 @@ const TimeLine = ({ data }) => {
     <StyledSection style={{backgroundColor: `${sectionCol}`}}>
       <SectionTitle style={{color: `${sloganCol}`}}>{data.slogan}</SectionTitle>
       <Subtitle style={{color: `${titleCol}`}}>{data.title}</Subtitle>
-      <Timeline>
+      <Timeline style={{padding: "0px"}}>
       {
         data.timelineNodes.map(node => (
-          <MuiTimelineItem style={{paddingLeft: "70px", paddingRight: "0px"}}>
+          <MuiTimelineItem style={{paddingLeft: "30px", paddingRight: "0px"}}>
             <TimelineSeparator>
               <TimelineDot style={{color: "#ED6F1B", backgroundColor: "#ED6F1B"}} />
               <TimelineConnector />

@@ -40,7 +40,8 @@ export const FeaturesGrid = styled.div`
   grid-row-gap: 35px;
   @media (max-width: ${props => props.theme.screen.sm}) {
     grid-template-columns: 1fr;
-    padding: 0 64px;
+    padding-left: 24px;
+    padding-right: 64px;
   }
 `
 
@@ -93,6 +94,11 @@ export const LinksWrapper = styled.div`
   transition: all .7s ease-out;
   transition-delay: .3s;
   letter-spacing: 2px;
+
+  @media (max-width: ${props => props.theme.screen.md}) {
+    padding: 0px;
+    margin: 0px;
+  }
 `
 
 export const LinkList = styled.ul`

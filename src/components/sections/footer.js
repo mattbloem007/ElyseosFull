@@ -16,7 +16,7 @@ const Footer = () => (
       <FooterColumn>
         <span>General</span>
         <ul>
-          <ListLink href="/about"><li>About</li></ListLink>
+          <ListLink href="/home"><li>About</li></ListLink>
           <ListLink href="/faq"><li>FAQ</li></ListLink>
           <li>Support</li>
         </ul>
@@ -32,7 +32,7 @@ const Footer = () => (
       <FooterColumn>
         <span>Community</span>
         <ul>
-        <ListLink href="/muti-market"><li>Roadmap</li></ListLink>
+        <ListLink href="/roadmap"><li>Roadmap</li></ListLink>
         <li>Governance</li>
         <ListLink href="/litepaper"><li>Litepaper</li></ListLink>
         </ul>
