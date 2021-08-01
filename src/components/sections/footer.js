@@ -148,6 +148,12 @@ const FooterColumn = styled.div`
       margin-left: 2px;
     }
   }
+
+  @media (max-width: ${props => props.theme.screen.md}) {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
 `
 
 export default Footer

@@ -71,7 +71,9 @@ class FAQPage extends React.Component {
               data.contentfulFaqPage.featureItem.map(item => {
                 return (
                   <FeatureItem>
-                      <FeatureTitle>{item.title}</FeatureTitle>
+                      <ItemContainer>
+                        <FeatureTitle>{item.title}</FeatureTitle>
+                      </ItemContainer>
                       {documentToReactComponents(JSON.parse(item.answer.raw, options))}
                   </FeatureItem>
                 )
@@ -122,6 +124,12 @@ const SectionTitle = styled.h3`
   justify-content: center;
   text-align: center;
   margin-bottom: 0px;
+
+  @media (max-width: ${props => props.theme.screen.md}) {
+    padding-left: 64px;
+    justify-content: flex-start;
+    text-align: start;
+  }
 `
 
 const Subtitle = styled.h5`
@@ -132,12 +140,17 @@ const Subtitle = styled.h5`
   margin-top: 10px;
   margin-bottom: 20px;
   font-style: italic;
+
+  @media (max-width: ${props => props.theme.screen.md}) {
+    padding-left: 64px;
+    justify-content: flex-start;
+    text-align: start;
+  }
 `
 
 const FeaturesGrid = styled.div`
   max-width: 670px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
   margin: 0px auto;
   grid-column-gap: 40px;
   grid-row-gap: 35px;
@@ -150,7 +163,7 @@ const FeaturesGrid = styled.div`
 const FeatureItem = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: column;
 `
 
@@ -161,7 +174,7 @@ const ImageandTitle = styled.div`
   flex-direction: row;
 `
 
-const FeatureTitle = styled.h5`
+const FeatureTitle = styled.h4`
   color: ${props => props.theme.color.accent};
   letter-spacing: 0px;
   line-height: 30px;
@@ -177,18 +190,37 @@ const IntroContainer = styled.div`
   padding-left: 100px;
   padding-right: 100px;
 
+  @media (max-width: ${props => props.theme.screen.md}) {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+`
+
+const ItemContainer = styled.div`
+  display: flex;
+
 `
 
 const SacramentSymbolsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media (max-width: ${props => props.theme.screen.md}) {
+    display: none;
+    visibility: hidden;
+  }
 `
 
 const SacramentSymbol = styled.img`
   height: 40px;
   margin-bottom: 10px;
   padding-right: 30px;
+  @media (max-width: ${props => props.theme.screen.md}) {
+    display: none;
+    visibility: hidden;
+  }
 `
 
 const IntroText = styled.div`
