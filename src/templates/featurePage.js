@@ -176,6 +176,8 @@ const FeatureTitle = styled.h5`
 
 const FeatureText = styled.p`
   text-align: center;
+  padding-bottom: 100px;
+
 `
 
 const IntroContainer = styled.div`

@@ -201,16 +201,24 @@ const IntroContainer = styled.div`
 export const StyledButton = styled.button`
   width: 142px;
   height: 30px;
-  float: right;
   color: #ED6F1B;
   background: #FFFFFF 0% 0% no-repeat padding-box;
   border-radius: 45px;
+
+  @media (max-width: ${props => props.theme.screen.md}) {
+    text-align: center;
+    margin-top: 50px;
+  }
 `
 
 const SacramentSymbolsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media (max-width: ${props => props.theme.screen.md}) {
+    padding-right: 5px;
+  }
 `
 
 const SacramentSymbol = styled.img`
@@ -231,5 +239,6 @@ const IntroText = styled.div`
 
   @media (max-width: ${props => props.theme.screen.md}) {
     text-align: center;
+    margin-top: 50px;
   }
 `

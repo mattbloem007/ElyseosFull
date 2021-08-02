@@ -113,6 +113,7 @@ const GlobalStyles = createGlobalStyle`
 
   a {
     cursor: pointer;
+    color: #ED6F1B;
   }
 
 `

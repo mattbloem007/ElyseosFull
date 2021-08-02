@@ -123,7 +123,7 @@ const FeatureTitle = styled.h5`
   letter-spacing: 0px;
   line-height: 30px;
   margin-bottom: 10px;
-  font-size: 20px;
+  font-size: 25px;
   position: relative;
   top: -5px;
 `

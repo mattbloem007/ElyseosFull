@@ -29,7 +29,7 @@ function EmailForm() {
           })
             .then(() => {
               resetForm();
-              navigate('/thanks')
+              navigate('/email-success')
             })
             .catch(error => alert(error))
 

@@ -54,6 +54,7 @@ export const IntroContainer = styled.div`
     padding-left: 20px;
     padding-right: 20px;
     text-align: center;
+    padding-bottom: 50px;
   }
 `
 
@@ -61,6 +62,10 @@ export const IntroText = styled.div`
   margin: 0px auto;
   margin-left: 10px;
   padding-left: 20px;
+
+  @media (max-width: ${props => props.theme.screen.md}) {
+    padding-left: 0px;
+  }
 `
 
 export const Divimage = styled.div`
