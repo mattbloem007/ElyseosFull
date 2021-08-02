@@ -30,7 +30,7 @@ export const StyledButton = styled.button`
   color: #ED6F1B;
   background: #FFFFFF 0% 0% no-repeat padding-box;
   border-radius: 45px;
-  
+
 `
 
 export const NavListWrapper = styled.div`
@@ -89,7 +89,7 @@ export const Brand = styled.div`
   color: ${props => props.theme.color.black.regular};
   text-decoration: none;
   letter-spacing: 1px;
-  margin-left: 220px;
+  margin-left: 150px;
 
   height: 110px;   //this is a rough fix for now
   ul {
