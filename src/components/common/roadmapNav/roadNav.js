@@ -62,7 +62,7 @@ const options = {
 
 const SUB_ITEMS_DOCS = [{name: "Litepaper", url:""}, {name: "Token/timelines", url: ""}]
 
-const NAV_ITEMS = [{name: "Muti Market", url: "muti-market", symbol: canna}, {name: "Wings & Roots", url:"wings-roots", symbol: psilo}, {name: "Thou Art", url: "thou-art", symbol: sp}, {name: "ELYS Token", url:"elys-token", symbol: ti}, {name: "Thokosa Bokayé", url:"thokoza", symbol: cacao}, {name: "Medicine Basket", url:"medicine-basket", symbol: am}, {name: "Wisdom Holders", url:"wisdom-holders", symbol: aya}, {name: "Elyseos Foundation", url:"foundation", symbol: salvia}, {name: "Elyseos Dao", url:"dao", symbol: salvia}]
+const NAV_ITEMS = [{name: "Muti Market", url: "muti-market", symbol: canna}, {name: "Wings & Roots", url:"wings-roots", symbol: psilo}, {name: "Thou Art", url: "thou-art", symbol: sp}, {name: "ELYS Token", url:"elys-token", symbol: ti}, {name: "Thokoza Bokayé", url:"thokoza", symbol: cacao}, {name: "Medicine Basket", url:"medicine-basket", symbol: am}, {name: "Wisdom Holders", url:"wisdom-holders", symbol: aya}, {name: "Elyseos Foundation", url:"foundation", symbol: salvia}, {name: "Elyseos Dao", url:"dao", symbol: salvia}]
 
 export default class RoadNav extends Component {
 
