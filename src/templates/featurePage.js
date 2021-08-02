@@ -71,7 +71,7 @@ class FeaturePage extends React.Component {
               <IntroText>
               {data.contentfulFeaturePage.featureText1 ? documentToReactComponents(JSON.parse(data.contentfulFeaturePage.featureText1.raw, options)) : null}
               {data.contentfulFeaturePage.featureText2 ? documentToReactComponents(JSON.parse(data.contentfulFeaturePage.featureText2.raw, options)) : null}
-              {data.contentfulFeaturePage.slug === "home" || data.contentfulFeaturePage.slug === "elys-token"
+              {data.contentfulFeaturePage.slug === "home"
               ?
               <>
            <BrowserView>

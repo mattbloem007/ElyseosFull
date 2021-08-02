@@ -11,7 +11,9 @@ import aya from '../../images/aya-white-icon.png'
 import canna from '../../images/cannabis-white-icon.png'
 import psilo from '../../images/psilocybin-trans-white.png'
 import salvia from '../../images/salvia-white-icon.png'
+import presaleButton from '../../images/ELYS_pre-sale.png'
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
+import {BrowserView, MobileView} from 'react-device-detect';
 
 import { BLOCKS, MARKS } from "@contentful/rich-text-types"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
@@ -54,6 +56,19 @@ const Features = ({data}) => {
                 <FeatureTitle>{contentItem.title}</FeatureTitle>
               </ImageandTitle>
               {documentToReactComponents(JSON.parse(contentItem.body.raw, options))}
+              {contentItem.title === "Get ELYS"
+              ?
+              <>
+           <BrowserView>
+               <Link to="https://presale.money/app/#/presale/8"><SacramentSymbol src={presaleButton} /></Link>
+           </BrowserView>
+           <MobileView>
+               <Link to="https://metamask.app.link/dapp/presale.money/app/#/dashboard"><SacramentSymbol src={presaleButton} /></Link>
+           </MobileView>
+       </>
+              :
+              null
+            }
             </FeatureItem>
           )
         }) : null
