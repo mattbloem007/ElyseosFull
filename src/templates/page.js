@@ -9,8 +9,9 @@ import Features from "../components/sections/features"
 import Footer from "../components/sections/footer"
 import axios from 'axios'
 import fileDownload from 'js-file-download'
+import {BrowserView, MobileView} from 'react-device-detect';
 
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
 import { BLOCKS, MARKS } from "@contentful/rich-text-types"
@@ -24,6 +25,7 @@ import aya from '../images/aya-white-icon.png'
 import canna from '../images/cannabis-white-icon.png'
 import psilo from '../images/psilocybin-trans-white.png'
 import salvia from '../images/salvia-white-icon.png'
+import presaleButton from '../images/ELYS_pre-sale.png'
 
 const Bold = ({ children }) => <span style={{color: "white"}}>{children}</span>
 const Text = ({ children }) => <p style={{color: "white", textAlign: "center"}}>{children}</p>
@@ -83,6 +85,18 @@ class Page extends React.Component {
               {data.contentfulPage.featureText1 ? documentToReactComponents(JSON.parse(data.contentfulPage.featureText1.raw, options)) : null}
               {data.contentfulPage.featureText2 ? documentToReactComponents(JSON.parse(data.contentfulPage.featureText2.raw, options)) : null}
               {data.contentfulPage.featureText1.references[0] ? <StyledButton><a href={data.contentfulPage.featureText1.references[0].file.url} target="_blank" download>Download PDF</a></StyledButton> : null}
+              {data.contentfulPage.slug === "pre-sale" ?
+              <>
+           <BrowserView>
+               <Link to="https://presale.money/app/#/presale/8"><SacramentSymbol src={presaleButton} /></Link>
+           </BrowserView>
+           <MobileView>
+               <Link to="https://metamask.app.link/dapp/presale.money/app/#/dashboard"><SacramentSymbol src={presaleButton} /></Link>
+           </MobileView>
+       </>
+              :
+              null
+            }
               </IntroText>
               <SacramentSymbolsContainer>
                 <SacramentSymbol src={aya} />

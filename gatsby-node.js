@@ -1,6 +1,19 @@
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
+const { get } = require('lodash')
+
+const getImagesFromRichText = edge =>
+  get(edge, 'node.body.json.content', []).reduce((acc, c) => {
+    const url = get(c, 'data.target.fields.file.en.url')
+    if (c.nodeType == 'embedded-asset-block' && url) {
+      return [...acc, url]
+    }
+    return acc
+  }, [])
+
+
+
 exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
   if (stage === "build-html") {
     actions.setWebpackConfig({
@@ -143,7 +156,7 @@ exports.createPages = ({ graphql, actions }) => {
       const previous = index === posts.length - 1 ? null : posts[index + 1].node
       const next = index === 0 ? null : posts[index - 1].node
 
-      
+
 
       createPage({
         path: "blog/" + post.node.slug,
@@ -181,10 +194,13 @@ exports.createPages = ({ graphql, actions }) => {
     // })
 
     featurePages.forEach((fPage, index) => {
+      const images = getImagesFromRichText(fPage)
+
       createPage({
         path: fPage.node.slug,
         component: featurePageTemplate,
         context: {
+          images,
           slug: fPage.node.slug,
         },
       })

@@ -8,8 +8,9 @@ import Header from "../components/sections/header"
 import Features from "../components/sections/features"
 import Footer from "../components/sections/footer"
 
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
+import {BrowserView, MobileView} from 'react-device-detect';
 
 import { BLOCKS, MARKS } from "@contentful/rich-text-types"
 
@@ -22,6 +23,8 @@ import aya from '../images/aya-white-icon.png'
 import canna from '../images/cannabis-white-icon.png'
 import psilo from '../images/psilocybin-trans-white.png'
 import salvia from '../images/salvia-white-icon.png'
+import presaleButton from '../images/ELYS_pre-sale.png'
+import get from 'lodash/get'
 
 const Bold = ({ children }) => <span style={{color: "white"}}>{children}</span>
 const Text = ({ children }) => <p style={{color: "white", textAlign: "center"}}>{children}</p>
@@ -33,14 +36,9 @@ const options = {
   renderNode: {
     [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
     [BLOCKS.EMBEDDED_ASSET]: node => {
-      return (
-        <>
-          <h2>Embedded Asset</h2>
-          <pre>
-            <code>{JSON.stringify(node, null, 2)}</code>
-          </pre>
-        </>
-      )
+      const url = node.data.target.fields.file.url
+      console.log("URL: ", url)
+      return <img src={url} />
     },
   },
 }
@@ -49,6 +47,11 @@ class FeaturePage extends React.Component {
   render() {
     const data = this.props.data
     console.log("Feature", data)
+    const imageNodes = data.allContentfulAsset.edges || []
+    const images = imageNodes.map(edge => edge.node.fluid)
+    const richText = data.contentfulFeaturePage.featureText1.raw
+
+
     return (
       <Layout>
         <SEO title={data.contentfulFeaturePage.title} />
@@ -68,6 +71,19 @@ class FeaturePage extends React.Component {
               <IntroText>
               {data.contentfulFeaturePage.featureText1 ? documentToReactComponents(JSON.parse(data.contentfulFeaturePage.featureText1.raw, options)) : null}
               {data.contentfulFeaturePage.featureText2 ? documentToReactComponents(JSON.parse(data.contentfulFeaturePage.featureText2.raw, options)) : null}
+              {data.contentfulFeaturePage.slug === "home" || data.contentfulFeaturePage.slug === "elys-token"
+              ?
+              <>
+           <BrowserView>
+               <Link to="https://presale.money/app/#/presale/8"><SacramentSymbol src={presaleButton} /></Link>
+           </BrowserView>
+           <MobileView>
+               <Link to="https://metamask.app.link/dapp/presale.money/app/#/dashboard"><SacramentSymbol src={presaleButton} /></Link>
+           </MobileView>
+       </>
+              :
+              null
+            }
               </IntroText>
               <SacramentSymbolsContainer>
                 <SacramentSymbol src={aya} />
@@ -93,7 +109,7 @@ class FeaturePage extends React.Component {
 export default FeaturePage
 
 export const pageQuery = graphql`
-  query FeaturePageQuery($slug: String!) {
+  query FeaturePageQuery($slug: String!, $images: [String!]!) {
     contentfulFeaturePage (slug: { eq: $slug } ){
       title
       subtitle
@@ -110,6 +126,15 @@ export const pageQuery = graphql`
         sacramentIcon {
           file {
             url
+          }
+        }
+      }
+    }
+    allContentfulAsset(filter: { file: { url: { in: $images } } }) {
+      edges {
+        node {
+          fluid(maxWidth: 700, quality: 85) {
+            ...GatsbyContentfulFluid_withWebp
           }
         }
       }

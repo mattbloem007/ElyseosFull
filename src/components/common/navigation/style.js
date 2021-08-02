@@ -30,7 +30,7 @@ export const StyledButton = styled.button`
   color: #ED6F1B;
   background: #FFFFFF 0% 0% no-repeat padding-box;
   border-radius: 45px;
-  z-index: -1;
+  
 `
 
 export const NavListWrapper = styled.div`
