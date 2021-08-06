@@ -199,7 +199,7 @@ export default class Navigation extends Component {
                         <NavItem onMouseEnter={() => this.showHide()} style={{color:"white"}} key={navItem.name}>{navItem.name}</NavItem>
                       </Link>
                         { this.state.show &&
-                        <MenuList style={{display: "flex", flexDirection: "column", backgroundColor:"#231B17"}}>
+                        <MenuList onMouseLeave={() => this.showHide()} style={{display: "flex", flexDirection: "column", backgroundColor:"#231B17"}}>
                         {
                           navItem.subItems.map(item => {
                             console.log("item", item)
@@ -220,7 +220,7 @@ export default class Navigation extends Component {
                         <NavItem onMouseEnter={() => this.showHide1()} style={{color:"white"}} key={navItem.name}>{navItem.name}</NavItem>
                       </Link>
                         { this.state.show1 &&
-                        <MenuList style={{display: "flex", flexDirection: "column", backgroundColor:"#231B17"}}>
+                        <MenuList onMouseLeave={() => this.showHide1()} style={{display: "flex", flexDirection: "column", backgroundColor:"#231B17"}}>
                         {
                           navItem.subItems.map(item => {
                             console.log("item", item)
