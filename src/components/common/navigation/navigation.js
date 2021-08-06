@@ -28,8 +28,9 @@ import {
 } from './dropdownStyle'
 
 const SUB_ITEMS_DOCS = [{name: "Litepaper", suburl:"/litepaper"}, {name: "Token & Roadmap", suburl: "/token-timelines"}]
+const SUB_ITEMS_HOME = [{name: "Team", suburl:"/team"}]
 
-const NAV_ITEMS = [{name: "Elyseos Home", url: "/", subItems: null}, {name: "Docs", url:"/docs", subItems: SUB_ITEMS_DOCS}, {name: "Elys Token", url: "/elys-token", subItems: null}, {name: "Pre-Sale", url:"/pre-sale", subItems: null}, {name: "Roadmap", url:"/roadmap", subItems: null}, {name: "Epochs", url:"/epochs", subItems: null},{name: "Blog", url:"/blog", subItems: null}]
+const NAV_ITEMS = [{name: "About Elyseos", url: "/", subItems: SUB_ITEMS_HOME}, {name: "Docs", url:"/litepaper", subItems: SUB_ITEMS_DOCS}, {name: "Elys Token", url: "/elys-token", subItems: null}, {name: "Pre-Sale", url:"/pre-sale", subItems: null}, {name: "Roadmap", url:"/roadmap", subItems: null}, {name: "Epochs", url:"/epochs", subItems: null},{name: "Blog", url:"/blog", subItems: null}]
 
 export default class Navigation extends Component {
 
@@ -151,7 +152,9 @@ export default class Navigation extends Component {
               else {
                 return (
                     <Submenu>
+                    <Link to={`${navItem.url}`} onClick={(e) => this.handleClick(e)} style={{textDecoration: 'none'}}>
                       <NavItem onMouseEnter={(e) => this.showDropdownMenu(e)} style={{color:"white"}} key={navItem.name}>{navItem.name}</NavItem>
+                    </Link>
                       { this.state.displayMenu ? (
                       <MenuList style={{display: "flex", flexDirection: "column", backgroundColor:"#231B17"}}>
                       {
@@ -212,7 +215,9 @@ export default class Navigation extends Component {
               else {
                 return (
                 <NavListWrapper>
+                <Link to={`${navItem.url}`} onClick={(e) => this.handleClick(e)} style={{textDecoration: 'none'}}>
                   <NavItem style={{color:"white"}} key={navItem.name}>{navItem.name}</NavItem>
+                </Link>
                 {
                   navItem.subItems.map(item => {
                     console.log("item", item)

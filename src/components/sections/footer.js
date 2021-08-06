@@ -48,7 +48,7 @@ const Footer = () => (
         <a target="_blank" href="https://twitter.com/ElyseosFDN">
           <SocialSymbol src={twitter} />
         </a>
-        <a target="_blank" href="https://github.com/nuwrldnf8r/Elyseos">
+        <a target="_blank" href="https://github.com/elyseos/contracts">
           <SocialSymbol src={github} />
         </a>
         <a target="_blank" href="https://medium.com/@Elyseos">
