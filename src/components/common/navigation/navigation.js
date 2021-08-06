@@ -41,8 +41,12 @@ export default class Navigation extends Component {
 		this.state = {
       mobileMenuOpen: false,
       hasScrolled: false,
-      displayMenu: false,
+      displayMenuDocs: false,
+      displayMenuHome: false,
       isSelected: 'Home',
+      visibility: "visible",
+      show: false,
+      show1: false
     }
 
 	}
@@ -76,15 +80,43 @@ export default class Navigation extends Component {
     }
   }
 
-  showDropdownMenu = (event) => {
+  renderSubMenu = (navItem) => {
+    return (
+      <Submenu>
+      <Link to={`${navItem.url}`} onClick={(e) => this.handleClick(e)} style={{textDecoration: 'none'}}>
+        <NavItem value={navItem.name} onMouseEnter={(e) => this.showDropdownMenu(e, navItem.name)} onMouseLeave={() => this.showHide()} style={{color:"white"}} key={navItem.name}>{navItem.name}</NavItem>
+      </Link>
+        <MenuList style={{display: "flex", flexDirection: "column", backgroundColor:"#231B17"}}>
+        {
+          navItem.subItems.map(item => {
+            console.log("item", item)
+            return (
+              <List><ListLink style={{color: "white"}} href={`${item.suburl}`}>{item.name}</ListLink></List>
+            )
+          })
+        }
+        </MenuList>
+      </Submenu>
+    )
+  }
+
+  showDropdownMenu = (event, menu) => {
       event.preventDefault();
-      this.setState({ displayMenu: true }, () => {
-      document.addEventListener('mouseenter', this.hideDropdownMenu);
-      });
+      if (menu == "About Elyseos") {
+        this.setState({ displayMenuHome: true }, () => {
+        document.addEventListener('mouseenter', this.hideDropdownMenu);
+        });
+      }
+      else {
+        this.setState({ displayMenuDocs: true }, () => {
+        document.addEventListener('mouseenter', this.hideDropdownMenu);
+        });
+      }
+
     }
 
     hideDropdownMenu = () => {
-      this.setState({ displayMenu: false }, () => {
+      this.setState({ displayMenuDocs: false }, () => {
         document.removeEventListener('mouseout', this.hideDropdownMenu);
       });
 
@@ -99,6 +131,16 @@ export default class Navigation extends Component {
       }
     }
 
+    showHide = () => {
+       const { show } = this.state;
+       this.setState( { show : !show})
+   }
+
+   showHide1 = () => {
+      const { show1 } = this.state;
+      this.setState( { show1 : !show1})
+  }
+
 
   getNavAnchorLink = item => (
     <AnchorLink href={`/${item.toLowerCase()}`} onClick={this.closeMobileMenu}>
@@ -107,7 +149,7 @@ export default class Navigation extends Component {
   )
 
   getNavList = ({ mobile = false }) => {
-    console.log("isSelected: ", this.state.isSelected)
+    let hid = this.state.visibility
 
 
     let style= {}
@@ -150,29 +192,49 @@ export default class Navigation extends Component {
                 )
               }
               else {
-                return (
-                    <Submenu>
-                    <Link to={`${navItem.url}`} onClick={(e) => this.handleClick(e)} style={{textDecoration: 'none'}}>
-                      <NavItem onMouseEnter={(e) => this.showDropdownMenu(e)} style={{color:"white"}} key={navItem.name}>{navItem.name}</NavItem>
-                    </Link>
-                      { this.state.displayMenu ? (
-                      <MenuList style={{display: "flex", flexDirection: "column", backgroundColor:"#231B17"}}>
-                      {
-                        navItem.subItems.map(item => {
-                          console.log("item", item)
-                          return (
-                            <List><ListLink style={{color: "white"}} href={`${item.suburl}`}>{item.name}</ListLink></List>
-                          )
-                        })
+                if (navItem.name == "About Elyseos") {
+                  return (
+                      <Submenu>
+                      <Link to={`${navItem.url}`} onClick={(e) => this.handleClick(e)} style={{textDecoration: 'none'}}>
+                        <NavItem onMouseEnter={() => this.showHide()} style={{color:"white"}} key={navItem.name}>{navItem.name}</NavItem>
+                      </Link>
+                        { this.state.show &&
+                        <MenuList style={{display: "flex", flexDirection: "column", backgroundColor:"#231B17"}}>
+                        {
+                          navItem.subItems.map(item => {
+                            console.log("item", item)
+                            return (
+                              <List><ListLink style={{color: "white"}} href={`${item.suburl}`}>{item.name}</ListLink></List>
+                            )
+                          })
+                        }
+                        </MenuList>
                       }
-                      </MenuList>
-                    ):
-                    (
-                      null
-                    )
-                    }
-                    </Submenu>
-                )
+                      </Submenu>
+                  )
+                }
+                else {
+                  return (
+                      <Submenu>
+                      <Link to={`${navItem.url}`} onClick={(e) => this.handleClick(e)} style={{textDecoration: 'none'}}>
+                        <NavItem onMouseEnter={() => this.showHide1()} style={{color:"white"}} key={navItem.name}>{navItem.name}</NavItem>
+                      </Link>
+                        { this.state.show1 &&
+                        <MenuList style={{display: "flex", flexDirection: "column", backgroundColor:"#231B17"}}>
+                        {
+                          navItem.subItems.map(item => {
+                            console.log("item", item)
+                            return (
+                              <List><ListLink style={{color: "white"}} href={`${item.suburl}`}>{item.name}</ListLink></List>
+                            )
+                          })
+                        }
+                        </MenuList>
+                      }
+                      </Submenu>
+                  )
+                }
+
               }
             })}
           </Scrollspy>
