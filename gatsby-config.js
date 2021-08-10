@@ -18,17 +18,11 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: process.env.GA_TRACKING_ID || "none",
-        // Puts tracking script in the head instead of the body
-        head: false,
-        // Setting this parameter is optional
-        anonymize: true,
-        // Setting this parameter is also optional
-        respectDNT: true,
-      },
+    resolve: `gatsby-plugin-gosquared`,
+    options: {
+      token: 'GSN-284016-R',
     },
+  },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
