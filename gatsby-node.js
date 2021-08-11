@@ -138,6 +138,37 @@ exports.createPages = ({ graphql, actions }) => {
             }
           }
         }
+
+        wpgraphql {
+        posts (first: 10000) {
+          edges {
+            node {
+              id
+              slug
+              featuredImage{
+                sourceUrl
+              }
+              categories {
+                edges {
+                  node {
+                    name
+                  }
+                }
+              }
+
+            }
+          }
+        }
+
+        pages {
+          edges {
+            node {
+              id
+              slug
+            }
+          }
+        }
+      }
       }
     `
   ).then(result => {
@@ -151,23 +182,20 @@ exports.createPages = ({ graphql, actions }) => {
   //  const roadmaps = result.data.allContentfulRoadmap.edges
     const featurePages = result.data.allContentfulFeaturePage.edges
     const faqPages = result.data.allContentfulFaqPage.edges
+    const blogPosts = result.data.wpgraphql.posts.edges;
+    const allPages = result.data.wpgraphql.pages.edges;
 
-    posts.forEach((post, index) => {
-      const previous = index === posts.length - 1 ? null : posts[index + 1].node
-      const next = index === 0 ? null : posts[index - 1].node
-
-
-
-      createPage({
-        path: "blog/" + post.node.slug,
-        component: blogPost,
-        context: {
-          slug: post.node.slug,
-          previous,
-          next,
-        },
-      })
-    })
+    blogPosts.forEach(({ node }) => {
+        createPage({
+            path: node.slug,
+            component: blogPost,
+            context: {
+                id: node.id,
+                slug: node.slug,
+                featuredImage: node.featuredImage,
+            }
+        });
+    });
 
 
     pages.forEach((page, index) => {

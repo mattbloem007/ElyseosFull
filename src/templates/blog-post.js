@@ -19,7 +19,7 @@ class BlogPost extends React.Component {
         <SEO title="Home" />
         <Navigation />
         <Banner />
-        <BlogContent />
+        <BlogContent data={data}/>
         <Footer />
       </Layout>
     )
@@ -30,20 +30,24 @@ class BlogPost extends React.Component {
 
 export default BlogPost
 
-export const pageQuery = graphql`
-  query BlogPostBySlug($slug: String!) {
-    contentfulBlogPost (slug: { eq: $slug } ){
-    id
-    postTitle
-    excerpt {
-      childMarkdownRemark {
-        html
-      }
-    }
-    postBody {
-      raw
-    }
-    slug
-    }
+export const query = graphql`
+query GET_POSTS($id: ID!) {
+
+wpgraphql {
+post(id: $id) {
+  id
+  postId
+  title
+  date
+  uri
+  excerpt
+  content
+  featuredImage {
+    sourceUrl
+    title
   }
-`
+
+}
+}
+}
+`;

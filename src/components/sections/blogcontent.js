@@ -31,17 +31,22 @@ const options = {
   },
 }
 
+const pluginOptions = {
+  wordPressUrl: 'http://blog.elyseos.com/',
+  uploadsUrl: 'http://blog.elyseos.com/wp-content/uploads/'
+};
+
 export default function BlogContent({ data }) {
   console.log("DATA :" , data)
   if (data) {
     return (
       <Section>
         <StyledSection>
-        <SectionTitle style={{color: "white"}}>{data.contentfulBlogPost.postTitle}</SectionTitle>
+        <SectionTitle style={{color: "white"}}>{data.wpgraphql.post.title}</SectionTitle>
         <IntroContainer>
-          <IntroText>
-            {documentToReactComponents(JSON.parse(data.contentfulBlogPost.postBody.raw, options))}
-          </IntroText>
+          <IntroText dangerouslySetInnerHTML={{
+              __html: data.wpgraphql.post.content
+          }}/>
         </IntroContainer>
         </StyledSection>
       </Section>

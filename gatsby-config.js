@@ -52,6 +52,19 @@ module.exports = {
         icon: `src/images/Elyseos Logo.png`,
       },
     },
+    {
+       resolve: `gatsby-source-graphql`,
+
+       options: {
+         // This type will contain remote schema Query type
+         typeName: `WPGraphQL`,
+         // This is field under which it's accessible
+         fieldName: `wpgraphql`,
+         // Url to query from
+         url: `http://blog.elyseos.com/graphql`,
+      //  url: `http://alchemy-of-remembrance.local/graphql`
+       },
+     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
