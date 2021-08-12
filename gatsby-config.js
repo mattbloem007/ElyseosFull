@@ -17,7 +17,7 @@ module.exports = {
         component: require.resolve(`./src/components/common/layout/layout.js`),
       },
     },
-    {
+    //{
  //    resolve: `gatsby-plugin-gosquared`,
  //    options: {
  //      token: 'GSN-284016-R',
