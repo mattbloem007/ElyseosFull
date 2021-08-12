@@ -18,19 +18,25 @@ module.exports = {
       },
     },
     {
-    resolve: `gatsby-plugin-gosquared`,
-    options: {
-      token: 'GSN-284016-R',
-    },
-  },
-  {
-   resolve: 'gatsby-plugin-matomo',
-   options: {
-     siteId: '1',
-     matomoUrl: 'https://elyseos.matomo.cloud/',
-     siteUrl: 'https://www.elyseos.com/'
-   }
- },
+ //    resolve: `gatsby-plugin-gosquared`,
+ //    options: {
+ //      token: 'GSN-284016-R',
+ //    },
+ //  },
+ //  {
+ //   resolve: 'gatsby-plugin-matomo',
+ //   options: {
+ //     siteId: '1',
+ //     matomoUrl: 'https://elyseos.matomo.cloud/',
+ //     siteUrl: 'https://www.elyseos.com/'
+ //   }
+ // },
+ {
+     resolve: `gatsby-plugin-plausible`,
+     options: {
+       domain: `elyseos.com`,
+     },
+   },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
