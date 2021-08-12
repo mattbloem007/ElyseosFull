@@ -14,6 +14,7 @@ import aya from '../../../images/aya-white-icon.png'
 import canna from '../../../images/cannabis-white-icon.png'
 import psilo from '../../../images/psilocybin-trans-white.png'
 import salvia from '../../../images/salvia-white-icon.png'
+import lotus from '../../../images/lotuswhite-trans.png'
 
 import TimeLine from '../../sections/timeline'
 import { graphql } from "gatsby"
@@ -62,7 +63,7 @@ const options = {
 
 const SUB_ITEMS_DOCS = [{name: "Litepaper", url:""}, {name: "Token/timelines", url: ""}]
 
-const NAV_ITEMS = [{name: "Muti Market", url: "muti-market", symbol: canna}, {name: "Wings & Roots", url:"wings-roots", symbol: psilo}, {name: "Thou Art", url: "thou-art", symbol: sp}, {name: "ELYS Token", url:"elys-token", symbol: ti}, {name: "Thokoza Bokayé", url:"thokoza", symbol: cacao}, {name: "Medicine Basket", url:"medicine-basket", symbol: am}, {name: "Wisdom Holders", url:"wisdom-holders", symbol: aya}, {name: "Elyseos Foundation", url:"foundation", symbol: salvia}, {name: "Elyseos Dao", url:"dao", symbol: salvia}]
+const NAV_ITEMS = [{name: "Muti Market", url: "muti-market", symbol: canna}, {name: "Wings & Roots", url:"wings-roots", symbol: psilo}, {name: "Thou Art", url: "thou-art", symbol: sp}, {name: "ELYS Token", url:"elys-token", symbol: ti}, {name: "Thokoza Bokayé", url:"thokoza", symbol: cacao}, {name: "Medicine Basket", url:"medicine-basket", symbol: am}, {name: "Wisdom Holders", url:"wisdom-holders", symbol: aya}, {name: "Elyseos Foundation", url:"foundation", symbol: salvia}, {name: "Elyseos Dao", url:"dao", symbol: lotus}]
 
 export default class RoadNav extends Component {
 
