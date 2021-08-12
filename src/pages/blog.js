@@ -16,29 +16,22 @@ const Blog = () => {
   const data = useStaticQuery(
     graphql`
     query PostsQuery {
-      allContentfulBlogPost {
-        edges {
-          node {
-            id
-            featuredImage {
-              file {
-                url
-              }
-            }
-            excerpt {
-              childMarkdownRemark {
-                html
-              }
-            }
-            postTitle
-            postBody {
-              raw
-            }
-            slug
+  wpgraphql {
+    posts {
+      edges {
+        node {
+          excerpt
+          featuredImage {
+            sourceUrl
           }
+          title
+          slug
+          content
         }
       }
     }
+  }
+}
 `)
   return (
     <Layout>

@@ -16,6 +16,8 @@ import { Section, Container } from "../global"
 
 export default function Archives({ data }) {
   console.log("DATA :" , data)
+
+
   return (
     <Section>
       <StyledSection>
@@ -28,9 +30,30 @@ export default function Archives({ data }) {
           <SacramentSymbol src={am} />
           <SacramentSymbol src={cacao} />
         </SacramentSymbolsContainer>
-        <IntroText style={{color: "white"}}>
-          Coming soon...
-        </IntroText>
+        <PostsContainer>
+        {data.wpgraphql.posts.edges.map(post => {
+          let ex = post.node.excerpt.indexOf("<a class=");
+          let newEx = post.node.excerpt.slice(0, ex);
+          console.log(newEx)
+          return (
+            <PostCard>
+            {
+              post.node.featuredImage.sourceUrl ? <Thumbnail href={post.node.slug} className="post-thumbnail" style={{backgroundImage: `url(${post.node.featuredImage.sourceUrl})`, }}/> : null
+            }
+            <PostContent>
+              <PostTitle>
+                <Link to={"/" + post.node.slug}>{post.node.title}</Link>
+                <p dangerouslySetInnerHTML={{
+                    __html: newEx
+                }}/>
+              </PostTitle>
+            </PostContent>
+            </PostCard>
+
+          )
+
+        })}
+        </PostsContainer>
         <SacramentSymbolsContainer>
           <SacramentSymbol src={aya} />
           <SacramentSymbol src={canna} />
@@ -38,24 +61,6 @@ export default function Archives({ data }) {
           <SacramentSymbol src={salvia} />
         </SacramentSymbolsContainer>
       </IntroContainer>
-        {/*<FeaturesGrid>
-        {data.allContentfulBlogPost.edges.map(post => {
-          console.log(post)
-          return (
-            <FeatureItem style={{backgroundImage: `url(${post.node.featuredImage.file.url})`}}>
-              <Link to={post.node.slug} style={{flex: "1 1 auto", display: "block"}}>
-                <ImageandTitle>
-                  <SacramentSymbol src={post.node.featuredImage.file.url} />
-                  <FeatureTitle style={{color: "white"}}>{post.node.postTitle}</FeatureTitle>
-                </ImageandTitle>
-              </Link>
-            </FeatureItem>
-
-          )
-
-        })}
-        </FeaturesGrid>*/}
-
       </StyledSection>
     </Section>
   )
@@ -69,46 +74,76 @@ const StyledSection = styled(Section)`
 `
 
 const PostContent = styled.div`
-    flex: 1 1 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    color: #fff;
-    background: rgba(0,0,0,0.1);
-    opacity: 1;
-    transition: opacity 0.5s cubic-bezier(.33,0,.2,1);
+padding: 1rem;
+width: 70%;
+
+@media (max-width: ${props => props.theme.screen.sm}) {
+   width: 100%;
+}
+`
+
+const PostsContainer = styled.div`
+margin-left: auto;
+  margin-right: auto;
+  max-width: 780px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: stretch;
+`
+
+const Thumbnail = styled.a`
+    width: 30%;
+    max-width: 100%;
+    min-height: 11rem;
+    background-size: cover;
+    background-position: 50% 50%;
+
+    @media (max-width: ${props => props.theme.screen.sm}) {
+       width: 100%;
+    }
 `
 
 const PostTitle = styled.h2`
-  color: ${props => props.theme.color.primary};
-  margin: 0;
-  display: inline-block;
-  font-size: 3.4rem;
-  max-width: 70%;
-  text-align: center;
-  transition: all 0.3s cubic-bezier(.33,0,.2,1);
+margin: 0 0 10px;
+    font-size: 30px;
+    font-weight: 400;
+    a {
+      font-family: 'PT Serif', serif;
+      text-decoration: none;
+      color: $dark-blue;
+    }
+
+    @media (max-width: ${props => props.theme.screen.sm}) {
+      margin: 0 0 5px;
+      font-size: 30px;
+    }
 `
 
 const PostCard = styled.article`
 
-  position: relative;
-   flex: 1 1 50%;
-   display: flex;
-   position: relative;
-   height: 35vw;
-   background: linear-gradient(135deg, #1f1f1f 0%, #111 100%) center center;
-   background-size: cover;
-   overflow: hidden;
-   counter-increment: posts;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  min-height: 11rem;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all .3s ease;
+  box-shadow: 0 1px 1px 0 #ED6F1B;
 
-   &:hover #postContent {
-     opacity: 1;
-     transition: opacity 0.3s cubic-bezier(.33,0,.2,1);
+   &:hover {
+     transform: translate(0px, -2px);
+    box-shadow: 0 15px 45px -10px #ED6F1B;
+   }
+
+   @media (max-width: ${props => props.theme.screen.sm}) {
+     flex-direction: column;
+      margin: 10%;
+      max-width: 100%;
+      width: 98%;
    }
 `
 const SectionTitle = styled.h3`
