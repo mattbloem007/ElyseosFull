@@ -30,7 +30,7 @@ import {
 const SUB_ITEMS_DOCS = [{name: "Litepaper", suburl:"/litepaper"}, {name: "Token & Roadmap", suburl: "/token-timelines"}]
 const SUB_ITEMS_HOME = [{name: "Team", suburl:"/team"}]
 
-const NAV_ITEMS = [{name: "About Elyseos", url: "/", subItems: SUB_ITEMS_HOME}, {name: "Docs", url:"/litepaper", subItems: SUB_ITEMS_DOCS}, {name: "Elys Token", url: "/elys-token", subItems: null}, {name: "Pre-Sale", url:"/pre-sale", subItems: null}, {name: "Roadmap", url:"/roadmap", subItems: null}, {name: "Epochs", url:"/epochs", subItems: null},{name: "Blog", url:"/blog", subItems: null}]
+const NAV_ITEMS = [{name: "About Elyseos", url: "/", subItems: SUB_ITEMS_HOME}, {name: "Docs", url:"/litepaper", subItems: SUB_ITEMS_DOCS}, {name: "Elys Token", url: "/elys-token", subItems: null}, {name: "Roadmap", url:"/roadmap", subItems: null}, {name: "Epochs", url:"/epochs", subItems: null},{name: "Blog", url:"/blog", subItems: null}]
 
 export default class Navigation extends Component {
 
@@ -330,7 +330,7 @@ export default class Navigation extends Component {
 
           <Mobile hide>{this.getNavList({})}</Mobile>
           <ActionsContainer>
-            <Link to="/wallet"><StyledButton>Connect Wallet</StyledButton></Link>
+          {/**  <Link to="/wallet"><StyledButton>Connect Wallet</StyledButton></Link>*/}
           </ActionsContainer>
         </StyledContainer>
         <Mobile>
