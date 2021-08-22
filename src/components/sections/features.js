@@ -56,7 +56,7 @@ const Features = ({data}) => {
                 <FeatureTitle>{contentItem.title}</FeatureTitle>
               </ImageandTitle>
               {documentToReactComponents(JSON.parse(contentItem.body.raw, options))}
-              {contentItem.title === "Get ELYS"
+              {/**contentItem.title === "Get ELYS"
               ?
               <>
            <BrowserView>
@@ -68,7 +68,7 @@ const Features = ({data}) => {
        </>
               :
               null
-            }
+            */}
             </FeatureItem>
           )
         }) : null

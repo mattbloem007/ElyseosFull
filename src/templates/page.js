@@ -85,7 +85,7 @@ class Page extends React.Component {
               {data.contentfulPage.featureText1 ? documentToReactComponents(JSON.parse(data.contentfulPage.featureText1.raw, options)) : null}
               {data.contentfulPage.featureText2 ? documentToReactComponents(JSON.parse(data.contentfulPage.featureText2.raw, options)) : null}
               {data.contentfulPage.featureText1.references[0] ? <StyledButton><a href={data.contentfulPage.featureText1.references[0].file.url} target="_blank" download>Download PDF</a></StyledButton> : null}
-              {data.contentfulPage.slug === "pre-sale" ?
+              {/**data.contentfulPage.slug === "pre-sale" ?
               <>
            <BrowserView>
                <Link to="https://presale.money/app/#/presale/8"><SacramentSymbol src={presaleButton} /></Link>
@@ -96,7 +96,7 @@ class Page extends React.Component {
        </>
               :
               null
-            }
+            */}
               </IntroText>
               <SacramentSymbolsContainer>
                 <SacramentSymbol src={aya} />
