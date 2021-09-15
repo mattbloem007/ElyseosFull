@@ -38,6 +38,12 @@ const Footer = () => (
         </ul>
       </FooterColumn>
       <FooterColumn>
+        <span>Listings</span>
+        <ul>
+          <ListLink target="_blank" href="https://nomics.com/assets/elys-elyseos"><li>Nomics</li></ListLink>
+        </ul>
+      </FooterColumn>
+      <FooterColumn>
       <SocialContainer>
         <a target="_blank" href="https://t.me/joinchat/kJCUkY1WacpkZTVk">
           <SocialSymbol src={telegram}/>
@@ -118,7 +124,7 @@ const BrandContainer = styled(Container)`
 `
 const FooterColumnContainer = styled(Container)`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   grid-column-gap: 32px;
   padding-top: 15px;
   margin-left: auto;
