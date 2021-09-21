@@ -48,7 +48,8 @@ export default class Navigation extends Component {
       isSelected: 'Home',
       visibility: "visible",
       show: false,
-      show1: false
+      show1: false,
+      show2: false
     }
 
 	}
@@ -143,6 +144,11 @@ export default class Navigation extends Component {
       this.setState( { show1 : !show1})
   }
 
+  showHide2 = () => {
+     const { show2 } = this.state;
+     this.setState( { show2 : !show2})
+ }
+
 
   getNavAnchorLink = item => (
     <AnchorLink href={`/${item.toLowerCase()}`} onClick={this.closeMobileMenu}>
@@ -216,6 +222,28 @@ export default class Navigation extends Component {
                   )
                 }
                 else {
+                  if (navItem.name == "Docs") {
+                    return (
+                        <Submenu>
+                        <Link to={`${navItem.url}`} onClick={(e) => this.handleClick(e)} style={{textDecoration: 'none'}}>
+                          <NavItem onMouseEnter={() => this.showHide2()} style={{color:"white"}} key={navItem.name}>{navItem.name}</NavItem>
+                        </Link>
+                          { this.state.show2 &&
+                          <MenuList onMouseLeave={() => this.showHide2()} style={{display: "flex", flexDirection: "column", backgroundColor:"#231B17"}}>
+                          {
+                            navItem.subItems.map(item => {
+                              console.log("item", item)
+                              return (
+                                <List><ListLink style={{color: "white"}} href={`${item.suburl}`}>{item.name}</ListLink></List>
+                              )
+                            })
+                          }
+                          </MenuList>
+                        }
+                        </Submenu>
+                    )
+                  }
+                else {
                   return (
                       <Submenu>
                       <Link to={`${navItem.url}`} onClick={(e) => this.handleClick(e)} style={{textDecoration: 'none'}}>
@@ -238,6 +266,7 @@ export default class Navigation extends Component {
                 }
 
               }
+            }
             })}
           </Scrollspy>
         </NavListWrapper>
