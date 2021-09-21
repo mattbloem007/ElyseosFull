@@ -79,6 +79,27 @@ module.exports = {
       //  url: `http://alchemy-of-remembrance.local/graphql`
        },
      },
+     //{
+    //   resolve: 'gatsby-wpgraphql-inline-images',
+    //   options: {
+    //     wordPressUrl: 'http://blog.elyseos.com/',
+    //     uploadsUrl: 'http://blog.elyseos.com/wp-content/uploads/',
+    //     processPostTypes: ['Page', 'Post', 'CustomPost'],
+    //     graphqlTypeName: 'WPGraphQL',
+    //     // httpHeaders: {
+    //     //   Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+    //     // }
+    //   },
+    // },
+    {
+    resolve: 'gatsby-source-wpgraphql-images',
+    options: {
+      wordPressUrl: 'http://blog.elyseos.com/',
+      uploadsUrl: 'http://blog.elyseos.com/wp-content/uploads/',
+      processPostTypes: ['Page', 'Post', 'CustomPost'],
+      graphqlTypeName: 'WPGraphQL',
+    },
+  },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

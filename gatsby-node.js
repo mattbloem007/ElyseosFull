@@ -42,6 +42,7 @@ exports.createPages = ({ graphql, actions }) => {
 
   const blogPost = path.resolve(`./src/templates/blog-post.js`)
   const pageTemplate = path.resolve(`./src/templates/page.js`)
+  const eventPageTemplate = path.resolve(`./src/templates/eventsPage.js`)
   const roadmapTemplate = path.resolve(`./src/templates/roadmap.js`)
   const featurePageTemplate = path.resolve(`./src/templates/featurePage.js`)
   const faqPageTemplate = path.resolve(`./src/templates/faq.js`)
@@ -72,6 +73,19 @@ exports.createPages = ({ graphql, actions }) => {
           }
         }
         allContentfulPage {
+          edges {
+            node {
+              featureText1 {
+                raw
+              }
+              id
+              subtitle
+              title
+              slug
+            }
+          }
+        }
+        allContentfulEventsPage {
           edges {
             node {
               featureText1 {
@@ -184,6 +198,7 @@ exports.createPages = ({ graphql, actions }) => {
     const faqPages = result.data.allContentfulFaqPage.edges
     const blogPosts = result.data.wpgraphql.posts.edges;
     const allPages = result.data.wpgraphql.pages.edges;
+    const eventsPages = result.data.allContentfulEventsPage.edges
 
     blogPosts.forEach(({ node }) => {
         createPage({
@@ -205,6 +220,19 @@ exports.createPages = ({ graphql, actions }) => {
         path: tag,
         component: pageTemplate,
         context: {
+          slug: tag,
+        },
+      })
+    })
+
+    eventsPages.forEach((page, index) => {
+      let tag = page.node.slug;
+
+      createPage({
+        path: tag,
+        component: eventPageTemplate,
+        context: {
+          id: {"eq": "" + page.node.id},
           slug: tag,
         },
       })

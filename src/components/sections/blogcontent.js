@@ -5,6 +5,8 @@ import { useStaticQuery, graphql, Link } from "gatsby"
 import { Section, Container } from "../global"
 
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
+import contentParser from 'gatsby-source-wpgraphql-images'
+
 
 import { BLOCKS, MARKS } from "@contentful/rich-text-types"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
@@ -31,6 +33,9 @@ const options = {
   },
 }
 
+//
+
+
 const pluginOptions = {
   wordPressUrl: 'http://blog.elyseos.com/',
   uploadsUrl: 'http://blog.elyseos.com/wp-content/uploads/'
@@ -38,15 +43,17 @@ const pluginOptions = {
 
 export default function BlogContent({ data }) {
   console.log("DATA :" , data)
+  let {content} = data.wpgraphql.post
   if (data) {
     return (
       <Section>
         <StyledSection>
         <SectionTitle style={{color: "white"}}>{data.wpgraphql.post.title}</SectionTitle>
         <IntroContainer>
-          <IntroText dangerouslySetInnerHTML={{
-              __html: data.wpgraphql.post.content
-          }}/>
+          {/*<IntroText dangerouslySetInnerHTML={{
+              __html: content
+          }}/>**/}
+          <IntroText>{contentParser({ content }, pluginOptions )}</IntroText>
         </IntroContainer>
         </StyledSection>
       </Section>

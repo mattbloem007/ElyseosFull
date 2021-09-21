@@ -29,8 +29,10 @@ import {
 
 const SUB_ITEMS_DOCS = [{name: "Litepaper", suburl:"/litepaper"}, {name: "Token & Roadmap", suburl: "/token-timelines"}]
 const SUB_ITEMS_HOME = [{name: "Team", suburl:"/team"}]
+const SUB_ITEMS_DAO = [{name: "Events", suburl: "/events"}]
+//[{name: "Governance", suburl: "/governance"}]
 
-const NAV_ITEMS = [{name: "About Elyseos", url: "/", subItems: SUB_ITEMS_HOME}, {name: "Docs", url:"/litepaper", subItems: SUB_ITEMS_DOCS}, {name: "Elys Token", url: "/elys-token", subItems: null}, {name: "Roadmap", url:"/roadmap", subItems: null}, {name: "Epochs", url:"/epochs", subItems: null},{name: "Blog", url:"/blog", subItems: null}]
+const NAV_ITEMS = [{name: "About Elyseos", url: "/", subItems: SUB_ITEMS_HOME}, {name: "Docs", url:"/litepaper", subItems: SUB_ITEMS_DOCS}, {name: "Elys Token", url: "/elys-token", subItems: null}, {name: "DAO", url: "/events", subItems: SUB_ITEMS_DAO}, {name: "Roadmap", url:"/roadmap", subItems: null}, {name: "Epochs", url:"/epochs", subItems: null},{name: "Blog", url:"/blog", subItems: null}]
 
 export default class Navigation extends Component {
 
