@@ -236,17 +236,17 @@ exports.createPages = ({ graphql, actions }) => {
     // });
     //
     //
-    // pages.forEach((page, index) => {
-    //   let tag = page.node.slug;
-    //
-    //   createPage({
-    //     path: tag,
-    //     component: pageTemplate,
-    //     context: {
-    //       slug: tag,
-    //     },
-    //   })
-    // })
+    pages.forEach((page, index) => {
+      let tag = page.node.slug;
+
+      createPage({
+        path: tag,
+        component: pageTemplate,
+        context: {
+          slug: tag,
+        },
+      })
+    })
 
     eventsPages.forEach((page, index) => {
       let tag = page.node.slug;
