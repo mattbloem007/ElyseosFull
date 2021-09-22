@@ -50,10 +50,10 @@ export default function BlogContent({ data }) {
         <StyledSection>
         <SectionTitle style={{color: "white"}}>{data.wpgraphql.post.title}</SectionTitle>
         <IntroContainer>
-          {/*<IntroText dangerouslySetInnerHTML={{
+          <IntroText dangerouslySetInnerHTML={{
               __html: content
-          }}/>**/}
-          <IntroText>{contentParser({ content }, pluginOptions )}</IntroText>
+          }}/>
+          {/*<IntroText>{contentParser({ content }, pluginOptions )}</IntroText>**/}
         </IntroContainer>
         </StyledSection>
       </Section>
