@@ -32,23 +32,33 @@ class BlogPost extends React.Component {
 export default BlogPost
 
 export const query = graphql`
-query GET_POSTS($id: ID!) {
-
-wpgraphql {
-post(id: $id) {
-  id
-  postId
-  title
-  date
-  uri
-  excerpt
-  content
-  featuredImage {
-    sourceUrl
-    title
+  query ($id: String) {
+    wpPost(id: { eq: $id }) {
+      id
+      title
+      content
+    }
   }
+`
 
-}
-}
-}
-`;
+// export const query = graphql`
+// query GET_POSTS($id: ID!) {
+//
+// wpgraphql {
+// post(id: $id) {
+//   id
+//   postId
+//   title
+//   date
+//   uri
+//   excerpt
+//   content
+//   featuredImage {
+//     sourceUrl
+//     title
+//   }
+//
+// }
+// }
+// }
+// `;

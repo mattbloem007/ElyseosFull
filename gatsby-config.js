@@ -100,6 +100,27 @@ module.exports = {
       graphqlTypeName: 'WPGraphQL',
     },
   },
+  {
+    resolve: `gatsby-source-wordpress`,
+    options: {
+      url: `http://blog.elyseos.com/graphql`,
+      protocol: `http`,
+      schema: {
+        perPage: 20, // currently set to 100
+        requestConcurrency: 5, // currently set to 15
+        previewRequestConcurrency: 2, // currently set to 5
+      }
+      // plugins: [
+      //     {
+      //       resolve: `gatsby-wordpress-inline-images`,
+      //       options: {
+      //         url: `blog.elyseos.com`,
+      //         protocol: `http`
+      //       }
+      //     },
+      //   ]
+      }
+  },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

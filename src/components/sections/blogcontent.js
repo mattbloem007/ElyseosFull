@@ -5,7 +5,7 @@ import { useStaticQuery, graphql, Link } from "gatsby"
 import { Section, Container } from "../global"
 
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
-import contentParser from 'gatsby-source-wpgraphql-images'
+import contentParser from 'gatsby-source-wpgraphql-images';
 
 
 import { BLOCKS, MARKS } from "@contentful/rich-text-types"
@@ -43,17 +43,17 @@ const pluginOptions = {
 
 export default function BlogContent({ data }) {
   console.log("DATA :" , data)
-  let {content} = data.wpgraphql.post
+  let {content} = data.wpPost
   if (data) {
     return (
       <Section>
         <StyledSection>
-        <SectionTitle style={{color: "white"}}>{data.wpgraphql.post.title}</SectionTitle>
+        <SectionTitle style={{color: "white"}}>{data.wpPost.title}</SectionTitle>
         <IntroContainer>
           <IntroText dangerouslySetInnerHTML={{
               __html: content
           }}/>
-          {/*<IntroText>{contentParser({ content }, pluginOptions )}</IntroText>**/}
+          {/*<div>{contentParser({ content }, pluginOptions)}</div>**/}
         </IntroContainer>
         </StyledSection>
       </Section>

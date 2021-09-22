@@ -29,6 +29,37 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
   }
 }
 
+// wpgraphql {
+// posts (first: 10000) {
+//   edges {
+//     node {
+//       id
+//       slug
+//       featuredImage{
+//         sourceUrl
+//       }
+//       categories {
+//         edges {
+//           node {
+//             name
+//           }
+//         }
+//       }
+//
+//     }
+//   }
+// }
+//
+// pages {
+//   edges {
+//     node {
+//       id
+//       slug
+//     }
+//   }
+// }
+// }
+
 exports.createPages = ({ graphql, actions }) => {
   const { createRedirect, createPage } = actions
 
@@ -50,6 +81,14 @@ exports.createPages = ({ graphql, actions }) => {
   return graphql(
     `
       {
+        allWpPost {
+         nodes {
+           id
+           uri
+           slug
+         }
+       }
+
         allContentfulBlogPost {
           edges {
             node {
@@ -153,36 +192,7 @@ exports.createPages = ({ graphql, actions }) => {
           }
         }
 
-        wpgraphql {
-        posts (first: 10000) {
-          edges {
-            node {
-              id
-              slug
-              featuredImage{
-                sourceUrl
-              }
-              categories {
-                edges {
-                  node {
-                    name
-                  }
-                }
-              }
 
-            }
-          }
-        }
-
-        pages {
-          edges {
-            node {
-              id
-              slug
-            }
-          }
-        }
-      }
       }
     `
   ).then(result => {
@@ -196,34 +206,47 @@ exports.createPages = ({ graphql, actions }) => {
   //  const roadmaps = result.data.allContentfulRoadmap.edges
     const featurePages = result.data.allContentfulFeaturePage.edges
     const faqPages = result.data.allContentfulFaqPage.edges
-    const blogPosts = result.data.wpgraphql.posts.edges;
-    const allPages = result.data.wpgraphql.pages.edges;
+  //  const blogPosts = result.data.wpgraphql.posts.edges;
+    //const allPages = result.data.wpgraphql.pages.edges;
     const eventsPages = result.data.allContentfulEventsPage.edges
+    const all = result.data.allWpPost.nodes
+    console.log("ALLL", all)
 
-    blogPosts.forEach(({ node }) => {
+    all.map(node => {
+      console.log("NODE", node)
         createPage({
             path: node.slug,
             component: blogPost,
             context: {
                 id: node.id,
-                slug: node.slug,
-                featuredImage: node.featuredImage,
             }
         });
-    });
-
-
-    pages.forEach((page, index) => {
-      let tag = page.node.slug;
-
-      createPage({
-        path: tag,
-        component: pageTemplate,
-        context: {
-          slug: tag,
-        },
-      })
     })
+
+    // blogPosts.forEach(({ node }) => {
+    //     createPage({
+    //         path: node.slug,
+    //         component: blogPost,
+    //         context: {
+    //             id: node.id,
+    //             slug: node.slug,
+    //             featuredImage: node.featuredImage,
+    //         }
+    //     });
+    // });
+    //
+    //
+    // pages.forEach((page, index) => {
+    //   let tag = page.node.slug;
+    //
+    //   createPage({
+    //     path: tag,
+    //     component: pageTemplate,
+    //     context: {
+    //       slug: tag,
+    //     },
+    //   })
+    // })
 
     eventsPages.forEach((page, index) => {
       let tag = page.node.slug;

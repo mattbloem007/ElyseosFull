@@ -31,20 +31,20 @@ export default function Archives({ data }) {
           <SacramentSymbol src={cacao} />
         </SacramentSymbolsContainer>
         <PostsContainer>
-        {data.wpgraphql.posts.edges.map(post => {
-          let ex = post.node.excerpt.indexOf("<a class=");
-          let newEx = post.node.excerpt.slice(0, ex);
-          console.log(newEx)
+        {data.allWpPost.nodes.map(post => {
+          // let ex = post.node.excerpt.indexOf("<a class=");
+          // let newEx = post.node.excerpt.slice(0, ex);
+          // console.log(newEx)
           return (
             <PostCard>
             {
-              post.node.featuredImage.sourceUrl ? <Thumbnail href={post.node.slug} className="post-thumbnail" style={{backgroundImage: `url(${post.node.featuredImage.sourceUrl})`, }}/> : null
+              post.featuredImage.node.sourceUrl ? <Thumbnail href={"/" + post.slug} className="post-thumbnail" style={{backgroundImage: `url(${post.featuredImage.node.sourceUrl})`, }}/> : null
             }
             <PostContent>
               <PostTitle>
-                <Link to={"/" + post.node.slug}>{post.node.title}</Link>
+                <Link to={"/" + post.slug}>{post.title}</Link>
                 <p dangerouslySetInnerHTML={{
-                    __html: newEx
+                    __html: post.excerpt
                 }}/>
               </PostTitle>
             </PostContent>

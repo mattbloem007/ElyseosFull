@@ -38,7 +38,7 @@ export default function EventArchives({ data }) {
           return (
             <PostCard>
             {
-              post.node.featuredImage.file.url ? <Thumbnail href={post.node.slug} className="post-thumbnail" style={{backgroundImage: `url(${post.node.featuredImage.file.url})`, }}/> : null
+              post.node.featuredImage.file.url ? <Thumbnail href={"/" + post.node.slug} className="post-thumbnail" style={{backgroundImage: `url(${post.node.featuredImage.file.url})`, }}/> : null
             }
             <PostContent>
               <PostTitle>
