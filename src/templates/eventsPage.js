@@ -19,7 +19,6 @@ class EventPost extends React.Component {
       <Layout>
         <SEO title="Home" />
         <Navigation />
-        <Banner />
         <EventContent data={data}/>
         <Footer />
       </Layout>
