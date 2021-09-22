@@ -43,7 +43,7 @@ exports.createPages = ({ graphql, actions }) => {
   const blogPost = path.resolve(`./src/templates/blog-post.js`)
   const pageTemplate = path.resolve(`./src/templates/page.js`)
   const eventPageTemplate = path.resolve(`./src/templates/eventsPage.js`)
-  const roadmapTemplate = path.resolve(`./src/templates/roadmap.js`)
+  //const roadmapTemplate = path.resolve(`./src/templates/roadmap.js`)
   const featurePageTemplate = path.resolve(`./src/templates/featurePage.js`)
   const faqPageTemplate = path.resolve(`./src/templates/faq.js`)
 
@@ -232,7 +232,7 @@ exports.createPages = ({ graphql, actions }) => {
         path: tag,
         component: eventPageTemplate,
         context: {
-          id: {"eq": "" + page.node.id},
+          id: page.node.id,
           slug: tag,
         },
       })

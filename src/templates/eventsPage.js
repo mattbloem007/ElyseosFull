@@ -32,9 +32,9 @@ class EventPost extends React.Component {
 export default EventPost
 
 export const query = graphql`
-query GET_EVENT_POSTS($id: StringQueryOperatorInput!) {
+query GET_EVENT_POSTS($id: String) {
 
-  contentfulEventsPage(id: $id) {
+  contentfulEventsPage(id: {eq: $id}) {
         featureText1 {
           raw
         }
