@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import { useStaticQuery, graphql, Link } from "gatsby"
+import { useStaticQuery, graphql, Link, navigate } from "gatsby"
 import { Formik, Field, Form, ErrorMessage } from "formik"
 
 import { Section, Container } from "../global"
@@ -81,7 +81,7 @@ export default function EventContent({ data }) {
               })
                 .then(() => {
                   resetForm();
-                  //navigate('/email-success')
+                  navigate('/thanks')
                 })
                 .catch(error => alert(error))
 

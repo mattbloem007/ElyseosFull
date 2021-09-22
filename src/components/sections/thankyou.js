@@ -6,11 +6,11 @@ import ContactForm from "../form"
 
 const Thankyou = () => (
   <StyledSection>
-    <GetStartedContainer style={{paddingBottom: "150px"}}>
+    <GetStartedContainer style={{paddingBottom: "300px"}}>
       <FeaturesGrid>
       <FeatureItem>
         <FeatureText style={{color: "white"}}>
-          Hooray! Thank you for your submission. We will contact you from the 20/08 with details of your ELYS allocation and payment.
+          Hooray! Thank you for your submission to the Art Competition.
         </FeatureText>
       </FeatureItem>
       </FeaturesGrid>
@@ -21,7 +21,7 @@ const Thankyou = () => (
 export default Thankyou
 
 const StyledSection = styled(Section)`
-  background-color: ${props => props.theme.color.background.light};
+  background-color: ${props => props.theme.color.primary};
 `
 const FeaturesGrid = styled.div`
   max-width: 670px;

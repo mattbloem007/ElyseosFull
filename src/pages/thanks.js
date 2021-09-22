@@ -9,7 +9,7 @@ import Features from "../components/sections/features"
 import Footer from "../components/sections/footer"
 import Thankyou from "../components/sections/thankyou"
 import Banner from "../components/sections/banner"
-
+import LayoutOne from "../components/sections/layoutOne"
 
 const Thanks = () => (
   <Layout>
