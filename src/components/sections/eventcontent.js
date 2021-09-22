@@ -52,6 +52,11 @@ export default function EventContent({ data }) {
   if (data) {
     return (
       <Section>
+      <HeaderWrapper>
+          <StyledContainer>
+            <BackDrop src={data.contentfulEventsPage.featuredImage.file.url} />
+          </StyledContainer>
+      </HeaderWrapper>
         <StyledSection>
         <SectionTitle style={{color: "white"}}>{data.contentfulEventsPage.title}</SectionTitle>
         <IntroContainer>
@@ -173,6 +178,26 @@ const StyledContainer = styled(Container)``
 
 const StyledSection = styled(Section)`
   background-color: #231B17;
+`
+
+const BackDrop = styled.img`
+  padding-right: 50px;
+  padding-left: 50px;
+  width: 100%;
+  height: 50%;
+  opacity: 1;
+  z-index: 1;
+
+  @media (max-width: 570px) {
+    padding: 0px 0;
+  }
+`
+
+const HeaderWrapper = styled.div`
+  background-color: #231B17;
+
+  @media (max-width: 570px) {
+  }
 `
 
 const PostContent = styled.div`
