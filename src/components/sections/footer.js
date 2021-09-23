@@ -48,7 +48,7 @@ const Footer = () => (
         <a target="_blank" href="https://t.me/joinchat/kJCUkY1WacpkZTVk">
           <SocialSymbol src={telegram}/>
         </a>
-        <a target="_blank" href="https://discord.gg/YKJsDyHDkc">
+        <a target="_blank" href="https://discord.gg/gY2WMAnBem">
           <SocialSymbol src={discord} />
         </a>
         <a target="_blank" href="https://twitter.com/ElyseosFDN">
