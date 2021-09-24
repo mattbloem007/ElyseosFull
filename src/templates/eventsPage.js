@@ -37,6 +37,7 @@ query GET_EVENT_POSTS($id: String) {
         featureText1 {
           raw
         }
+        form
         id
         featuredImage{
           file {

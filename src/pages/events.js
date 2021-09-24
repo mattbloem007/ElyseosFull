@@ -26,7 +26,7 @@ const Events = () => {
             featuredImage{
               file {
                 url
-              }      
+              }
             }
             subtitle
             title

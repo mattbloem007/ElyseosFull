@@ -49,6 +49,7 @@ const encode = data => {
 export default function EventContent({ data }) {
   console.log("DATA :" , data)
 
+
   if (data) {
     return (
       <Section>
@@ -64,100 +65,106 @@ export default function EventContent({ data }) {
           {data.contentfulEventsPage.featureText1 ? documentToReactComponents(JSON.parse(data.contentfulEventsPage.featureText1.raw, options)) : null}
           </IntroText>
         </IntroContainer>
-        <GetStartedContainer>
-          <FeaturesGrid>
-          <FeatureItem>
-        <Formik
-          initialValues={{ artistName: "", email: "", telegram: "", mediums: [] }}
-          onSubmit={(data, {resetForm}) => {
-            console.log(data)
-              fetch("/", {
-                method: "POST",
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: encode({
-                  "form-name": "art-event",
-                  ...data,
-                }),
-              })
-                .then(() => {
-                  resetForm();
-                  navigate('/thanks')
+        {
+          data.contentfulEventsPage.form ? <GetStartedContainer>
+            <FeaturesGrid>
+            <FeatureItem>
+
+          <Formik
+            initialValues={{ artistName: "", email: "", telegram: "", mediums: [] }}
+            onSubmit={(data, {resetForm}) => {
+              console.log(data)
+                fetch("/", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                  body: encode({
+                    "form-name": "art-event",
+                    ...data,
+                  }),
                 })
-                .catch(error => alert(error))
+                  .then(() => {
+                    resetForm();
+                    navigate('/thanks')
+                  })
+                  .catch(error => alert(error))
 
-          }}
-        >
-        {(formik) => (
-          <Form
-            name="art-event"
-            data-netlify="true"
-            data-netlify-honeypot="bot-field"
+            }}
           >
-            <Field type="hidden" name="form-name" />
-            <Field type="hidden" name="bot-field" />
+          {(formik) => (
+            <Form
+              name="art-event"
+              data-netlify="true"
+              data-netlify-honeypot="bot-field"
+            >
+              <Field type="hidden" name="form-name" />
+              <Field type="hidden" name="bot-field" />
 
-            <Flex style={{marginBottom: "50px"}}>
-              <Label htmlFor="artistName">Nom de Art (Artist Name):</Label>
-                <Field name="artistName" placeholder="Enter your name" type="text" style={{background: "#FACBAC 0% 0% no-repeat padding-box", border: "2px solid #ED6F1B", borderRadius: "30px", width: "223px", height: "33px", paddingLeft: "10px"}}/>
-              <ErrorMessage name="artistName" />
-            </Flex>
-            <br />
-            <Flex style={{marginBottom: "50px"}}>
-              <Label htmlFor="email">Email Address</Label>
-                <Field name="email" placeholder="We will contact you here" type="text" style={{background: "#FACBAC 0% 0% no-repeat padding-box", border: "2px solid #ED6F1B", borderRadius: "30px", width: "223px", height: "33px", paddingLeft: "10px"}}/>
-              <ErrorMessage name="email" />
-            </Flex>
-            <br />
-            <Flex style={{marginBottom: "50px"}}>
-              <Label htmlFor="telegram">Telegram Number</Label>
-                <Field name="telegram" placeholder="We will contact you here" type="text" style={{background: "#FACBAC 0% 0% no-repeat padding-box", border: "2px solid #ED6F1B", borderRadius: "30px", width: "223px", height: "33px", paddingLeft: "10px"}}/>
-              <ErrorMessage name="telegram" />
-            </Flex>
-            <br />
-            <SacramentSymbolsContainer>
-              <Flex>
-                <Label>
-                  <Field style={{marginBottom: "10px"}} type="checkbox" name="mediums" value="Visual art" />
-                  Visual art
-                </Label>
-                <Label>
-                  <Field style={{marginBottom: "10px"}} type="checkbox" name="mediums" value="Music" />
-                  Music
-                </Label>
-                <Label>
-                  <Field style={{marginBottom: "10px"}} type="checkbox" name="mediums" value="Dance" />
-                  Dance
-                </Label>
-                <Label>
-                  <Field style={{marginBottom: "10px"}} type="checkbox" name="mediums" value="Sculpture" />
-                  Sculpture
-                </Label>
-                <Label>
-                  <Field style={{marginBottom: "10px"}} type="checkbox" name="mediums" value="Poetry" />
-                  Poetry
-                </Label>
-                <Label>
-                  <Field style={{marginBottom: "10px"}} type="checkbox" name="mediums" value="Storytelling" />
-                  Storytelling
-                </Label>
-                <Label>
-                  <Field style={{marginBottom: "10px"}} type="checkbox" name="mediums" value="Photography" />
-                  Photography
-                </Label>
-                <Label>
-                  <Field style={{marginBottom: "10px"}} type="checkbox" name="mediums" value="Other" />
-                  Other
-                </Label>
+              <Flex style={{marginBottom: "50px"}}>
+                <Label htmlFor="artistName">Nom de Art (Artist Name):</Label>
+                  <Field name="artistName" placeholder="Enter your name" type="text" style={{background: "#FACBAC 0% 0% no-repeat padding-box", border: "2px solid #ED6F1B", borderRadius: "30px", width: "223px", height: "33px", paddingLeft: "10px"}}/>
+                <ErrorMessage name="artistName" />
               </Flex>
-            </SacramentSymbolsContainer>
-            <br />
-            <Submit style={{color: "white"}} type="submit">Submit form</Submit>
-          </Form>
-          )}
-        </Formik>
-        </FeatureItem>
-        </FeaturesGrid>
-      </GetStartedContainer>
+              <br />
+              <Flex style={{marginBottom: "50px"}}>
+                <Label htmlFor="email">Email Address</Label>
+                  <Field name="email" placeholder="We will contact you here" type="text" style={{background: "#FACBAC 0% 0% no-repeat padding-box", border: "2px solid #ED6F1B", borderRadius: "30px", width: "223px", height: "33px", paddingLeft: "10px"}}/>
+                <ErrorMessage name="email" />
+              </Flex>
+              <br />
+              <Flex style={{marginBottom: "50px"}}>
+                <Label htmlFor="telegram">Telegram Number</Label>
+                  <Field name="telegram" placeholder="We will contact you here" type="text" style={{background: "#FACBAC 0% 0% no-repeat padding-box", border: "2px solid #ED6F1B", borderRadius: "30px", width: "223px", height: "33px", paddingLeft: "10px"}}/>
+                <ErrorMessage name="telegram" />
+              </Flex>
+              <br />
+              <SacramentSymbolsContainer>
+                <Flex>
+                  <Label>
+                    <Field style={{marginBottom: "10px"}} type="checkbox" name="mediums" value="Visual art" />
+                    Visual art
+                  </Label>
+                  <Label>
+                    <Field style={{marginBottom: "10px"}} type="checkbox" name="mediums" value="Music" />
+                    Music
+                  </Label>
+                  <Label>
+                    <Field style={{marginBottom: "10px"}} type="checkbox" name="mediums" value="Dance" />
+                    Dance
+                  </Label>
+                  <Label>
+                    <Field style={{marginBottom: "10px"}} type="checkbox" name="mediums" value="Sculpture" />
+                    Sculpture
+                  </Label>
+                  <Label>
+                    <Field style={{marginBottom: "10px"}} type="checkbox" name="mediums" value="Poetry" />
+                    Poetry
+                  </Label>
+                  <Label>
+                    <Field style={{marginBottom: "10px"}} type="checkbox" name="mediums" value="Storytelling" />
+                    Storytelling
+                  </Label>
+                  <Label>
+                    <Field style={{marginBottom: "10px"}} type="checkbox" name="mediums" value="Photography" />
+                    Photography
+                  </Label>
+                  <Label>
+                    <Field style={{marginBottom: "10px"}} type="checkbox" name="mediums" value="Other" />
+                    Other
+                  </Label>
+                </Flex>
+              </SacramentSymbolsContainer>
+              <br />
+              <Submit style={{color: "white"}} type="submit">Submit form</Submit>
+            </Form>
+            )}
+          </Formik>
+          </FeatureItem>
+          </FeaturesGrid>
+        </GetStartedContainer>
+        :
+        null
+        }
+
         </StyledSection>
       </Section>
     )
