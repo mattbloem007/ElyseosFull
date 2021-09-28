@@ -4,6 +4,7 @@ import { useStaticQuery, graphql, Link, navigate } from "gatsby"
 import { Formik, Field, Form, ErrorMessage } from "formik"
 
 import { Section, Container } from "../global"
+import axios from "axios";
 
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
@@ -95,19 +96,30 @@ export default function EventContent({ data }) {
           <Formik
             initialValues={{ artistName: "", email: "", telegram: "", mediums: [], art: null }}
             onSubmit={(data, {resetForm}) => {
-                fetch("/", {
-                  method: "POST",
-                  headers: { "Content-Type": "multipart/form-data" },
-                  body: encode({
-                    "form-name": "art-event",
+                // fetch("/", {
+                //   method: "POST",
+                //   headers: { "Content-Type": "multipart/form-data" },
+                //   body: encode({
+                //     "form-name": "art-event",
+                //     ...data,
+                //   }),
+                // })
+                //   .then(() => {
+                //     resetForm();
+                //     navigate('/thanks')
+                //   })
+                //   .catch(error => alert(error))
+                axios({
+                  url: '/',
+                  method: 'POST',
+                  data: encode({
+                    'form-name': "art-event",
                     ...data,
-                  }),
-                })
-                  .then(() => {
-                    resetForm();
-                    navigate('/thanks')
                   })
-                  .catch(error => alert(error))
+                })
+                .then((res) => {
+                  console.log(res)
+                })
 
             }}
           >
