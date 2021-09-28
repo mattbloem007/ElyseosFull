@@ -181,7 +181,10 @@ export default function EventContent({ data }) {
 }
 
 
-const StyledContainer = styled(Container)``
+const StyledContainer = styled(Container)`
+    display: flex;
+    align-items: center;
+    justify-content: center;`
 
 const StyledSection = styled(Section)`
   background-color: #231B17;
@@ -190,8 +193,6 @@ const StyledSection = styled(Section)`
 const BackDrop = styled.img`
   padding-right: 50px;
   padding-left: 50px;
-  width: 100%;
-  height: 50%;
   opacity: 1;
   z-index: 1;
 
