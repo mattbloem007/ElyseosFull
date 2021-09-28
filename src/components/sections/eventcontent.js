@@ -40,10 +40,25 @@ const pluginOptions = {
   uploadsUrl: 'http://blog.elyseos.com/wp-content/uploads/'
 };
 
-const encode = data => {
-  return Object.keys(data)
-    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-    .join("&")
+// const encode = data => {
+//   return Object.keys(data)
+//     .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+//     .join("&")
+// }
+
+const encode = (data) => {
+  const formData = new FormData()
+  Object.keys(data)
+    .map(key => {
+      if (key === 'art') {
+        for (const file of data[key]) {
+          formData.append(key, file, file.name)
+        }
+      } else {
+        formData.append(key, data[key])
+      }
+    })
+  return formData
 }
 
 export default function EventContent({ data }) {
