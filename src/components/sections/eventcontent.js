@@ -51,13 +51,20 @@ const encode = (data) => {
   Object.keys(data)
     .map(key => {
       if (key === 'art') {
-        for (const file of data[key]) {
-          formData.append(key, file, file.name)
-        }
+        console.log("Inside art")
+      //  for (let file in data[key]) {
+          let file = data[key]
+          console.log("file in loop", key, file, file.name)
+          formData.append(key, file, file.name);
+          console.log("after", formData)
+        //}
       } else {
+        console.log("Appending data")
         formData.append(key, data[key])
       }
+      console.log("GETT", formData.get(key))
     })
+    console.log("ENCOde formdata", formData)
   return formData
 }
 
@@ -86,9 +93,8 @@ export default function EventContent({ data }) {
             <FeatureItem>
 
           <Formik
-            initialValues={{ artistName: "", email: "", telegram: "", mediums: [], art: "" }}
+            initialValues={{ artistName: "", email: "", telegram: "", mediums: [], art: null }}
             onSubmit={(data, {resetForm}) => {
-              console.log(data)
                 fetch("/", {
                   method: "POST",
                   headers: { "Content-Type": "application/x-www-form-urlencoded" },
