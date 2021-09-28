@@ -40,10 +40,32 @@ const pluginOptions = {
   uploadsUrl: 'http://blog.elyseos.com/wp-content/uploads/'
 };
 
-const encode = data => {
-  return Object.keys(data)
-    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-    .join("&")
+// const encode = data => {
+//   return Object.keys(data)
+//     .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+//     .join("&")
+// }
+
+const encode = (data) => {
+  const formData = new FormData()
+  Object.keys(data)
+    .map(key => {
+      if (key === 'art') {
+        console.log("Inside art")
+      //  for (let file in data[key]) {
+          let file = data[key]
+          console.log("file in loop", key, file, file.name)
+          formData.append(key, file, file.name);
+          console.log("after", formData)
+        //}
+      } else {
+        console.log("Appending data")
+        formData.append(key, data[key])
+      }
+      console.log("GETT", formData.get(key))
+    })
+    console.log("ENCOde formdata", formData)
+  return formData
 }
 
 export default function EventContent({ data }) {
@@ -71,12 +93,12 @@ export default function EventContent({ data }) {
             <FeatureItem>
 
           <Formik
-            initialValues={{ artistName: "", email: "", telegram: "", mediums: [], art: "", file: "" }}
+            initialValues={{ artistName: "", email: "", telegram: "", mediums: [], art: null }}
+
             onSubmit={(data, {resetForm}) => {
-              console.log(data)
                 fetch("/", {
                   method: "POST",
-                  headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                  headers: { "Content-Type": "multipart/form-data" },
                   body: encode({
                     "form-name": "art-event",
                     ...data,
@@ -155,7 +177,7 @@ export default function EventContent({ data }) {
               </SacramentSymbolsContainer>
               <br />
               <Flex style={{marginBottom: "50px"}}>
-                <Label htmlFor="telegram">Upload your Art</Label>
+                <Label>Upload your Art</Label>
                 <Field
                 as="input"
                 type="file"
