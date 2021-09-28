@@ -71,7 +71,7 @@ export default function EventContent({ data }) {
             <FeatureItem>
 
           <Formik
-            initialValues={{ artistName: "", email: "", telegram: "", mediums: [] }}
+            initialValues={{ artistName: "", email: "", telegram: "", mediums: [], art: "" }}
             onSubmit={(data, {resetForm}) => {
               console.log(data)
                 fetch("/", {
@@ -154,6 +154,19 @@ export default function EventContent({ data }) {
                 </Flex>
               </SacramentSymbolsContainer>
               <br />
+              <Flex style={{marginBottom: "50px"}}>
+                <Label>Upload your Art</Label>
+                <Field
+                as="input"
+                type="file"
+                name="file"
+                onChange={(event) =>{
+                  formik.setFieldValue("art", event.target.files[0]);
+                }}
+              />
+              </Flex>
+              <br />
+
               <Submit style={{color: "white"}} type="submit">Submit form</Submit>
             </Form>
             )}
@@ -350,7 +363,7 @@ const GetStartedContainer = styled(Container)`
   gap: 100px;
   padding: 0px 0 40px;
   width: 1094px;
-  height: 500px;
+  height: 650px;
   margin-bottom: 300px;
   background: #ED6F1B00 0% 0% no-repeat padding-box;
   border: 1px solid #ED6F1B;
