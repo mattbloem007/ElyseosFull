@@ -4,7 +4,6 @@ import { useStaticQuery, graphql, Link, navigate } from "gatsby"
 import { Formik, Field, Form, ErrorMessage } from "formik"
 
 import { Section, Container } from "../global"
-import axios from "axios";
 
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
@@ -48,26 +47,34 @@ const pluginOptions = {
 // }
 
 const encode = (data) => {
-  const formData = new FormData()
-  Object.keys(data)
-    .map(key => {
-      if (key === 'art') {
-        console.log("Inside art")
-      //  for (let file in data[key]) {
-          let file = data[key]
-          console.log("file in loop", key, file, file.name)
-          formData.append(key, file, file.name);
-          console.log("after", formData)
-        //}
-      } else {
-        console.log("Appending data")
-        formData.append(key, data[key])
-      }
-      console.log("GETT", formData.get(key))
-    })
-    console.log("ENCOde formdata", formData)
-  return formData
-}
+    const formData = new FormData();
+    Object.keys(data).forEach((k)=>{
+      formData.append(k,data[k])
+    });
+    return formData
+  }
+
+// const encode = (data) => {
+//   const formData = new FormData()
+//   Object.keys(data)
+//     .map(key => {
+//       if (key === 'art') {
+//         console.log("Inside art")
+//       //  for (let file in data[key]) {
+//           let file = data[key]
+//           console.log("file in loop", key, file, file.name)
+//           formData.append(key, file, file.name);
+//           console.log("after", formData)
+//         //}
+//       } else {
+//         console.log("Appending data")
+//         formData.append(key, data[key])
+//       }
+//       console.log("GETT", formData.get(key))
+//     })
+//     console.log("ENCOde formdata", formData)
+//   return formData
+// }
 
 export default function EventContent({ data }) {
   console.log("DATA :" , data)
@@ -95,10 +102,25 @@ export default function EventContent({ data }) {
 
           <Formik
             initialValues={{ artistName: "", email: "", telegram: "", mediums: [], art: null }}
+
             onSubmit={(data, {resetForm}) => {
+              fetch("/", {
+                method: "POST",
+                headers: { "Content-Type": 'multipart/form-data; boundary=random' },
+                body: encode({
+                  "form-name": "art-event",
+                  ...data,
+                })
+              })
+                .then((res) => {
+                  resetForm();
+                  console.log("res", res)
+                  //navigate('/thanks')
+                })
+                .catch(error => alert(error));
                 // fetch("/", {
                 //   method: "POST",
-                //   headers: { "Content-Type": "multipart/form-data" },
+                //   headers: { "Content-Type": "application/x-www-form-urlencoded" },
                 //   body: encode({
                 //     "form-name": "art-event",
                 //     ...data,
@@ -109,17 +131,6 @@ export default function EventContent({ data }) {
                 //     navigate('/thanks')
                 //   })
                 //   .catch(error => alert(error))
-                axios({
-                  url: '/',
-                  method: 'POST',
-                  data: encode({
-                    'form-name': "art-event",
-                    ...data,
-                  })
-                })
-                .then((res) => {
-                  console.log(res)
-                })
 
             }}
           >
@@ -227,10 +238,7 @@ export default function EventContent({ data }) {
 }
 
 
-const StyledContainer = styled(Container)`
-    display: flex;
-    align-items: center;
-    justify-content: center;`
+const StyledContainer = styled(Container)``
 
 const StyledSection = styled(Section)`
   background-color: #231B17;
@@ -239,6 +247,8 @@ const StyledSection = styled(Section)`
 const BackDrop = styled.img`
   padding-right: 50px;
   padding-left: 50px;
+  width: 100%;
+  height: 50%;
   opacity: 1;
   z-index: 1;
 
@@ -396,7 +406,7 @@ const GetStartedContainer = styled(Container)`
   gap: 100px;
   padding: 0px 0 40px;
   width: 1094px;
-  height: 650px;
+  height: 500px;
   margin-bottom: 300px;
   background: #ED6F1B00 0% 0% no-repeat padding-box;
   border: 1px solid #ED6F1B;
