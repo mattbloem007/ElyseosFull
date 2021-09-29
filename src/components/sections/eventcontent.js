@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import { useStaticQuery, graphql, Link, navigate } from "gatsby"
-import { Formik, Field, Form, ErrorMessage } from "formik"
+import { Formik, Field, Form, ErrorMessage, Input } from "formik"
 
 import { Section, Container } from "../global"
 
@@ -162,7 +162,7 @@ export default function EventContent({ data }) {
               </Flex>
               <br />
               <SacramentSymbolsContainer>
-                <Flex>
+                <Flex style={{marginBottom: "30px"}}>
                   <Label>
                     <Field style={{marginBottom: "10px"}} type="checkbox" name="mediums" value="Visual art" />
                     Visual art
