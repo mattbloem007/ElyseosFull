@@ -104,7 +104,7 @@ export default function EventContent({ data }) {
                     ...data,
                   }),
                 })
-                  .then(() => {
+                  .then((res) => {
                     resetForm();
                     navigate('/thanks')
                   })
