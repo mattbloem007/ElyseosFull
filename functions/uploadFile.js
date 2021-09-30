@@ -8,7 +8,7 @@ function parseMultipartForm(event) {
     const busboy = new Busboy({
       // it uses request headers
       // to extract the form boundary value (the ----WebKitFormBoundary thing)
-      headers: event.headers
+      headers: "Content-Type": 'multipart/form-data'
     });
 
     // before parsing anything, we need to set up some handlers.
@@ -17,6 +17,7 @@ function parseMultipartForm(event) {
       "file",
       (fieldname, filestream, filename, transferEncoding, mimeType) => {
         // ... we take a look at the file's data ...
+        console.log("INSIDE FILE")
         filestream.on("data", (data) => {
           // ... and write the file's name, type and content into `fields`.
           fields[fieldname] = {
@@ -31,6 +32,7 @@ function parseMultipartForm(event) {
     // whenever busboy comes across a normal field ...
     busboy.on("field", (fieldName, value) => {
       // ... we write its value into `fields`.
+      console.log("INSIDE FIELD", fieldName, value)
       fields[fieldName] = value;
     });
 

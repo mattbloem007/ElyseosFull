@@ -229,10 +229,11 @@ export default function EventContent({ data }) {
                 type="file"
                 name="file"
                 onChange={(event) =>{
+                  console.log("FORMIK VALUES: ", formik)
                   formik.setFieldValue("art", event.target.files[0]);
                   fetch("/.netlify/functions/uploadFile", {
                     method: "POST",
-                    event,
+                    body: formik.values,
                   })
                 }}
               />
