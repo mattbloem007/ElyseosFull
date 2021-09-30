@@ -198,6 +198,67 @@ export default function EventContent({ data }) {
                 </Flex>
               </SacramentSymbolsContainer>
               <br />
+              {/**<Flex style={{marginBottom: "50px"}}>
+                <Label>Upload your Art</Label>
+                <Field
+                as="input"
+                type="file"
+                name="file"
+                onChange={(event) =>{
+                  formik.setFieldValue("art", event.target.files[0]);
+                }}
+              />
+              </Flex>
+              <br />*/}
+
+              <Submit style={{color: "white"}} type="submit">Submit form</Submit>
+            </Form>
+            )}
+          </Formik>
+          <Formik
+            initialValues={{ art: null }}
+
+            onSubmit={(data, {resetForm}) => {
+              fetch("/", {
+                method: "POST",
+                headers: { "Content-Type": 'multipart/form-data' },
+                body: encode({
+                  "form-name": "art-doc",
+                  ...data,
+                })
+              })
+                .then((res) => {
+                  resetForm();
+                  console.log("res", res)
+                  //navigate('/thanks')
+                })
+                .catch(error => alert(error));
+                // fetch("/", {
+                //   method: "POST",
+                //   headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                //   body: encode({
+                //     "form-name": "art-event",
+                //     ...data,
+                //   }),
+                // })
+                //   .then(() => {
+                //     resetForm();
+                //     navigate('/thanks')
+                //   })
+                //   .catch(error => alert(error))
+
+            }}
+          >
+          {(formik) => (
+            <Form
+              name="art-doc"
+              data-netlify="true"
+              data-netlify-honeypot="bot-field"
+            >
+              <Field type="hidden" name="form-name" />
+              <Field type="hidden" name="bot-field" />
+
+
               <Flex style={{marginBottom: "50px"}}>
                 <Label>Upload your Art</Label>
                 <Field
@@ -211,7 +272,7 @@ export default function EventContent({ data }) {
               </Flex>
               <br />
 
-              <Submit style={{color: "white"}} type="submit">Submit form</Submit>
+              <Submit style={{color: "white"}} type="submit">Submit Artwork</Submit>
             </Form>
             )}
           </Formik>
