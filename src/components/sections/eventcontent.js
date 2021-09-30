@@ -137,7 +137,7 @@ export default function EventContent({ data }) {
                 .then((res) => {
                   resetForm();
                   console.log("res", res)
-                  //navigate('/thanks')
+                  navigate('/thanks')
                 })
                 .catch(error => alert(error));
                 // fetch("/", {
@@ -221,7 +221,7 @@ export default function EventContent({ data }) {
               </SacramentSymbolsContainer>
               <br />
               <br />
-              
+
               <Flex style={{marginBottom: "50px"}}>
                 <Label>Upload your Art</Label>
                 <Field
