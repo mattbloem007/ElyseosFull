@@ -125,6 +125,11 @@ const IntroContainer = styled.div`
   display: flex;
   padding-left: 100px;
   padding-right: 100px;
+  @media (max-width: ${props => props.theme.screen.md}) {
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 
 `
 
