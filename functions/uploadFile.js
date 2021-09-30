@@ -1,10 +1,9 @@
-import * as Busboy from "busboy"
+var Busboy = require('busboy');
 
 function parseMultipartForm(event) {
   return new Promise((resolve) => {
     // we'll store all form fields inside of this
     const fields = {};
-
     // let's instantiate our busboy instance!
     const busboy = new Busboy({
       // it uses request headers
