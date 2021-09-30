@@ -106,7 +106,7 @@ export default function EventContent({ data }) {
             onSubmit={(data, {resetForm}) => {
               fetch("/", {
                 method: "POST",
-                headers: { "Content-Type": 'multipart/form-data; boundary=random' },
+              //  headers: { "Content-Type": 'multipart/form-data; boundary=random' },
                 body: encode({
                   "form-name": "art-event",
                   ...data,
