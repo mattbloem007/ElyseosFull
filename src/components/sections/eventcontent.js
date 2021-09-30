@@ -7,18 +7,40 @@ import { Section, Container } from "../global"
 
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
-import { BLOCKS, MARKS } from "@contentful/rich-text-types"
+import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 
-const Bold = ({ children }) => <span style={{color: "white"}}>{children}</span>
-const Text = ({ children }) => <p style={{color: "white", textAlign: "center"}}>{children}</p>
+const Bold = ({ children }) => <span style={{color: "#ED6F1B", fontWeight:"bold"}}>{children}</span>
+const Text = ({ children }) => <p style={{color: "white"}}>{children}</p>
 
 const options = {
   renderMark: {
-    [MARKS.BOLD]: text => <Bold>{text}</Bold>,
+    [MARKS.BOLD]: text => {
+      console.log("text", text)
+      return(
+        <Bold>{text}</Bold>
+      )},
   },
   renderNode: {
-    [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
+    [INLINES.HYPERLINK]: (node, children) => {
+      console.log("INLINES NODE", node)
+      if (node.data.uri.indexOf('youtube.com') >= 0) {
+        return (
+          <iframe width="560" height="315" src={node.data.uri} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        )
+      }
+      else {
+        return (
+          <a href={node.data.uri}>{children}</a>
+        )
+      }
+    },
+    [BLOCKS.PARAGRAPH]: (node, children) => {
+      console.log(node)
+      return (
+        <Text>{children}</Text>
+      )
+    },
     [BLOCKS.EMBEDDED_ASSET]: node => {
       return (
         <>
@@ -92,7 +114,7 @@ export default function EventContent({ data }) {
         <SectionTitle style={{color: "white"}}>{data.contentfulEventsPage.title}</SectionTitle>
         <IntroContainer>
           <IntroText>
-          {data.contentfulEventsPage.featureText1 ? documentToReactComponents(JSON.parse(data.contentfulEventsPage.featureText1.raw, options)) : null}
+          {data.contentfulEventsPage.featureText1 ? documentToReactComponents(JSON.parse(data.contentfulEventsPage.featureText1.raw), options) : null}
           </IntroText>
         </IntroContainer>
         {
@@ -106,7 +128,7 @@ export default function EventContent({ data }) {
             onSubmit={(data, {resetForm}) => {
               fetch("/", {
                 method: "POST",
-                headers: { "Content-Type": 'multipart/form-data' },
+              //  headers: { "Content-Type": 'multipart/form-data' },
                 body: encode({
                   "form-name": "art-event",
                   ...data,
@@ -198,67 +220,8 @@ export default function EventContent({ data }) {
                 </Flex>
               </SacramentSymbolsContainer>
               <br />
-              {/**<Flex style={{marginBottom: "50px"}}>
-                <Label>Upload your Art</Label>
-                <Field
-                as="input"
-                type="file"
-                name="file"
-                onChange={(event) =>{
-                  formik.setFieldValue("art", event.target.files[0]);
-                }}
-              />
-              </Flex>
-              <br />*/}
-
-              <Submit style={{color: "white"}} type="submit">Submit form</Submit>
-            </Form>
-            )}
-          </Formik>
-          <Formik
-            initialValues={{ art: null }}
-
-            onSubmit={(data, {resetForm}) => {
-              fetch("/", {
-                method: "POST",
-              //  headers: { "Content-Type": 'multipart/form-data' },
-                body: encode({
-                  "form-name": "art-doc",
-                  ...data,
-                })
-              })
-                .then((res) => {
-                  resetForm();
-                  console.log("res", res)
-                  //navigate('/thanks')
-                })
-                .catch(error => alert(error));
-                // fetch("/", {
-                //   method: "POST",
-                //   headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                //   body: encode({
-                //     "form-name": "art-event",
-                //     ...data,
-                //   }),
-                // })
-                //   .then(() => {
-                //     resetForm();
-                //     navigate('/thanks')
-                //   })
-                //   .catch(error => alert(error))
-
-            }}
-          >
-          {(formik) => (
-            <Form
-              name="art-doc"
-              data-netlify="true"
-              data-netlify-honeypot="bot-field"
-            >
-              <Field type="hidden" name="form-name" />
-              <Field type="hidden" name="bot-field" />
-
-
+              <br />
+              
               <Flex style={{marginBottom: "50px"}}>
                 <Label>Upload your Art</Label>
                 <Field
@@ -272,7 +235,7 @@ export default function EventContent({ data }) {
               </Flex>
               <br />
 
-              <Submit style={{color: "white"}} type="submit">Submit Artwork</Submit>
+              <Submit style={{color: "white"}} type="submit">Submit form</Submit>
             </Form>
             )}
           </Formik>
@@ -467,7 +430,7 @@ const GetStartedContainer = styled(Container)`
   gap: 100px;
   padding: 0px 0 40px;
   width: 1094px;
-  height: 500px;
+  height: 700px;
   margin-bottom: 300px;
   background: #ED6F1B00 0% 0% no-repeat padding-box;
   border: 1px solid #ED6F1B;
