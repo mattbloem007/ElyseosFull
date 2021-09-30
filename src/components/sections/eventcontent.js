@@ -9,6 +9,14 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
 import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
+import ti from '../../images/iboga-white-icon.png'
+import sp from '../../images/sanpedro-white-icon.png'
+import am from '../../images/amanita-icon-white-1.png'
+import cacao from '../../images/cacao-white-icon.png'
+import aya from '../../images/aya-white-icon.png'
+import canna from '../../images/cannabis-white-icon.png'
+import psilo from '../../images/psilocybin-trans-white.png'
+import salvia from '../../images/salvia-white-icon.png'
 
 const Bold = ({ children }) => <span style={{color: "#ED6F1B", fontWeight:"bold"}}>{children}</span>
 const Text = ({ children }) => <p style={{color: "white"}}>{children}</p>
@@ -26,7 +34,7 @@ const options = {
       console.log("INLINES NODE", node)
       if (node.data.uri.indexOf('youtube.com') >= 0) {
         return (
-          <iframe width="560" height="315" src={node.data.uri} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe width="340" height="315" src={node.data.uri} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         )
       }
       else {
@@ -117,6 +125,7 @@ export default function EventContent({ data }) {
           {data.contentfulEventsPage.featureText1 ? documentToReactComponents(JSON.parse(data.contentfulEventsPage.featureText1.raw), options) : null}
           </IntroText>
         </IntroContainer>
+
         {
           data.contentfulEventsPage.form ? <GetStartedContainer>
             <FeaturesGrid>
@@ -450,5 +459,16 @@ const FeaturesGrid = styled.div`
   @media (max-width: ${props => props.theme.screen.sm}) {
     grid-template-columns: 1fr;
     padding: 0 64px;
+  }
+`
+
+const SacramentSymbol = styled.img`
+  height: 40px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  padding-right: 30px;
+
+  @media (max-width: ${props => props.theme.screen.md}) {
+    padding-right: 5px;
   }
 `
