@@ -1,24 +1,46 @@
 import React from "react"
 import styled from "styled-components"
 import { useStaticQuery, graphql, Link, navigate } from "gatsby"
-import { Formik, Field, Form, ErrorMessage } from "formik"
+import { Formik, Field, Form, ErrorMessage, Input } from "formik"
 
 import { Section, Container } from "../global"
 
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
-import { BLOCKS, MARKS } from "@contentful/rich-text-types"
+import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 
-const Bold = ({ children }) => <span style={{color: "white"}}>{children}</span>
-const Text = ({ children }) => <p style={{color: "white", textAlign: "center"}}>{children}</p>
+const Bold = ({ children }) => <span style={{color: "#ED6F1B", fontWeight:"bold"}}>{children}</span>
+const Text = ({ children }) => <p style={{color: "white"}}>{children}</p>
 
 const options = {
   renderMark: {
-    [MARKS.BOLD]: text => <Bold>{text}</Bold>,
+    [MARKS.BOLD]: text => {
+      console.log("text", text)
+      return(
+        <Bold>{text}</Bold>
+      )},
   },
   renderNode: {
-    [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
+    [INLINES.HYPERLINK]: (node, children) => {
+      console.log("INLINES NODE", node)
+      if (node.data.uri.indexOf('youtube.com') >= 0) {
+        return (
+          <iframe width="560" height="315" src={node.data.uri} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        )
+      }
+      else {
+        return (
+          <a href={node.data.uri}>{children}</a>
+        )
+      }
+    },
+    [BLOCKS.PARAGRAPH]: (node, children) => {
+      console.log(node)
+      return (
+        <Text>{children}</Text>
+      )
+    },
     [BLOCKS.EMBEDDED_ASSET]: node => {
       return (
         <>
@@ -40,11 +62,19 @@ const pluginOptions = {
   uploadsUrl: 'http://blog.elyseos.com/wp-content/uploads/'
 };
 
-const encode = data => {
-  return Object.keys(data)
-    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-    .join("&")
-}
+// const encode = data => {
+//   return Object.keys(data)
+//     .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+//     .join("&")
+// }
+
+const encode = (data) => {
+    const formData = new FormData();
+    Object.keys(data).forEach((k)=>{
+      formData.append(k,data[k])
+    });
+    return formData
+  }
 
 // const encode = (data) => {
 //   const formData = new FormData()
@@ -84,7 +114,7 @@ export default function EventContent({ data }) {
         <SectionTitle style={{color: "white"}}>{data.contentfulEventsPage.title}</SectionTitle>
         <IntroContainer>
           <IntroText>
-          {data.contentfulEventsPage.featureText1 ? documentToReactComponents(JSON.parse(data.contentfulEventsPage.featureText1.raw, options)) : null}
+          {data.contentfulEventsPage.featureText1 ? documentToReactComponents(JSON.parse(data.contentfulEventsPage.featureText1.raw), options) : null}
           </IntroText>
         </IntroContainer>
         {
@@ -96,19 +126,33 @@ export default function EventContent({ data }) {
             initialValues={{ artistName: "", email: "", telegram: "", mediums: [], art: null }}
 
             onSubmit={(data, {resetForm}) => {
-                fetch("/", {
-                  method: "POST",
-                  headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                  body: encode({
-                    "form-name": "art-event",
-                    ...data,
-                  }),
+              fetch("/", {
+                method: "POST",
+              //  headers: { "Content-Type": 'multipart/form-data' },
+                body: encode({
+                  "form-name": "art-event",
+                  ...data,
                 })
-                  .then((res) => {
-                    resetForm();
-                    navigate('/thanks')
-                  })
-                  .catch(error => alert(error))
+              })
+                .then((res) => {
+                  resetForm();
+                  console.log("res", res)
+                  navigate('/thanks')
+                })
+                .catch(error => alert(error));
+                // fetch("/", {
+                //   method: "POST",
+                //   headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                //   body: encode({
+                //     "form-name": "art-event",
+                //     ...data,
+                //   }),
+                // })
+                //   .then(() => {
+                //     resetForm();
+                //     navigate('/thanks')
+                //   })
+                //   .catch(error => alert(error))
 
             }}
           >
@@ -140,7 +184,7 @@ export default function EventContent({ data }) {
               </Flex>
               <br />
               <SacramentSymbolsContainer>
-                <Flex>
+                <Flex style={{marginBottom: "30px"}}>
                   <Label>
                     <Field style={{marginBottom: "10px"}} type="checkbox" name="mediums" value="Visual art" />
                     Visual art
@@ -176,6 +220,8 @@ export default function EventContent({ data }) {
                 </Flex>
               </SacramentSymbolsContainer>
               <br />
+              <br />
+
               <Flex style={{marginBottom: "50px"}}>
                 <Label>Upload your Art</Label>
                 <Field
@@ -384,7 +430,7 @@ const GetStartedContainer = styled(Container)`
   gap: 100px;
   padding: 0px 0 40px;
   width: 1094px;
-  height: 500px;
+  height: 700px;
   margin-bottom: 300px;
   background: #ED6F1B00 0% 0% no-repeat padding-box;
   border: 1px solid #ED6F1B;
