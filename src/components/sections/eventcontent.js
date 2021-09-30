@@ -233,7 +233,7 @@ export default function EventContent({ data }) {
                   formik.setFieldValue("art", event.target.files[0]);
                   fetch("/.netlify/functions/uploadFile", {
                     method: "POST",
-                    body: formik.values,
+                    body: JSON.stringify({ fieldValues: formik.values }),
                   })
                 }}
               />
