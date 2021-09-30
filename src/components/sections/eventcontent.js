@@ -34,7 +34,9 @@ const options = {
       console.log("INLINES NODE", node)
       if (node.data.uri.indexOf('youtube.com') >= 0) {
         return (
-          <iframe width="340" height="315" src={node.data.uri} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <div style={{display: "flex", justifyContent:"center"}}>
+            <iframe width="340" height="315" src={node.data.uri} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
         )
       }
       else {
