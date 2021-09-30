@@ -230,6 +230,10 @@ export default function EventContent({ data }) {
                 name="file"
                 onChange={(event) =>{
                   formik.setFieldValue("art", event.target.files[0]);
+                  fetch("/.netlify/functions/uploadFile", {
+                    method: "POST",
+                    event,
+                  })
                 }}
               />
               </Flex>
