@@ -47,8 +47,8 @@ function parseMultipartForm(event) {
 }
 
 module.exports.handler = async (event, context, callback) => {
-  const fields = await parseMultipartForm(event)
-
+  //const fields = await parseMultipartForm(event)
+  console.log("EVENT: ", event)
   console.log("FIELDS: ", fields)
 
   const response = {
