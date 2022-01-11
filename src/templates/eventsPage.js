@@ -2,7 +2,7 @@ import React from "react"
 import { graphql } from 'gatsby'
 
 import Layout from "../components/common/layout/layout"
-import SEO from "../components/common/layout/seo"
+import SEO from "../components/seo"
 import Navigation from "../components/common/navigation/navigation"
 
 import Header from "../components/sections/header"
@@ -17,7 +17,7 @@ class EventPost extends React.Component {
 
     return (
       <Layout>
-        <SEO title="Home" />
+        <SEO title={data.wpPost.title} url={"https://elyseos.com/" + data.contentfulEventsPage.slug}/>
         <Navigation />
         <EventContent data={data}/>
         <Footer />

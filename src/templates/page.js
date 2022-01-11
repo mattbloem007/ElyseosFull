@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import Layout from "../components/common/layout/layout"
-import SEO from "../components/common/layout/seo"
+import SEO from "../components/seo"
 import Navigation from "../components/common/navigation/navigation"
 import Banner from "../components/sections/banner"
 import Header from "../components/sections/header"
@@ -67,7 +67,7 @@ class Page extends React.Component {
     console.log("Page", data)
     return (
       <Layout>
-        <SEO title={data.contentfulPage.title} />
+        <SEO title={data.contentfulPage.title} url={"https://elyseos.com/" + data.contentfulPage.slug}/>
         <Navigation />
         <Section id="features">
         <Banner/>

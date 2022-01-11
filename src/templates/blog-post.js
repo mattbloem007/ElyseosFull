@@ -2,7 +2,7 @@ import React from "react"
 import { graphql } from 'gatsby'
 
 import Layout from "../components/common/layout/layout"
-import SEO from "../components/common/layout/seo"
+import SEO from "../components/seo"
 import Navigation from "../components/common/navigation/navigation"
 
 import Header from "../components/sections/header"
@@ -17,7 +17,7 @@ class BlogPost extends React.Component {
 
     return (
       <Layout>
-        <SEO title="Home" />
+        <SEO title={data.wpPost.title} description={data.wpPost.excerpt} image={data.wpPost.featuredImage.node.sourceUrl} url={"https://elyseos.com/" + data.wpPost.slug} />
         <Navigation />
         <Banner />
         <BlogContent data={data}/>
@@ -37,6 +37,13 @@ export const query = graphql`
       id
       title
       content
+      excerpt
+      featuredImage {
+        node {
+          sourceUrl
+        }
+      }
+      slug
     }
   }
 `

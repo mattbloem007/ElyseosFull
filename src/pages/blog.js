@@ -1,7 +1,7 @@
 import React from "react"
 
 import Layout from "../components/common/layout/layout"
-import SEO from "../components/common/layout/seo"
+import SEO from "../components/seo"
 import Navigation from "../components/common/navigation/navigation"
 import { useStaticQuery, graphql, Link } from "gatsby"
 
@@ -35,7 +35,7 @@ const Blog = () => {
 `)
   return (
     <Layout>
-      <SEO title="Home" />
+      <SEO title="Elyseos Blog" description="A place to explore all things on Elyseos and plant sacrements"/>
       <Navigation />
       <Banner />
       <Archives data={data}/>

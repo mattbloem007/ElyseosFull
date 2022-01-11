@@ -38,7 +38,7 @@ const Events = () => {
 `)
   return (
     <Layout>
-      <SEO title="Home" />
+      <SEO title="Elyseso Events" description="A place to know all about Elyseos hosted events" />
       <Navigation />
       <Banner />
       <EventArchives data={data}/>

@@ -13,7 +13,7 @@ import LayoutOne from "../components/sections/layoutOne"
 
 const Thanks = () => (
   <Layout>
-    <SEO title="Home" />
+    <SEO title="Thank you" />
     <Banner />
     <Thankyou />
   </Layout>

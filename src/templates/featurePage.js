@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import Layout from "../components/common/layout/layout"
-import SEO from "../components/common/layout/seo"
+import SEO from "../components/seo"
 import Navigation from "../components/common/navigation/navigation"
 import Banner from "../components/sections/banner"
 import Header from "../components/sections/header"
@@ -54,7 +54,7 @@ class FeaturePage extends React.Component {
 
     return (
       <Layout>
-        <SEO title={data.contentfulFeaturePage.title} />
+        <SEO title={data.contentfulFeaturePage.title} url={"https://elyseos.com/" + data.contentfulFeaturePage.slug} />
         <Navigation />
         <Section id="features">
         <Banner/>
