@@ -9,6 +9,7 @@ module.exports = {
     description: `Elyseos.`,
     author: `Sy Tzu`,
     url: 'https://www.elyseos.com',
+    siteUrl: 'https://www.elyseos.com',
     image: '/images/logo-watermark.png',
     owner: 'Elyseos Team',
     twitterUsername: '@ElyseosFDN',
