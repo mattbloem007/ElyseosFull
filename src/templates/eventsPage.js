@@ -17,7 +17,7 @@ class EventPost extends React.Component {
 
     return (
       <Layout>
-        <SEO title={data.wpPost.title} url={"https://elyseos.com/" + data.contentfulEventsPage.slug}/>
+        <SEO title={data.contentfulEventsPage.title} url={"https://elyseos.com/" + data.contentfulEventsPage.slug}/>
         <Navigation />
         <EventContent data={data}/>
         <Footer />
