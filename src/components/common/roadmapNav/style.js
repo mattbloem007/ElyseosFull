@@ -122,7 +122,8 @@ export const LinkItem = styled.div`
   display: flex;
   align-items: flex-end;
   flex-direction: row;
-  justify-content: flex-start
+  justify-content: flex-start;
+  cursor: pointer;
 `
 
 export const SacramentSymbol = styled.img`
