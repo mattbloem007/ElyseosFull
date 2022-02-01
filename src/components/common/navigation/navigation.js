@@ -27,7 +27,7 @@ import {
 
 } from './dropdownStyle'
 
-const SUB_ITEMS_DOCS = [{name: "Litepaper", suburl:"/litepaper"}, {name: "Token & Roadmap", suburl: "/token-timelines"}]
+const SUB_ITEMS_DOCS = [{name: "Litepaper", suburl:"/litepaper"}, {name: "Token & Roadmap", suburl: "/token-timelines"}, {name: "Deck", suburl: "/deck"}]
 const SUB_ITEMS_HOME = [{name: "Team", suburl:"/team"}]
 const SUB_ITEMS_DAO = [{name: "Events", suburl: "/events"}]
 //[{name: "Governance", suburl: "/governance"}]

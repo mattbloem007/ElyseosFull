@@ -41,7 +41,7 @@ const options = {
 }
 
 const Features = ({data}) => {
-  console.log("Data feature: ", data)
+  //console.log("Content length: ", data)
 
   return (
   <Section id="features">
@@ -49,6 +49,7 @@ const Features = ({data}) => {
       <FeaturesGrid>
       {
         data ? data.map(contentItem => {
+          console.log("Content length: ", contentItem.body.raw)
           return (
             <FeatureItem>
               <ImageandTitle>
