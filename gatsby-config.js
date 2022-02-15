@@ -4,12 +4,27 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: `Elyseos Seed Sale`,
+    title: `Elyseos`,
+    titleTemplate: '%s · Elyseos',
     description: `Elyseos.`,
     author: `Sy Tzu`,
+    url: 'https://www.elyseos.com',
+    siteUrl: 'https://www.elyseos.com',
+    image: '/images/logo-watermark.png',
+    owner: 'Elyseos Team',
+    twitterUsername: '@ElyseosFDN',
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://www.elyseos.com',
+        sitemap: 'https://www.elyseos.com/sitemap.xml',
+        policy: [{ userAgent: '*', allow: '/' }]
+      }
+    },
+    `gatsby-plugin-sitemap`,
     `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-plugin-layout`,
@@ -49,8 +64,9 @@ module.exports = {
     {
       resolve: `gatsby-source-contentful`,
       options: {
-        spaceId: process.env.CONTENTFUL_SPACE_ID,
-        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+        spaceId: process.env.CONTENTFUL_SPACE_ID || '',
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN || '',
+        host: process.env.CONTENTFUL_HOST
       },
     },
     `gatsby-plugin-sharp`,
