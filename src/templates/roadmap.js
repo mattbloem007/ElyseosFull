@@ -69,7 +69,7 @@ export default Roadmap
 
 export const roadmapQuery = graphql`
 query roadmapByTitleQuery {
-allContentfulRoadmap {
+allContentfulRoadmap(sort: {order: ASC, fields: order}) {
   edges {
     node {
       timelineNodes {
@@ -82,6 +82,11 @@ allContentfulRoadmap {
       }
       colour
       slogan
+      symbol {
+      file {
+        url
+      }
+    }
     }
   }
 }
