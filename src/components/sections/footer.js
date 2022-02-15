@@ -9,6 +9,9 @@ import medium from "../../images/medium-black-icon.png"
 import email from "../../images/email-icon.png"
 import discord from "../../images/discord-black-icon.png"
 import telegram from "../../images/telegram-black-icon.png"
+import facebook from "../../images/facebook-icon-black.png"
+import insta from "../../images/instagram-icon-black.jpeg"
+
 
 const Footer = () => (
   <FooterWrapper id="footer">
@@ -63,6 +66,12 @@ const Footer = () => (
         <Link to="/email-signup">
           <SocialSymbol src={email} />
         </Link>
+        <a target="_blank" href="https://www.facebook.com/elyseos">
+          <SocialSymbol src={facebook} />
+        </a>
+        <a target="_blank" href="https://www.instagram.com/elyseos_foundation/">
+          <SocialSymbol src={insta} />
+        </a>
       </SocialContainer>
       </FooterColumn>
     </FooterColumnContainer>

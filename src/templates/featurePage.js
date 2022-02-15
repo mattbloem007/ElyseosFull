@@ -7,6 +7,8 @@ import Banner from "../components/sections/banner"
 import Header from "../components/sections/header"
 import Features from "../components/sections/features"
 import Footer from "../components/sections/footer"
+import SimpleSlider from "../components/sections/carousel"
+
 
 import { graphql, Link } from "gatsby"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
@@ -99,6 +101,7 @@ class FeaturePage extends React.Component {
             </IntroContainer>
           </StyledSection>
           <Features data={data.contentfulFeaturePage.contentItems}/>
+          <SimpleSlider />
         </Section>
         <Footer />
       </Layout>
