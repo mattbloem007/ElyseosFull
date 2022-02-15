@@ -101,7 +101,6 @@ class FeaturePage extends React.Component {
             </IntroContainer>
           </StyledSection>
           <Features data={data.contentfulFeaturePage.contentItems}/>
-          <SimpleSlider />
         </Section>
         <Footer />
       </Layout>
