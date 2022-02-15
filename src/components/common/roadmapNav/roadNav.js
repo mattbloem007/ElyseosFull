@@ -157,7 +157,6 @@ export default class RoadNav extends Component {
 
       return (
         this.props.data.allContentfulRoadmap.edges.map(navItem => {
-          console.log("nac", navItem)
             return (
               <LinkItem>
                 <div style={{display: "flex", flexWrap: "wrap"}} onClick={(e) => this.handleClick(e)}>
@@ -176,7 +175,7 @@ export default class RoadNav extends Component {
 
   render() {
     const { mobileMenuOpen, data } = this.state
-    console.log("Data rm ", this.state.data)
+    console.log("Data rm ", this.props.data)
     return (
       <Section id="features">
         <StyledSection>

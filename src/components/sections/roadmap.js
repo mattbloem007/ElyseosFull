@@ -33,6 +33,7 @@ const Roadmap = () => {
     }
     }
 `)
+console.log("NEW ROAD ", data)
   return (
     <StyledSection>
       <SectionTitle style={{color: "white"}}>Roadmap Wind Seeds</SectionTitle>
