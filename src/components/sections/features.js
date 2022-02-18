@@ -40,8 +40,8 @@ const options = {
   },
 }
 
-const Features = ({data}) => {
-  console.log("Data feature: ", data)
+const Features = ({data, slug}) => {
+  console.log("Data feature: ", slug)
 
   return (
   <Section id="features">
@@ -50,7 +50,7 @@ const Features = ({data}) => {
       {
         data ? data.map(contentItem => {
           console.log(contentItem.body.raw.length)
-          if (contentItem.body.raw.length < 603 || contentItem.title == "Get ELYS") {
+          if (contentItem.body.raw.length < 603 || contentItem.title == "Get ELYS" || slug == "team") {
             return (
               <FeatureItem>
                 <ImageandTitle>

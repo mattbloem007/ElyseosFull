@@ -100,7 +100,7 @@ class FeaturePage extends React.Component {
             </IntroText>
             </IntroContainer>
           </StyledSection>
-          <Features data={data.contentfulFeaturePage.contentItems}/>
+          <Features slug={data.contentfulFeaturePage.slug} data={data.contentfulFeaturePage.contentItems}/>
         </Section>
         <Footer />
       </Layout>
