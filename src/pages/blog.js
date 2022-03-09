@@ -16,7 +16,7 @@ const Blog = () => {
   const data = useStaticQuery(
     graphql`
     query PostsQuery {
-      allWpPost {
+      allWpPost(sort: {order: DESC, fields: date}) {
        nodes {
          id
          uri
