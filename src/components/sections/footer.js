@@ -9,9 +9,6 @@ import medium from "../../images/medium-black-icon.png"
 import email from "../../images/email-icon.png"
 import discord from "../../images/discord-black-icon.png"
 import telegram from "../../images/telegram-black-icon.png"
-import facebook from "../../images/facebook-icon-black.png"
-import insta from "../../images/instagram-icon-black.jpeg"
-
 
 const Footer = () => (
   <FooterWrapper id="footer">
@@ -66,12 +63,6 @@ const Footer = () => (
         <Link to="/email-signup">
           <SocialSymbol src={email} />
         </Link>
-        <a target="_blank" href="https://www.facebook.com/elyseos">
-          <SocialSymbol src={facebook} />
-        </a>
-        <a target="_blank" href="https://www.instagram.com/elyseos_foundation/">
-          <SocialSymbol src={insta} />
-        </a>
       </SocialContainer>
       </FooterColumn>
     </FooterColumnContainer>
@@ -110,13 +101,11 @@ const SocialSymbol = styled.img`
   margin-bottom: 20px;
   margin-top: 10px;
   margin-right: 50px;
-
 `
 
 const ListLink = styled.a`
     text-decoration: none;
     color: #231B17;
-
   :hover {
     color: #ED6F1B;
   }
@@ -127,7 +116,6 @@ const BrandContainer = styled(Container)`
   padding-top: 48px;
   display: flex;
   align-items: flex-end;
-
   @media (max-width: ${props => props.theme.screen.sm}) {
   }
 `
@@ -163,7 +151,6 @@ const FooterColumn = styled.div`
       margin-left: 2px;
     }
   }
-
   @media (max-width: ${props => props.theme.screen.md}) {
     display: flex;
     align-items: center;
