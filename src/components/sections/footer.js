@@ -24,7 +24,6 @@ const Footer = () => (
       <FooterColumn>
         <span>Technology</span>
         <ul>
-          <ListLink href="/roadmap"><li>Roadmap</li></ListLink>
           <ListLink href="/token-timelines"><li>Token</li></ListLink>
           <ListLink href="/litepaper"><li>Litepaper</li></ListLink>
         </ul>

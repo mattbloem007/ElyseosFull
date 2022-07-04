@@ -83,7 +83,7 @@ const Features = ({data, slug}) => {
                   <FeatureTitle>{contentItem.title}</FeatureTitle>
                 </ImageandTitle>
                 {documentToReactComponents(JSON.parse(contentItem.body.raw, options))}
-                <FeatureText style={{color: "#ED6F1B", fontStyle: "italic", textDecoration: "underline"}}><Link to="/roadmap">Read more</Link></FeatureText>
+                <FeatureText style={{color: "#ED6F1B", fontStyle: "italic", textDecoration: "underline"}}><Link to="/">Read more</Link></FeatureText>
 
                 {/**contentItem.title === "Get ELYS"
                 ?

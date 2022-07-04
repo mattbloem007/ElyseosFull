@@ -137,20 +137,6 @@ exports.createPages = ({ graphql, actions }) => {
             }
           }
         }
-        allContentfulRoadmap {
-            edges {
-              node {
-                slogan
-                slug
-                timelineNodes {
-                  title
-                  description
-                }
-                title
-                colour
-              }
-            }
-          }
           allContentfulFeaturePage {
            edges {
              node {
