@@ -9,6 +9,7 @@ import medium from "../../images/medium-black-icon.png"
 import email from "../../images/email-icon.png"
 import discord from "../../images/discord-black-icon.png"
 import telegram from "../../images/telegram-black-icon.png"
+import gitbook from '../../images/Social Media Icons Black Gitbook- V1.0.png'
 
 const Footer = () => (
   <FooterWrapper id="footer">
@@ -31,8 +32,8 @@ const Footer = () => (
       <FooterColumn>
         <span>Community</span>
         <ul>
-        <ListLink href="/roadmap"><li>Roadmap</li></ListLink>
-        <li>Governance</li>
+        <ListLink href="https://app.gitbook.com/c/5deeMaOeXG1Hj9HVcM5U"><li>Guidebook</li></ListLink>
+        <ListLink href="https://snapshot.org/#/elyseos.eth"><li>Governance</li></ListLink>
         <ListLink href="/litepaper"><li>Litepaper</li></ListLink>
         </ul>
       </FooterColumn>
@@ -40,6 +41,7 @@ const Footer = () => (
         <span>Listings</span>
         <ul>
           <ListLink target="_blank" href="https://nomics.com/assets/elys-elyseos"><li>Nomics</li></ListLink>
+          <ListLink target="_blank" href="https://spooky.fi/#/"><li>Spooky Swap</li></ListLink>
         </ul>
       </FooterColumn>
       <FooterColumn>
@@ -58,6 +60,9 @@ const Footer = () => (
         </a>
         <a target="_blank" href="https://medium.com/@Elyseos">
           <SocialSymbol src={medium} />
+        </a>
+        <a target="_blank" href="https://app.gitbook.com/c/5deeMaOeXG1Hj9HVcM5U">
+          <SocialSymbol src={gitbook} />
         </a>
         <Link to="/email-signup">
           <SocialSymbol src={email} />
@@ -90,7 +95,7 @@ const Logo = styled.div`
 
 const SocialContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   align-items: center;
   margin-right: 20px;
 `
