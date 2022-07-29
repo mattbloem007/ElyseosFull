@@ -34,7 +34,6 @@ const Footer = () => (
         <ul>
         <ListLink href="https://app.gitbook.com/c/5deeMaOeXG1Hj9HVcM5U"><li>Guidebook</li></ListLink>
         <ListLink href="https://snapshot.org/#/elyseos.eth"><li>Governance</li></ListLink>
-        <ListLink href="/litepaper"><li>Litepaper</li></ListLink>
         </ul>
       </FooterColumn>
       <FooterColumn>
